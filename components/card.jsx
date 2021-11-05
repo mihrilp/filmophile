@@ -6,8 +6,9 @@ function Card({ name, imgUrl, date, score }) {
     <div className={styles.card}>
       <Image
         src={`https://image.tmdb.org/t/p/original${imgUrl}`}
-        width={500}
-        height={500}
+        width={300}
+        height={300}
+        layout="responsive"
       />
       <p>{name}</p>
       <p>{date}</p>

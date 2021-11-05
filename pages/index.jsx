@@ -35,8 +35,8 @@ export default function Home({ data }) {
             quod, labore ipsum!
           </p>
         </div>
+        <h2 className={styles.title}>Popular Movies</h2>
         <div className={styles.movies}>
-          <h2 className={styles.title}>Popular Movies</h2>
           {movies.map((movie) => (
             <Card
               key={movie.id}
