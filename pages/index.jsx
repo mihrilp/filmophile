@@ -37,7 +37,7 @@ export default function Home({ data }) {
         </div>
         <h2 className={styles.title}>Popular Movies</h2>
         <div className={styles.movies}>
-          {movies.map((movie) => (
+          {movies.slice(0, 10).map((movie) => (
             <Card
               key={movie.id}
               name={movie.original_title}
@@ -46,6 +46,7 @@ export default function Home({ data }) {
             />
           ))}
         </div>
+        <h2 className={styles.title}>Top Rated Movies</h2>
       </main>
       <Footer />
     </div>

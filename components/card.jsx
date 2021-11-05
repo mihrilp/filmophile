@@ -5,9 +5,11 @@ function Card({ name, imgUrl, date, score }) {
   return (
     <div className={styles.card}>
       <Image
+        className={styles.image}
         src={`https://image.tmdb.org/t/p/original${imgUrl}`}
+        alt="movie image"
         width={300}
-        height={300}
+        height={400}
         layout="responsive"
       />
       <p>{name}</p>

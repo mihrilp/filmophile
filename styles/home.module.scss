@@ -1,24 +1,24 @@
 .container {
   padding: 0 2rem;
   min-height: 100vh;
-  padding: 4rem 7rem;
+  padding: 4rem 10rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   .jumbotron {
     background-color: #1c202f;
-    margin: 10px;
     border-radius: 10px;
     text-align: center;
     padding: 2rem;
+    margin-bottom: 3rem;
   }
   .title {
     color: #cb9e0c;
+    margin-bottom: 25px;
   }
   .movies {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
   }
 }
