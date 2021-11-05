@@ -1,9 +1,21 @@
 .container {
   padding: 0 2rem;
   min-height: 100vh;
-  padding: 4rem 0;
+  padding: 4rem 7rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  .jumbotron {
+    background-color: #1c202f;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2rem;
+  }
+  .movies {
+    .title {
+      color: #cb9e0c;
+    }
+  }
 }
