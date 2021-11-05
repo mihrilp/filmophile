@@ -13,9 +13,13 @@
     text-align: center;
     padding: 2rem;
   }
+  .title {
+    color: #cb9e0c;
+  }
   .movies {
-    .title {
-      color: #cb9e0c;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: ;
   }
 }
