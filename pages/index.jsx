@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/home.module.scss";
 import Header from "../components/header";
@@ -6,18 +7,24 @@ import Card from "../components/card";
 import axios from "axios";
 
 export async function getStaticProps() {
-  const { data } = await axios(
+  let res = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
   );
+  const popularMovies = res.data.results;
+  res = await axios(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+  );
+  const topRatedMovies = res.data.results;
+
   return {
     props: {
-      data,
+      popularMovies,
+      topRatedMovies,
     },
   };
 }
 
-export default function Home({ data }) {
-  const movies = data.results;
+export default function Home({ popularMovies, topRatedMovies }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -37,16 +44,29 @@ export default function Home({ data }) {
         </div>
         <h2 className={styles.title}>Popular Movies</h2>
         <div className={styles.movies}>
-          {movies.slice(0, 10).map((movie) => (
+          {popularMovies.slice(0, 10).map((movie) => (
             <Card
               key={movie.id}
               name={movie.original_title}
               imgUrl={movie.poster_path}
               date={movie.release_date}
+              score={movie.vote_average}
             />
           ))}
         </div>
+        <hr />
         <h2 className={styles.title}>Top Rated Movies</h2>
+        <div className={styles.movies}>
+          {topRatedMovies.slice(0, 10).map((movie) => (
+            <Card
+              key={movie.id}
+              name={movie.original_title}
+              imgUrl={movie.poster_path}
+              date={movie.release_date}
+              score={movie.vote_average}
+            />
+          ))}
+        </div>
       </main>
       <Footer />
     </div>

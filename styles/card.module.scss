@@ -1,6 +1,19 @@
 .card {
-    padding: 10px;
+    cursor: pointer;
     .image {
-        border-radius: 5px;
+        border-radius: 8px;
+    }
+    .title {
+        text-align: center;
+        margin: 10px;
+    }
+    .scoreAndDate {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        .date {
+            font-weight: lighter;
+        }
     }
 }
