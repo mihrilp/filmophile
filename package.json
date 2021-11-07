@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@svgr/webpack": "^5.5.0",
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "next": "12.0.2",

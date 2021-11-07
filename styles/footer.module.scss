@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5rem 0;
+    .info {
+        text-align: center;
+    }
+    .follow {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 30%;
+        background-color: #1c202f;
+        border-radius: 10px;
+        text-align: center;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        .icon {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }
+}
