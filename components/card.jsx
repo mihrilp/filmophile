@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "../styles/card.module.scss";
-import Star from "../public/assets/star.svg";
 
 function Card({ name, imgUrl, date, score }) {
   return (
@@ -18,10 +17,7 @@ function Card({ name, imgUrl, date, score }) {
       </div>
       <div className={styles.scoreAndDate}>
         <p className={styles.date}>{date}</p>
-        <p className={styles.score}>
-          <Star style={{ paddingRight: "5px" }} />
-          {score}
-        </p>
+        <p className={styles.score}>{score}</p>
       </div>
     </div>
   );
