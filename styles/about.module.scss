@@ -1,0 +1,14 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 5rem;
+    .title {
+        color: #cb9e0c;
+        margin-bottom: 5rem;
+    }
+    .text {
+        font-size: 18px;
+        margin: 0 20px;
+    }
+}

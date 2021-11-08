@@ -1,23 +1,25 @@
-.container {
+.footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 5rem 0;
-    .info {
-        text-align: center;
+    background-color: #1c202f;
+    padding: 4rem;
+    border-radius: 10px;
+    .nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-weight: lighter;
     }
     .follow {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 30%;
-        background-color: #1c202f;
+        width: 25%;
         border-radius: 10px;
         text-align: center;
-        padding: 2rem;
-        margin-bottom: 3rem;
         .icon {
-            margin-right: 10px;
+            margin-right: 13px;
             cursor: pointer;
         }
     }

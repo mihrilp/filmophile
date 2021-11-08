@@ -1,8 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/home.module.scss";
-import Header from "../components/header";
-import Footer from "../components/footer";
 import Card from "../components/card";
 import axios from "axios";
 
@@ -26,12 +24,11 @@ export async function getStaticProps() {
 
 export default function Home({ popularMovies, topRatedMovies }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.home}>
       <Head>
         <title>Fimophile</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Header />
       <main>
         <div className={styles.jumbotron}>
           <h3>Everything about movies...</h3>
@@ -54,7 +51,6 @@ export default function Home({ popularMovies, topRatedMovies }) {
             />
           ))}
         </div>
-        <hr />
         <h2 className={styles.title}>Top Rated Movies</h2>
         <div className={styles.movies}>
           {topRatedMovies.slice(0, 10).map((movie) => (
@@ -68,7 +64,6 @@ export default function Home({ popularMovies, topRatedMovies }) {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
