@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/card.module.scss";
-import { Star } from "./icons";
+import Star from "../public/assets/star.svg";
 
 function Card({ name, imgUrl, date, score }) {
   return (
