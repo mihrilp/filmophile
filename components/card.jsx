@@ -1,9 +1,10 @@
+import React from "react";
 import Image from "next/image";
 import styles from "../styles/card.module.scss";
 
-function Card({ name, imgUrl, date, score }) {
+const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
   return (
-    <div className={styles.card}>
+    <a href={href} ref={ref} className={styles.card}>
       <Image
         className={styles.image}
         src={`https://image.tmdb.org/t/p/original${imgUrl}`}
@@ -19,8 +20,8 @@ function Card({ name, imgUrl, date, score }) {
         <p className={styles.date}>{date}</p>
         <p className={styles.score}>{score}</p>
       </div>
-    </div>
+    </a>
   );
-}
+});
 
 export default Card;

@@ -1,16 +1,16 @@
-import { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import styles from "../styles/home.module.scss";
 import Card from "../components/card";
 import axios from "axios";
 
 export async function getStaticProps() {
   let res = await axios(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
   const popularMovies = res.data.results;
   res = await axios(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
   const topRatedMovies = res.data.results;
 
@@ -23,6 +23,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ popularMovies, topRatedMovies }) {
+  console.log(popularMovies);
   return (
     <div className={styles.home}>
       <Head>
@@ -42,25 +43,28 @@ export default function Home({ popularMovies, topRatedMovies }) {
         <h2 className={styles.title}>Popular Movies</h2>
         <div className={styles.movies}>
           {popularMovies.slice(0, 10).map((movie) => (
-            <Card
-              key={movie.id}
-              name={movie.original_title}
-              imgUrl={movie.poster_path}
-              date={movie.release_date}
-              score={movie.vote_average}
-            />
+            <Link href={`/${movie.id}`} key={movie.id} passHref>
+              <Card
+                key={movie.id}
+                name={movie.original_title}
+                imgUrl={movie.poster_path}
+                date={movie.release_date}
+                score={movie.vote_average}
+              />
+            </Link>
           ))}
         </div>
         <h2 className={styles.title}>Top Rated Movies</h2>
         <div className={styles.movies}>
           {topRatedMovies.slice(0, 10).map((movie) => (
-            <Card
-              key={movie.id}
-              name={movie.original_title}
-              imgUrl={movie.poster_path}
-              date={movie.release_date}
-              score={movie.vote_average}
-            />
+            <Link href={`/${movie.id}`} key={movie.id} passHref>
+              <Card
+                name={movie.original_title}
+                imgUrl={movie.poster_path}
+                date={movie.release_date}
+                score={movie.vote_average}
+              />
+            </Link>
           ))}
         </div>
       </main>
