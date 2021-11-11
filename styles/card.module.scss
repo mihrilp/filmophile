@@ -15,5 +15,15 @@
         .date {
             font-weight: lighter;
         }
+        .score {
+            color: #cb9e0c;
+            border-radius: 50%;
+            padding: 8px;
+            border: 1px solid #cb9e0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+        }
     }
 }
