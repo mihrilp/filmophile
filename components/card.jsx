@@ -2,6 +2,11 @@ import React from "react";
 import Image from "next/image";
 import styles from "../styles/card.module.scss";
 
+function formatDate(date) {
+  date = date.split("-");
+  return `${date}`;
+}
+
 const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
   return (
     <a href={href} ref={ref} className={styles.card}>
@@ -17,8 +22,10 @@ const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
         <p>{name}</p>
       </div>
       <div className={styles.scoreAndDate}>
-        <p className={styles.date}>{date}</p>
-        <p className={styles.score}>{score}</p>
+        <p className={styles.date}>{formatDate(date)}</p>
+        <div className={styles.score}>
+          <p>{score}</p>
+        </div>
       </div>
     </a>
   );
