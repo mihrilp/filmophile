@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 1rem 10rem;
+  font-size: 18px;
   .jumbotron {
     background-color: #1c202f;
     border-radius: 10px;
     text-align: center;
-    padding: 2rem;
+    padding: 3rem;
     margin-bottom: 4rem;
   }
   .title {

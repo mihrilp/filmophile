@@ -5,14 +5,13 @@ import Card from "../components/card";
 import axios from "axios";
 
 export async function getStaticProps() {
-  let res = await axios(
+  const { data: popularMovies } = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
-  const popularMovies = res.data.results;
-  res = await axios(
+
+  const { data: topRatedMovies } = await axios(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
-  const topRatedMovies = res.data.results;
 
   return {
     props: {
@@ -23,7 +22,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ popularMovies, topRatedMovies }) {
-  console.log(popularMovies);
   return (
     <div className={styles.home}>
       <Head>
@@ -33,6 +31,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
       <main>
         <div className={styles.jumbotron}>
           <h3>Everything about movies...</h3>
+          <br />
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim sed
             atque officiis magni neque alias commodi deserunt laboriosam harum
@@ -42,7 +41,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
         </div>
         <h2 className={styles.title}>Popular Movies</h2>
         <div className={styles.movies}>
-          {popularMovies.slice(0, 10).map((movie) => (
+          {popularMovies.results.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card
                 key={movie.id}
@@ -56,7 +55,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
         </div>
         <h2 className={styles.title}>Top Rated Movies</h2>
         <div className={styles.movies}>
-          {topRatedMovies.slice(0, 10).map((movie) => (
+          {topRatedMovies.results.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card
                 name={movie.original_title}

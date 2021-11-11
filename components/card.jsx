@@ -4,7 +4,7 @@ import styles from "../styles/card.module.scss";
 
 function formatDate(date) {
   date = date.split("-");
-  return `${date}`;
+  return `${date[2]}.${date[1]}.${date[0]}`;
 }
 
 const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
