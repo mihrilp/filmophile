@@ -4,12 +4,14 @@ import Image from "next/image";
 import styles from "../styles/detail.module.scss";
 
 export async function getStaticPaths() {
-  const { data: data1 } = await axios(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-  );
-  const { data: data2 } = await axios(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-  );
+  const [data1, data2] = await Promise.all([
+    axios(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+    ),
+    axios(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+    ),
+  ]);
 
   const paths = [...data1.results, ...data2.results].map((movie) => {
     return {
