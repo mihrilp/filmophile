@@ -1,6 +1,7 @@
-.container {
+.layout {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1rem 10rem;
 }
