@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import Image from "next/image";
-import styles from "../styles/detail.module.scss";
 
 export async function getStaticPaths() {
   const [popularMovies, topRatedMovies] = await Promise.all([
@@ -43,21 +42,21 @@ function formatDate(date) {
 function MovieDetail({ movie }) {
   console.log(movie);
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>{movie.original_title}</h1>
+    <div className="container">
+      <h1 className="title">{movie.original_title}</h1>
       <Image
-        className={styles.image}
+        className="image"
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         alt="movie image"
         width={500}
         height={400}
       />
-      <div className={styles.scoreAndDate}>
+      <div className="scoreAndDate">
         <p>{formatDate(movie.release_date)}</p>
-        <p className={styles.score}>{movie.vote_average}</p>
+        <p className="score">{movie.vote_average}</p>
       </div>
-      <p className={styles.overview}>{movie.overview}</p>
-      <div className={styles.moreInfo}>
+      <p className="overview">{movie.overview}</p>
+      <div className="moreInfo">
         <div className="productionCompanies">
           <h3>Production Companies: </h3>
           <br />
@@ -65,7 +64,7 @@ function MovieDetail({ movie }) {
             <p key={production_company.id}>{production_company.name}</p>
           ))}
         </div>
-        <div className={styles.genres}>
+        <div className="genres">
           <h3>Genres: </h3>
           <br />
           {movie.genres.map((genre) => (

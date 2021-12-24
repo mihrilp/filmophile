@@ -1,10 +1,8 @@
-import styles from "../styles/about.module.scss";
-
 function About(props) {
   return (
-    <div className={styles.about}>
-      <h2 className={styles.title}>About Us</h2>
-      <p className={styles.text}>
+    <div className="about">
+      <h2 className="title">About Us</h2>
+      <p className="text">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et repellat
         molestiae illo. Dignissimos, ut! Non cumque cupiditate amet libero
         explicabo vero facere saepe atque sapiente. Iusto perspiciatis porro

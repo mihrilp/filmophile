@@ -1,14 +1,13 @@
 import Link from "next/link";
 import Logo from "../public/assets/logo_dark.svg";
-import styles from "../styles/header.module.scss";
 
 function Header(props) {
   return (
-    <div className={styles.header}>
-      <div className={styles.logo}>
+    <div className="header">
+      <div className="logo">
         <Logo />
       </div>
-      <nav className={styles.navbar}>
+      <nav className="navbar">
         <Link href="/">
           <a>Home</a>
         </Link>

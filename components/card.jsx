@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import styles from "../styles/card.module.scss";
 
 function formatDate(date) {
   date = date.split("-");
@@ -9,21 +8,21 @@ function formatDate(date) {
 
 const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
   return (
-    <a href={href} ref={ref} className={styles.card}>
+    <a href={href} ref={ref} className="card">
       <Image
-        className={styles.image}
+        className="image"
         src={`https://image.tmdb.org/t/p/original${imgUrl}`}
         alt="movie image"
         width={300}
         height={400}
         layout="responsive"
       />
-      <div className={styles.title}>
+      <div className="title">
         <p>{name}</p>
       </div>
-      <div className={styles.scoreAndDate}>
-        <p className={styles.date}>{formatDate(date)}</p>
-        <div className={styles.score}>
+      <div className="scoreAndDate">
+        <p className="date">{formatDate(date)}</p>
+        <div className="score">
           <p>{score}</p>
         </div>
       </div>
