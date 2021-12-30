@@ -1,15 +1,15 @@
-.container {
+.movie {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     text-align: center;
     margin-top: 30px;
-    .title {
+    &__title {
         color: #cb9e0c;
         margin-bottom: 3rem;
     }
-    .scoreAndDate {
+    &__info {
         display: flex;
         justify-content: center;
         margin-top: 20px;
@@ -17,20 +17,20 @@
         p {
             font-size: 18px;
         }
-        .score {
+        &__score {
             margin-left: 20px;
             background-color: rgba(203, 158, 12, 0.8);
             border-radius: 50%;
             padding: 8px;
         }
     }
-    .image {
+    &__img {
         border-radius: 8px;
     }
-    .overview {
+    &__overview {
         margin: 30px 0;
     }
-    .moreInfo {
+    &__moreInfo {
         display: flex;
         justify-content: space-around;
         width: 100%;

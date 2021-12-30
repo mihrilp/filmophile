@@ -17,3 +17,11 @@ body {
     text-decoration: none;
   }
 }
+
+@import "./pages/home.scss";
+@import "./pages/detail.scss";
+@import "./pages/about.scss";
+@import "./components/layout.scss";
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "./components/card.scss";

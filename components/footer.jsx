@@ -1,12 +1,10 @@
 import Link from "next/link";
-import Facebook from "../public/assets/facebook.svg";
-import Instagram from "../public/assets/instagram.svg";
-import Twitter from "../public/assets/twitter.svg";
+import { Facebook, Instagram, Twitter } from "../public/assets";
 
 function Footer(props) {
   return (
     <div className="footer">
-      <nav className="nav">
+      <nav className="footer__nav">
         <ul>
           <li>
             <Link href="/home">home</Link>
@@ -19,12 +17,12 @@ function Footer(props) {
           </li>
         </ul>
       </nav>
-      <div className="follow">
+      <div className="footer__social">
         <h4>Follow Us: </h4>
         <div>
-          <Facebook className="icon" />
-          <Instagram className="icon" />
-          <Twitter className="icon" />
+          <Facebook className="footer__social__icon" />
+          <Instagram className="footer__social__icon" />
+          <Twitter className="footer__social__icon" />
         </div>
       </div>
     </div>

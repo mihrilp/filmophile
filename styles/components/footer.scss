@@ -5,20 +5,20 @@
     background-color: #1c202f;
     padding: 4rem 10rem;
     margin-top: 5rem;
-    .nav {
+    &__nav {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         font-weight: lighter;
     }
-    .follow {
+    &__social {
         display: flex;
         justify-content: space-around;
         align-items: center;
         width: 25%;
         border-radius: 10px;
         text-align: center;
-        .icon {
+        &__icon {
             margin-right: 13px;
             cursor: pointer;
         }

@@ -3,18 +3,18 @@
   flex-direction: column;
   justify-content: space-between;
   font-size: 18px;
-  .jumbotron {
+  &__jumbotron {
     background-color: #1c202f;
     border-radius: 10px;
     text-align: center;
     padding: 3rem;
     margin-bottom: 4rem;
   }
-  .title {
+  &__title {
     color: #cb9e0c;
     margin: 40px 0px;
   }
-  .movies {
+  &__section {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10% 40px;

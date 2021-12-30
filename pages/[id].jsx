@@ -40,31 +40,30 @@ function formatDate(date) {
 }
 
 function MovieDetail({ movie }) {
-  console.log(movie);
   return (
-    <div className="container">
-      <h1 className="title">{movie.original_title}</h1>
+    <div className="movie">
+      <h1 className="movie__title">{movie.original_title}</h1>
       <Image
-        className="image"
+        className="movie__img"
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         alt="movie image"
         width={500}
         height={400}
       />
-      <div className="scoreAndDate">
+      <div className="movie__info">
         <p>{formatDate(movie.release_date)}</p>
-        <p className="score">{movie.vote_average}</p>
+        <p className="movie__info__score">{movie.vote_average}</p>
       </div>
-      <p className="overview">{movie.overview}</p>
-      <div className="moreInfo">
-        <div className="productionCompanies">
+      <p className="movie__overview">{movie.overview}</p>
+      <div className="movie__moreInfo">
+        <div className="movie__productionCompanies">
           <h3>Production Companies: </h3>
           <br />
           {movie.production_companies.map((production_company) => (
             <p key={production_company.id}>{production_company.name}</p>
           ))}
         </div>
-        <div className="genres">
+        <div className="movie__genres">
           <h3>Genres: </h3>
           <br />
           {movie.genres.map((genre) => (

@@ -28,7 +28,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main>
-        <div className="jumbotron">
+        <div className="home__jumbotron">
           <h3>Everything about movies...</h3>
           <br />
           <p>
@@ -38,8 +38,8 @@ export default function Home({ popularMovies, topRatedMovies }) {
             quod, labore ipsum!
           </p>
         </div>
-        <h2 className="title">Popular Movies</h2>
-        <div className="movies">
+        <h2 className="home__title">Popular Movies</h2>
+        <div className="home__section">
           {popularMovies.results.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card
@@ -52,8 +52,8 @@ export default function Home({ popularMovies, topRatedMovies }) {
             </Link>
           ))}
         </div>
-        <h2 className="title">Top Rated Movies</h2>
-        <div className="movies">
+        <h2 className="home__title">Top Rated Movies</h2>
+        <div className="home__section">
           {topRatedMovies.results.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card

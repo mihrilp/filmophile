@@ -1,13 +1,13 @@
 import Link from "next/link";
-import Logo from "../public/assets/logo_dark.svg";
+import { Logo } from "../public/assets";
 
 function Header(props) {
   return (
     <div className="header">
-      <div className="logo">
+      <div className="header__logo">
         <Logo />
       </div>
-      <nav className="navbar">
+      <nav className="header__nav">
         <Link href="/">
           <a>Home</a>
         </Link>
