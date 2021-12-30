@@ -1,12 +1,11 @@
+@use "../mixin" as m;
+
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    @include m.flex(row, space-between);
+    width: 100%;
     padding: 4rem 0;
     &__nav {
-        display: flex;
-        justify-content: space-around;
+        @include m.flex(row, space-around);
         width: 20%;
         font-size: 18px;
     }

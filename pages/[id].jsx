@@ -42,7 +42,7 @@ function formatDate(date) {
 function MovieDetail({ movie }) {
   return (
     <div className="movie">
-      <h1 className="movie__title">{movie.original_title}</h1>
+      <p className="movie__title">{movie.original_title}</p>
       <Image
         className="movie__img"
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}

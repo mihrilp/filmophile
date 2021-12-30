@@ -1,3 +1,6 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
 .card {
     cursor: pointer;
     &__image {
@@ -8,21 +11,17 @@
         margin: 10px;
     }
     &__info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
+        @include m.flex(row, space-around);
         &__date {
             font-weight: lighter;
         }
         &__score {
+            @include m.flex(row, center);
             margin-left: 20px;
-            background-color: rgba(203, 158, 12, 0.8);
+            background-color: v.$yellow;
+            opacity: 0.8;
             border-radius: 50%;
             padding: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 35px;
         }
     }

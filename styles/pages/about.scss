@@ -1,13 +1,15 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
 .about {
-    display: flex;
-    flex-direction: column;
+    @include m.flex(column);
     text-align: center;
     &__title {
-        color: #cb9e0c;
+        color: v.$yellow;
         margin-bottom: 4rem;
     }
     &__text {
-        font-size: 18px;
+        font-size: v.$normal;
         margin: 0 20px;
     }
 }

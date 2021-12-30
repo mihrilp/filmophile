@@ -1,17 +1,18 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
 .home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 18px;
+  @include m.flex(column, space-between);
+  font-size: v.$normal;
   &__jumbotron {
-    background-color: #1c202f;
+    background-color: v.$dark-blue;
     border-radius: 10px;
     text-align: center;
     padding: 3rem;
     margin-bottom: 4rem;
   }
   &__title {
-    color: #cb9e0c;
+    color: v.$yellow;
     margin: 40px 0px;
   }
   &__section {

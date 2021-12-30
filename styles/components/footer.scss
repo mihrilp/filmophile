@@ -1,20 +1,18 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
 .footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #1c202f;
+    @include m.flex(row, space-around);
+    background-color: v.$dark-blue;
     padding: 4rem 10rem;
     margin-top: 5rem;
     &__nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+        @include m.flex(column, space-around);
         font-weight: lighter;
+        font-size: v.$small;
     }
     &__social {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        @include m.flex(row, space-around);
         width: 25%;
         border-radius: 10px;
         text-align: center;
