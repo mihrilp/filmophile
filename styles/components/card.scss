@@ -3,26 +3,27 @@
 
 .card {
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
     &__image {
-        border-radius: 8px;
+        border-radius: 10px;
     }
     &__title {
-        text-align: center;
-        margin: 10px;
+        margin: 13px 0;
+        font-weight: bold;
     }
     &__info {
-        @include m.flex(row, space-around);
+        @include m.flex(row, flex-start);
+        font-size: v.$small;
         &__date {
             font-weight: lighter;
+            margin-right: 15px;
         }
         &__score {
-            @include m.flex(row, center);
-            margin-left: 20px;
-            background-color: v.$yellow;
-            opacity: 0.8;
-            border-radius: 50%;
-            padding: 8px;
-            width: 35px;
+            color: v.$yellow;
+            font-weight: bold;
         }
+    }
+    &:hover {
+        transform: scale(1.1);
     }
 }

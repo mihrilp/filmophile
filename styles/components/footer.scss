@@ -6,6 +6,7 @@
     background-color: v.$dark-blue;
     padding: 4rem 10rem;
     margin-top: 5rem;
+    width: 100%;
     &__nav {
         @include m.flex(column, space-around);
         font-weight: lighter;

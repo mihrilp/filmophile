@@ -26,11 +26,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params.id);
   const { data } = await axios(
     `https://api.themoviedb.org/3/movie/${params.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
-  console.log(data);
   return { props: { movie: data } };
 }
 

@@ -8,8 +8,10 @@
     background-color: v.$dark-blue;
     border-radius: 10px;
     text-align: center;
-    padding: 3rem;
+    padding: 4rem;
     margin-bottom: 4rem;
+    font-size: v.$large;
+    line-height: 1.5;
   }
   &__title {
     color: v.$yellow;

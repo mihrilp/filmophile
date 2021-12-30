@@ -21,10 +21,8 @@ const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
         <p>{name}</p>
       </div>
       <div className="card__info">
-        <p className="card__inf0__date">{formatDate(date)}</p>
-        <div className="card__info__score">
-          <p>{score}</p>
-        </div>
+        <p className="card__info__date">{formatDate(date)}</p>
+        <p className="card__info__score">{score}</p>
       </div>
     </a>
   );
