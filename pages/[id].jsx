@@ -38,35 +38,47 @@ function formatDate(date) {
 }
 
 function MovieDetail({ movie }) {
+  console.log(movie);
   return (
     <div className="movie">
-      <p className="movie__title">{movie.original_title}</p>
-      <Image
-        className="movie__img"
-        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-        alt="movie image"
-        width={500}
-        height={400}
-      />
-      <div className="movie__info">
-        <p>{formatDate(movie.release_date)}</p>
-        <p className="movie__info__score">{movie.vote_average}</p>
+      <div className="movie__img">
+        <Image
+          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+          alt="movie image"
+          width={500}
+          height={400}
+        />
       </div>
-      <p className="movie__overview">{movie.overview}</p>
-      <div className="movie__moreInfo">
-        <div className="movie__productionCompanies">
-          <h3>Production Companies: </h3>
-          <br />
-          {movie.production_companies.map((production_company) => (
-            <p key={production_company.id}>{production_company.name}</p>
-          ))}
+      <div className="movie__info">
+        <div className="movie__info__title">
+          <p>{movie.original_title}</p>
+          <p className="movie__info__title__score">{movie.vote_average}</p>
         </div>
-        <div className="movie__genres">
-          <h3>Genres: </h3>
-          <br />
-          {movie.genres.map((genre) => (
-            <p key={genre.id}> {genre.name} </p>
-          ))}
+        <div className="movie__info__date">
+          {formatDate(movie.release_date)}
+        </div>
+        <div className="movie__info__overview">
+          <p>{movie.overview}</p>
+        </div>
+        <div className="movie__info__moreDetail">
+          <div>
+            <h3>Production Companies: </h3>
+            {movie.production_companies.map((production_company) => (
+              <p key={production_company.id}>{production_company.name}</p>
+            ))}
+          </div>
+          <div>
+            <h3>Genres: </h3>
+            {movie.genres.map((genre) => (
+              <p key={genre.id}> {genre.name} </p>
+            ))}
+          </div>
+          <div>
+            <h3>Spoken Languages: </h3>
+            {movie.spoken_languages.map((lang) => (
+              <p key={lang.id}> {lang.name} </p>
+            ))}
+          </div>
         </div>
       </div>
     </div>

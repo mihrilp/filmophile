@@ -2,35 +2,41 @@
 @use "../variables" as v;
 
 .movie {
-    @include m.flex(column, space-around);
-    text-align: center;
-    margin-top: 30px;
-    &__title {
-        @include m.title;
+    @include m.flex(row, space-between, start);
+    &__img {
+        flex: 1;
+        img {
+            border-radius: 10px;
+        }
     }
     &__info {
-        @include m.flex(row, center);
-        margin-top: 20px;
-        p {
-            font-size: v.$normal;
+        @include m.flex(column, space-between, start);
+        flex: 2;
+        padding: 0 25px;
+        line-height: 1.5;
+        &__title {
+            @include m.title;
+            @include m.flex(row, center);
+            &__score {
+                margin-left: 20px;
+                background-color: rgba(v.$yellow, 0.8);
+                color: white;
+                border-radius: 50%;
+                padding: 7px;
+                font-size: v.$small;
+            }
         }
-        &__score {
-            margin-left: 20px;
-            background-color: v.$yellow;
-            opacity: 0.9;
-            border-radius: 50%;
-            padding: 8px;
+        &__date {
+            color: gray;
+            margin-bottom: 20px;
         }
-    }
-    &__img {
-        border-radius: 8px;
-    }
-    &__overview {
-        margin: 30px 0;
-    }
-    &__moreInfo {
-        @include m.flex(row, space-around);
-        width: 100%;
-        margin: 30px 0;
+        &__overview {
+            margin: 20px 0;
+        }
+        &__moreDetail {
+            @include m.flex(row, space-between, start);
+            width: 100%;
+            margin: 30px 0;
+        }
     }
 }

@@ -24,7 +24,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
   return (
     <div className="home">
       <Head>
-        <title>Fimophile</title>
+        <title>filmophile</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main>
