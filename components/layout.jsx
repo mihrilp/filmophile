@@ -5,8 +5,10 @@ import Footer from "./footer";
 function Layout({ children }) {
   return (
     <div className="layout">
-      <Header />
-      {children}
+      <div className="layout__content">
+        <Header />
+        {children}
+      </div>
       <Footer />
     </div>
   );

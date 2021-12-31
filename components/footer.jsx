@@ -1,29 +1,21 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from "../public/assets";
+import { Logo, Facebook, Instagram, Twitter } from "../public/assets";
 
 function Footer(props) {
   return (
     <div className="footer">
-      <nav className="footer__nav">
-        <ul>
-          <li>
-            <Link href="/home">home</Link>
-          </li>
-          <li>
-            <Link href="/about">about</Link>
-          </li>
-          <li>
-            <a href="mailto:filmophile27@gmail.com">contact</a>
-          </li>
-        </ul>
-      </nav>
+      <Logo className="footer__logo" />
+      <div className="footer__quote">
+        <q>
+          We love films and storytelling as a people. It’s just a human
+          compulsion to listen to and tell stories
+        </q>
+        <p>Mychael Danna</p>
+      </div>
       <div className="footer__social">
-        <h4>Follow Us: </h4>
-        <div>
-          <Facebook className="footer__social__icon" />
-          <Instagram className="footer__social__icon" />
-          <Twitter className="footer__social__icon" />
-        </div>
+        <Facebook className="footer__social__icon" />
+        <Instagram className="footer__social__icon" />
+        <Twitter className="footer__social__icon" />
       </div>
     </div>
   );

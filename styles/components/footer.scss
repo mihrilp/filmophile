@@ -2,24 +2,26 @@
 @use "../variables" as v;
 
 .footer {
-    @include m.flex(row, space-around);
+    @include m.flex(row, space-between);
     background-color: v.$dark-blue;
-    padding: 4rem 10rem;
+    padding: 5rem 10rem;
     margin-top: 5rem;
     width: 100%;
-    &__nav {
-        @include m.flex(column, space-around);
-        font-weight: lighter;
-        font-size: v.$small;
+    font-size: v.$normal;
+    &__logo {
+        flex: 1;
+    }
+    &__quote {
+        flex: 2;
+        text-align: center;
+        line-height: 1.5;
     }
     &__social {
-        @include m.flex(row, space-around);
-        width: 25%;
-        border-radius: 10px;
-        text-align: center;
+        @include m.flex(row, flex-end);
+        flex: 1;
         &__icon {
-            margin-right: 13px;
             cursor: pointer;
+            margin-left: 15px;
         }
     }
 }

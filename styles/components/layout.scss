@@ -3,5 +3,7 @@
 .layout {
     @include m.flex(column, space-between);
     min-height: 100vh;
-    padding: 1rem 10rem;
+    &__content {
+        padding: 1rem 10rem;
+    }
 }
