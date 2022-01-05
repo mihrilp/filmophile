@@ -1,31 +1,38 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Card from "../components/card";
 import axios from "axios";
 
-export async function getStaticProps() {
-  const { data: popularMovies } = await axios(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-  );
+export default function Home() {
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
 
-  const { data: topRatedMovies } = await axios(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-  );
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      );
+      setPopularMovies(response.data.results);
+    }
+    fetchData();
+  }, []);
 
-  return {
-    props: {
-      popularMovies,
-      topRatedMovies,
-    },
-  };
-}
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      );
+      setTopRatedMovies(response.data.results);
+    }
+    fetchData();
+  }, []);
 
-export default function Home({ popularMovies, topRatedMovies }) {
   return (
     <div className="home">
       <Head>
         <title>filmophile</title>
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="../public/favicon.svg" />
       </Head>
       <main>
         <div className="home__jumbotron">
@@ -40,7 +47,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
         </div>
         <h2 className="home__title">Popular Movies</h2>
         <div className="home__section">
-          {popularMovies.results.slice(0, 10).map((movie) => (
+          {popularMovies.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card
                 key={movie.id}
@@ -54,7 +61,7 @@ export default function Home({ popularMovies, topRatedMovies }) {
         </div>
         <h2 className="home__title">Top Rated Movies</h2>
         <div className="home__section">
-          {topRatedMovies.results.slice(0, 10).map((movie) => (
+          {topRatedMovies.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card
                 name={movie.original_title}

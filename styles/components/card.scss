@@ -16,11 +16,13 @@
         font-size: v.$small;
         &__date {
             font-weight: lighter;
-            margin-right: 15px;
+            margin-right: 20px;
         }
         &__score {
             color: v.$yellow;
-            font-weight: bold;
+            border: 1px solid v.$yellow;
+            border-radius: 50%;
+            padding: 6px;
         }
     }
     &:hover {

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 
-function formatDate(date) {
-  date = date.split("-");
-  return `${date[2]}.${date[1]}.${date[0]}`;
-}
-
 const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
+  const formatDate = useCallback((date) => {
+    date = date.split("-");
+    return `${date[2]}.${date[1]}.${date[0]}`;
+  }, []);
+
   return (
     <a href={href} ref={ref} className="card">
       <Image

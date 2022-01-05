@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import axios from "axios";
 import Image from "next/image";
 
@@ -32,13 +32,12 @@ export async function getStaticProps({ params }) {
   return { props: { movie: data } };
 }
 
-function formatDate(date) {
-  date = date.split("-");
-  return `${date[2]}.${date[1]}.${date[0]}`;
-}
-
 function MovieDetail({ movie }) {
-  console.log(movie);
+  const formatDate = useCallback((date) => {
+    date = date.split("-");
+    return `${date[2]}.${date[1]}.${date[0]}`;
+  }, []);
+
   return (
     <div className="movie">
       <div className="movie__img">

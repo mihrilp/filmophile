@@ -5,11 +5,11 @@
     @include m.flex(column);
     text-align: center;
     &__title {
-        color: v.$yellow;
-        margin-bottom: 4rem;
+        @include m.title;
+        margin: 2rem;
     }
     &__text {
-        font-size: v.$normal;
-        margin: 0 20px;
+        font-size: v.$large;
+        margin: 10px 20px;
     }
 }
