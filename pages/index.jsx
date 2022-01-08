@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Card from "../components/card";
+import Slider from "../components/banner";
 import axios from "axios";
 
 export default function Home() {
@@ -33,15 +34,8 @@ export default function Home() {
         <link rel="icon" type="image/x-icon" href="../public/favicon.svg" />
       </Head>
       <main>
-        <div className="home__jumbotron">
-          <h3>Everything about movies...</h3>
-          <br />
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim sed
-            atque officiis magni neque alias commodi deserunt laboriosam harum
-            nemo perspiciatis temporibus eligendi autem reiciendis magnam vel
-            quod, labore ipsum!
-          </p>
+        <div className="home__banner">
+          <Slider />
         </div>
         <h2 className="home__title">Popular Movies</h2>
         <div className="home__section">

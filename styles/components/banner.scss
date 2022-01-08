@@ -1,0 +1,63 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
+.btn {
+    padding: 0.8rem;
+    font-size: v.$large;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.banner {
+    @include m.flex(column, center, flex-start);
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    left: 0;
+    right: 0;
+    padding: 5rem 10rem;
+    &__bg {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0.3;
+        background-size: cover;
+    }
+    &__content {
+        @include m.flex(column, space-around, flex-start);
+        height: 90%;
+        width: 50%;
+        &__title {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+        &__score {
+            font-weight: bold;
+            color: v.$yellow;
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+        &__overview {
+            line-height: 1.8;
+            text-align: left;
+            font-size: v.$large;
+            text-align: left;
+        }
+        &__btns {
+            @include m.flex(row, center);
+            &__watchTrailerBtn {
+                @extend .btn;
+                background-color: v.$yellow;
+                margin-right: 15px;
+            }
+            &__seeDetailBtn {
+                @extend .btn;
+                color: v.$yellow;
+                border: 1px solid v.$yellow;
+            }
+        }
+    }
+}

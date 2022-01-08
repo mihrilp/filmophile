@@ -4,14 +4,8 @@
 .home {
   @include m.flex(column, space-between);
   font-size: v.$normal;
-  &__jumbotron {
-    background-color: v.$dark-blue;
-    border-radius: 10px;
-    text-align: center;
-    padding: 4rem;
-    margin-bottom: 4rem;
-    font-size: v.$large;
-    line-height: 1.5;
+  &__banner {
+    height: 100vh;
   }
   &__title {
     color: v.$yellow;
