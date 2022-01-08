@@ -3,18 +3,22 @@ import axios from "axios";
 import Image from "next/image";
 
 export async function getStaticPaths() {
-  const [popularMovies, topRatedMovies] = await Promise.all([
+  const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
     axios(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     ),
     axios(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     ),
+    axios(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    ),
   ]);
 
   const paths = [
     ...popularMovies.data.results,
     ...topRatedMovies.data.results,
+    ...upComingMovies.data.results,
   ].map((movie) => {
     return {
       params: {

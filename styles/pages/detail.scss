@@ -3,6 +3,7 @@
 
 .movie {
     @include m.flex(row, space-between, flex-start);
+    padding: 2rem 0;
     &__img {
         flex: 1;
         img {
