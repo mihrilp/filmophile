@@ -9,23 +9,21 @@ export default function Home() {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-      );
-      setPopularMovies(response.data.results);
-    }
-    fetchData();
-  }, []);
+    (async () => {
+      await axios
+        .get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+        )
+        .then((res) => setPopularMovies(res.data.results))
+        .catch((err) => console.log(err));
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await axios(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-      );
-      setTopRatedMovies(response.data.results);
-    }
-    fetchData();
+      await axios
+        .get(
+          `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+        )
+        .then((res) => setTopRatedMovies(res.data.results))
+        .catch((err) => console.log(err));
+    })();
   }, []);
 
   return (
@@ -50,11 +48,10 @@ export default function Home() {
           {popularMovies.slice(0, 10).map((movie) => (
             <Link href={`/${movie.id}`} key={movie.id} passHref>
               <Card
-                key={movie.id}
                 name={movie.original_title}
                 imgUrl={movie.poster_path}
                 date={movie.release_date}
-                score={movie.vote_average}
+                score={movie.vote_average.toFixed(1)}
               />
             </Link>
           ))}

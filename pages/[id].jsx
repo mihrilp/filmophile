@@ -51,7 +51,9 @@ function MovieDetail({ movie }) {
       <div className="movie__info">
         <div className="movie__info__title">
           <p>{movie.original_title}</p>
-          <p className="movie__info__title__score">{movie.vote_average}</p>
+          <p className="movie__info__title__score">
+            {movie.vote_average.toFixed(1)}
+          </p>
         </div>
         <div className="movie__info__date">
           {formatDate(movie.release_date)}

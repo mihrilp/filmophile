@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Logo, Facebook, Instagram, Twitter } from "../public/assets";
 
 function Footer(props) {
@@ -13,9 +12,18 @@ function Footer(props) {
         <p>Mychael Danna</p>
       </div>
       <div className="footer__social">
-        <Facebook className="footer__social__icon" />
-        <Instagram className="footer__social__icon" />
-        <Twitter className="footer__social__icon" />
+        <a className="footer__social__icon" href="#">
+          <Facebook />
+          <div className="footer__social__icon__tooltip">Facebook</div>
+        </a>
+        <a className="footer__social__icon" href="#">
+          <Instagram />
+          <span className="footer__social__icon__tooltip">Instagram</span>
+        </a>
+        <a className="footer__social__icon" href="#">
+          <Twitter />
+          <span className="footer__social__icon__tooltip"> Twitter</span>
+        </a>
       </div>
     </div>
   );

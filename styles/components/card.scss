@@ -2,14 +2,26 @@
 @use "../variables" as v;
 
 .card {
+    $root: &;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    width: 200px;
+    height: 400px;
     &__image {
         border-radius: 10px;
     }
     &__title {
         margin: 13px 0;
         font-weight: bold;
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            #{$root}:hover & {
+                white-space: inherit;
+                overflow: visible;
+            }
+        }
     }
     &__info {
         @include m.flex(row, flex-start);
@@ -26,6 +38,6 @@
         }
     }
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 }

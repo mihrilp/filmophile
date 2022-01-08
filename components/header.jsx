@@ -4,9 +4,11 @@ import { Logo } from "../public/assets";
 function Header(props) {
   return (
     <div className="header">
-      <div className="header__logo">
-        <Logo />
-      </div>
+      <Link href="/" passHref>
+        <a className="header__logo">
+          <Logo />
+        </a>
+      </Link>
       <nav className="header__nav">
         <Link href="/">
           <a>Home</a>
