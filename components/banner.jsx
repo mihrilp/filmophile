@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { Play } from "../public/assets";
 
 function Slider() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
@@ -47,7 +48,11 @@ function Slider() {
           <p className="banner__content__title">
             {upcomingMovie.original_title}
           </p>
-          <p className="banner__content__score">{upcomingMovie.vote_average}</p>
+          {upcomingMovie.vote_average && (
+            <p className="banner__content__score">
+              {upcomingMovie.vote_average.toFixed(1)}
+            </p>
+          )}
         </div>
         <p className="banner__content__overview">{upcomingMovie.overview}</p>
         <div className="banner__content__btns">
@@ -55,6 +60,7 @@ function Slider() {
             className="banner__content__btns__watchTrailerBtn"
             href={`https://www.youtube.com/watch?v=${videoUrl}`}
           >
+            <Play style={{ marginRight: 10 }} />
             Watch Trailer
           </a>
           <Link href={`/${upcomingMovie.id}`}>

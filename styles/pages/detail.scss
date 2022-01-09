@@ -2,42 +2,52 @@
 @use "../variables" as v;
 
 .movie {
-    @include m.flex(row, space-between, flex-start);
+    @include m.flex(column, space-between);
     padding: 2rem 0;
-    &__img {
-        flex: 1;
-        img {
-            border-radius: 10px;
+    font-size: v.$normal;
+    &__details {
+        @include m.flex(row, space-between, flex-start);
+        margin-bottom: 4rem;
+        &__img {
+            flex: 1;
         }
-    }
-    &__info {
-        @include m.flex(column, space-between, flex-start);
-        flex: 2;
-        padding: 0 25px;
-        line-height: 1.5;
-        &__title {
-            @include m.title;
-            @include m.flex(row, center);
-            &__score {
-                margin-left: 20px;
-                background-color: rgba(v.$yellow, 0.8);
-                color: white;
-                border-radius: 50%;
-                padding: 7px;
-                font-size: v.$small;
+        &__info {
+            @include m.flex(column, space-between, flex-start);
+            flex: 2;
+            padding: 0 25px;
+            line-height: 1.7;
+            &__title {
+                @include m.title;
+                @include m.flex(row, center);
+                &__score {
+                    margin-left: 20px;
+                    background-color: rgba(v.$yellow, 0.8);
+                    color: white;
+                    border-radius: 50%;
+                    padding: 7px;
+                    font-size: v.$normal;
+                }
+            }
+            &__date {
+                color: gray;
+                margin-bottom: 20px;
+            }
+            &__overview {
+                margin: 20px 0;
             }
         }
-        &__date {
-            color: gray;
-            margin-bottom: 20px;
-        }
-        &__overview {
-            margin: 20px 0;
-        }
-        &__moreDetail {
-            @include m.flex(row, space-between, flex-start);
-            width: 100%;
-            margin: 30px 0;
-        }
+    }
+    &__moreDetail {
+        @include m.flex(row, space-between, flex-start);
+        width: 100%;
+        margin-top: 2.5rem;
+        line-height: 1.7;
+    }
+    &__tagline {
+        color: v.$yellow;
+        margin-top: 5rem;
+    }
+    &__backdropImg {
+        width: 100%;
     }
 }
