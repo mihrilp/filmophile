@@ -4,6 +4,7 @@ import Link from "next/link";
 import Card from "../components/card";
 import Slider from "../components/banner";
 import axios from "axios";
+import Pagination from "../components/pagination";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -38,31 +39,10 @@ export default function Home() {
           <Slider />
         </div>
         <h2 className="home__title">Popular Movies</h2>
-        <div className="home__section">
-          {popularMovies.slice(0, 10).map((movie) => (
-            <Link href={`/${movie.id}`} key={movie.id} passHref>
-              <Card
-                name={movie.original_title}
-                imgUrl={movie.poster_path}
-                date={movie.release_date}
-                score={movie.vote_average.toFixed(1)}
-              />
-            </Link>
-          ))}
-        </div>
+
+        <Pagination data={popularMovies} />
         <h2 className="home__title">Top Rated Movies</h2>
-        <div className="home__section">
-          {topRatedMovies.slice(0, 10).map((movie) => (
-            <Link href={`/${movie.id}`} key={movie.id} passHref>
-              <Card
-                name={movie.original_title}
-                imgUrl={movie.poster_path}
-                date={movie.release_date}
-                score={movie.vote_average}
-              />
-            </Link>
-          ))}
-        </div>
+        <Pagination data={topRatedMovies} />
       </main>
     </div>
   );

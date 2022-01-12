@@ -1,0 +1,29 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
+.pagination {
+    @include m.flex(column, center);
+    width: 100%;
+    &__data {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 10% 40px;
+        margin-bottom: 100px;
+    }
+    &__btns {
+        @include m.flex(row, center);
+        button {
+            background-color: transparent;
+            border: none;
+            background-color: v.$yellow;
+            padding: 10px;
+            color: v.$dark-blue;
+            font-size: v.$small;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        &__prevBtn {
+            margin-right: 15px;
+        }
+    }
+}
