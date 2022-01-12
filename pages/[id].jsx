@@ -37,7 +37,6 @@ export async function getStaticProps({ params }) {
 }
 
 function MovieDetail({ movie }) {
-  console.log(movie);
   const formatDate = useCallback((date) => {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
@@ -96,14 +95,14 @@ function MovieDetail({ movie }) {
         </div>
       </div>
       <div className="movie__tagline">
-        <h2>{movie.tagline.toUpperCase()}</h2>
+        <h2>{movie.tagline}</h2>
       </div>
       <div className="movie__backdropImg">
         <Image
           src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
           alt="movie image"
           width="100%"
-          height="70%"
+          height="63%"
           layout="responsive"
           objectFit="contain"
         />
