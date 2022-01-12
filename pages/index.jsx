@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Link from "next/link";
-import Card from "../components/card";
 import Slider from "../components/banner";
 import axios from "axios";
 import Pagination from "../components/pagination";

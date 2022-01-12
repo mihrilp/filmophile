@@ -13,7 +13,6 @@
     &__btns {
         @include m.flex(row, center);
         button {
-            background-color: transparent;
             border: none;
             background-color: v.$yellow;
             padding: 10px;
@@ -21,6 +20,9 @@
             font-size: v.$small;
             border-radius: 5px;
             cursor: pointer;
+            &:disabled {
+                opacity: 0.5;
+            }
         }
         &__prevBtn {
             margin-right: 15px;

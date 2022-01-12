@@ -5,10 +5,10 @@ import { RightArrow, LeftArrow } from "../public/assets";
 
 function Pagination({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const ITEMS_PER_PAGE = 10;
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
 
   const handleNextBtn = () => {
     setCurrentPage(currentPage + 1);
@@ -35,12 +35,16 @@ function Pagination({ data }) {
       <div className="pagination__btns">
         <button
           className="pagination__btns__prevBtn"
-          disabled={currentPage == 1}
+          disabled={indexOfFirstItem == 0}
           onClick={handlePrevBtn}
         >
           <LeftArrow />
         </button>
-        <button className="pagination__btns__nextBtn" onClick={handleNextBtn}>
+        <button
+          className="pagination__btns__nextBtn"
+          disabled={indexOfLastItem == data.length}
+          onClick={handleNextBtn}
+        >
           <RightArrow />
         </button>
       </div>
