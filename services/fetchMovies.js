@@ -33,6 +33,17 @@ export const fetchUpcomingMovies = async () => {
   }
 };
 
+export const fetchMovieDetail = async (id) => {
+  try {
+    const { data } = await axios(
+      `${process.env.NEXT_PUBLIC_BASE_URL}${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const fetchMovieVideoUrl = async (id) => {
   try {
     const { data } = await axios(

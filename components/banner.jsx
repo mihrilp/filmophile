@@ -37,11 +37,9 @@ function Slider() {
           <p className="banner__content__title">
             {upcomingMovie.original_title}
           </p>
-          {upcomingMovie.vote_average && (
-            <p className="banner__content__score">
-              {upcomingMovie.vote_average.toFixed(1)}
-            </p>
-          )}
+          <p className="banner__content__score">
+            {upcomingMovie.vote_average?.toFixed(1)}
+          </p>
         </div>
         <p className="banner__content__overview">{upcomingMovie.overview}</p>
         <div className="banner__content__btns">
