@@ -9,25 +9,16 @@
 }
 
 .banner {
-    @include m.flex(column, center, flex-start);
-    position: absolute;
-    z-index: 1;
+    position: relative;
     height: 100vh;
-    left: 0;
-    right: 0;
-    padding: 5rem 10rem;
+    width: 100%;
+    z-index: 1;
     &__bg {
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 0.3;
-        background-size: cover;
+        @include m.bgImage(0.3);
     }
     &__content {
         @include m.flex(column, space-around, flex-start);
+        padding: 5rem v.$padding-x;
         height: 90%;
         width: 50%;
         &__title {

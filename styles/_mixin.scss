@@ -12,3 +12,15 @@
     font-size: v.$x-large;
     font-weight: bold;
 }
+
+@mixin bgImage($opacity) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: $opacity;
+    background-size: cover;
+    content: "";
+    z-index: -1;
+}

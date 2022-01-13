@@ -3,19 +3,33 @@
 
 .movie {
     @include m.flex(column, space-between);
-    padding: 2rem 0;
     font-size: v.$normal;
     line-height: 1.7;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    padding: 3rem v.$padding-x;
+    z-index: 1;
+    &__bg {
+        @include m.bgImage(0.1);
+    }
     &__details {
         @include m.flex(row, space-between, flex-start);
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
         &__img {
             flex: 1;
+            height: 450px;
+            width: 300px;
+            position: relative;
+            img {
+                border-radius: 20px;
+                object-fit: fill;
+            }
         }
         &__info {
-            @include m.flex(column, space-between, flex-start);
+            @include m.flex(column, center, flex-start);
             flex: 2;
-            padding-left: 25px;
+            padding-left: 4rem;
             &__title {
                 @include m.flex(row, center);
                 @include m.title;
@@ -34,14 +48,16 @@
             }
             &__overview {
                 margin-top: 20px;
+                line-height: 2.5;
+            }
+            &__moreDetail {
+                @include m.flex(row, space-between, flex-start);
+                width: 100%;
+                margin-top: 2.5rem;
             }
         }
     }
-    &__moreDetail {
-        @include m.flex(row, space-between, flex-start);
-        width: 100%;
-        margin-top: 2.5rem;
-    }
+
     &__tagline {
         color: v.$yellow;
         margin-top: 5rem;

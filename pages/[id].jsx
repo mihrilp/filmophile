@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import axios from "axios";
 import Image from "next/image";
+import Info from "../components/info";
 
 export async function getStaticPaths() {
   const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
@@ -41,16 +42,21 @@ function MovieDetail({ movie }) {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
-
+  console.log(movie);
   return (
     <div className="movie">
+      <div
+        className="movie__bg"
+        style={{
+          backgroundImage: `url(${`https://image.tmdb.org/t/p/original${movie.backdrop_path}`})`,
+        }}
+      ></div>
       <div className="movie__details">
         <div className="movie__details__img">
           <Image
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
             alt="movie image"
-            width={500}
-            height={400}
+            layout="fill"
           />
         </div>
         <div className="movie__details__info">
@@ -68,44 +74,14 @@ function MovieDetail({ movie }) {
           </div>
         </div>
       </div>
-      <div className="movie__moreDetail">
-        <div>
-          <h3>Production Companies: </h3>
-          {movie.production_companies.map((company) => (
-            <p key={company.id}>{company.name}</p>
-          ))}
-        </div>
-        <div>
-          <h3>Countries: </h3>
-          {movie.production_countries.map((country) => (
-            <p key={country.id}>{country.name}</p>
-          ))}
-        </div>
-        <div>
-          <h3>Genres: </h3>
-          {movie.genres.map((genre) => (
-            <p key={genre.id}> {genre.name} </p>
-          ))}
-        </div>
-        <div>
-          <h3>Spoken Languages: </h3>
-          {movie.spoken_languages.map((lang) => (
-            <p key={lang.id}> {lang.name} </p>
-          ))}
-        </div>
+      <div className="movie__details__info__moreDetail">
+        <Info title="Production Companies:" arr={movie.production_companies} />
+        <Info title="Countries:" arr={movie.production_countries} />
+        <Info title="Genres:" arr={movie.genres} />
+        <Info title="Movie Languages:" arr={movie.spoken_languages} />
       </div>
       <div className="movie__tagline">
         <h2>{movie.tagline}</h2>
-      </div>
-      <div className="movie__backdropImg">
-        <Image
-          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-          alt="movie image"
-          width="100%"
-          height="63%"
-          layout="responsive"
-          objectFit="contain"
-        />
       </div>
     </div>
   );

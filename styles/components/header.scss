@@ -1,9 +1,10 @@
 @use "../mixin" as m;
+@use "../variables" as v;
 
 .header {
     @include m.flex(row, space-between);
     width: 100%;
-    padding: 2rem 0;
+    padding: 2rem v.$padding-x;
     &__nav {
         @include m.flex(row, space-around);
         width: 20%;

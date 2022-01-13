@@ -1,9 +1,5 @@
 @use "../mixin" as m;
 
 .layout {
-    @include m.flex(column, space-between);
-    min-height: 100vh;
-    &__content {
-        padding: 1rem 10rem;
-    }
+    padding: 1rem 10rem;
 }

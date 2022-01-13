@@ -2,14 +2,8 @@
 @use "../variables" as v;
 
 .home {
-  @include m.flex(column, space-between);
   font-size: v.$normal;
-  &__banner {
-    height: 100vh;
-  }
-  &__title {
-    color: v.$yellow;
-    margin-bottom: 40px;
-    margin-top: 100px;
+  &__content {
+    padding: 2rem v.$padding-x;
   }
 }

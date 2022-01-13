@@ -3,7 +3,7 @@ import Link from "next/link";
 import Card from "../components/card";
 import { RightArrow, LeftArrow } from "../public/assets";
 
-function Pagination({ data }) {
+function Pagination({ title, data }) {
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 10;
 
@@ -20,6 +20,7 @@ function Pagination({ data }) {
 
   return (
     <div className="pagination">
+      <h2 className="pagination__title">{title}</h2>
       <div className="pagination__data">
         {data.slice(indexOfFirstItem, indexOfLastItem).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id} passHref>

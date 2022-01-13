@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Slider from "../components/banner";
+import Banner from "../components/banner";
 import axios from "axios";
 import Pagination from "../components/pagination";
 
@@ -33,14 +33,11 @@ export default function Home() {
         <link rel="icon" type="image/x-icon" href="../public/favicon.svg" />
       </Head>
       <main>
-        <div className="home__banner">
-          <Slider />
+        <Banner />
+        <div className="home__content">
+          <Pagination title="Popular Movies" data={popularMovies} />
+          <Pagination title="Top Rated Movies" data={topRatedMovies} />
         </div>
-        <h2 className="home__title">Popular Movies</h2>
-
-        <Pagination data={popularMovies} />
-        <h2 className="home__title">Top Rated Movies</h2>
-        <Pagination data={topRatedMovies} />
       </main>
     </div>
   );

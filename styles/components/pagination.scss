@@ -2,8 +2,13 @@
 @use "../variables" as v;
 
 .pagination {
-    @include m.flex(column, center);
+    @include m.flex(column, center, flex-start);
     width: 100%;
+    &__title {
+        color: v.$yellow;
+        margin-bottom: 40px;
+        margin-top: 100px;
+    }
     &__data {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -12,6 +17,7 @@
     }
     &__btns {
         @include m.flex(row, center);
+        align-self: center;
         button {
             border: none;
             background-color: v.$yellow;
