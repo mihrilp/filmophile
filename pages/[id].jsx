@@ -42,6 +42,7 @@ function MovieDetail({ movie }) {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
+
   console.log(movie);
   return (
     <div className="movie">
@@ -72,14 +73,15 @@ function MovieDetail({ movie }) {
           <div className="movie__details__info__overview">
             <p>{movie.overview}</p>
           </div>
+          <div className="movie__details__info__moreInfo">
+            <Info title="Languages:" arr={movie.spoken_languages} />
+            <Info title="Genres:" arr={movie.genres} />
+            <Info title="Countries:" arr={movie.production_countries} />
+            <Info title="Companies:" arr={movie.production_companies} />
+          </div>
         </div>
       </div>
-      <div className="movie__details__info__moreDetail">
-        <Info title="Production Companies:" arr={movie.production_companies} />
-        <Info title="Countries:" arr={movie.production_countries} />
-        <Info title="Genres:" arr={movie.genres} />
-        <Info title="Movie Languages:" arr={movie.spoken_languages} />
-      </div>
+
       <div className="movie__tagline">
         <h2>{movie.tagline}</h2>
       </div>

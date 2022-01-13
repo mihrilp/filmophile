@@ -1,0 +1,12 @@
+@use "../mixin" as m;
+.info {
+    &__logo {
+        height: 50px;
+        width: 100%;
+        position: relative;
+        margin: 10px 0;
+        img {
+            object-fit: contain;
+        }
+    }
+}

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import {
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+} from "../services/fetchMovies";
 import Banner from "../components/banner";
-import axios from "axios";
 import Pagination from "../components/pagination";
 
 export default function Home() {
@@ -10,19 +13,8 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      await axios
-        .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-        )
-        .then((res) => setPopularMovies(res.data.results))
-        .catch((err) => console.log(err));
-
-      await axios
-        .get(
-          `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-        )
-        .then((res) => setTopRatedMovies(res.data.results))
-        .catch((err) => console.log(err));
+      setPopularMovies(await fetchPopularMovies());
+      setTopRatedMovies(await fetchTopRatedMovies());
     })();
   }, []);
 

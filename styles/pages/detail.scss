@@ -4,12 +4,12 @@
 .movie {
     @include m.flex(column, space-between);
     font-size: v.$normal;
-    line-height: 1.7;
     position: relative;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     padding: 3rem v.$padding-x;
     z-index: 1;
+    line-height: 2;
     &__bg {
         @include m.bgImage(0.1);
     }
@@ -18,7 +18,7 @@
         margin-bottom: 2rem;
         &__img {
             flex: 1;
-            height: 450px;
+            height: 500px;
             width: 300px;
             position: relative;
             img {
@@ -33,6 +33,7 @@
             &__title {
                 @include m.flex(row, center);
                 @include m.title;
+                line-height: 1.7;
                 &__score {
                     margin-left: 20px;
                     background-color: rgba(v.$yellow, 0.8);
@@ -48,12 +49,15 @@
             }
             &__overview {
                 margin-top: 20px;
-                line-height: 2.5;
             }
-            &__moreDetail {
+            &__moreInfo {
                 @include m.flex(row, space-between, flex-start);
                 width: 100%;
                 margin-top: 2.5rem;
+                font-size: v.$small;
+                span {
+                    margin-bottom: 10px;
+                }
             }
         }
     }

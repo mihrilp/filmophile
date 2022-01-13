@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { Play } from "../public/assets";
+import {
+  fetchUpcomingMovies,
+  fetchMovieVideoUrl,
+} from "../services/fetchMovies";
 
 function Slider() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
@@ -9,29 +13,14 @@ function Slider() {
 
   useEffect(() => {
     (async () => {
-      await axios
-        .get(
-          `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-        )
-        .then((res) =>
-          setUpcomingMovie(
-            res.data.results[
-              Math.floor(Math.random() * res.data.results.length)
-            ]
-          )
-        )
-        .catch((err) => console.log(err));
+      const movie = await fetchUpcomingMovies();
+      setUpcomingMovie(movie[Math.floor(Math.random() * movie.length)]);
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      await axios
-        .get(
-          `https://api.themoviedb.org/3/movie/${upcomingMovie.id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-        )
-        .then((res) => setVideoUrl(res.data.results[0].key))
-        .catch((err) => console.log(err));
+      setVideoUrl(await fetchMovieVideoUrl(upcomingMovie.id));
     })();
   }, [upcomingMovie.id]);
 
