@@ -8,7 +8,7 @@
 @import "./components/banner.scss";
 @import "./components/pagination.scss";
 @import "./components/info.scss";
-@import "./components/popup.scss";
+@import "./components/modal.scss";
 
 * {
   box-sizing: border-box;
@@ -27,5 +27,10 @@ body {
   a {
     color: inherit;
     text-decoration: none;
+  }
+  .blur {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
   }
 }

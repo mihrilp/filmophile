@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { Play } from "../public/assets";
 import {
   fetchUpcomingMovies,
   fetchMovieVideoUrl,
 } from "../services/fetchMovies";
-import Popup from "./popup";
+import ModalVideo from "./modal";
+import { ModalContext } from "../ModalContext";
 
-function Slider() {
+function Banner() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
   const [videoUrl, setVideoUrl] = useState();
-  const [trigger, setTrigger] = useState(false);
+
+  const { modalIsOpen, setModalIsOpen } = useContext(ModalContext);
 
   useEffect(() => {
     (async () => {
@@ -46,7 +48,9 @@ function Slider() {
         <div className="banner__content__btns">
           <a
             className="banner__content__btns__watchTrailerBtn"
-            onClick={() => setTrigger(true)}
+            onClick={() => {
+              setModalIsOpen(true);
+            }}
           >
             <Play style={{ marginRight: 10 }} />
             Watch Trailer
@@ -56,14 +60,14 @@ function Slider() {
           </Link>
         </div>
       </div>
-      {trigger && (
-        <Popup
+      {modalIsOpen && (
+        <ModalVideo
           videoUrl={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}
-          handleClick={() => setTrigger(false)}
+          handleClick={() => setModalIsOpen(false)}
         />
       )}
     </div>
   );
 }
 
-export default Slider;
+export default Banner;
