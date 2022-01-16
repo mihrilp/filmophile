@@ -1,6 +1,9 @@
 @use "../mixin" as m;
+@use "../variables" as v;
+
 .info {
     &__logo {
+        @include m.flex(row, flex-start, flex-start);
         height: 50px;
         width: 100%;
         position: relative;

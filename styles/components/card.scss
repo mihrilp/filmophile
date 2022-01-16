@@ -5,7 +5,7 @@
     $root: &;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
-    width: 200px;
+    width: 205px;
     height: 400px;
     &__image {
         border-radius: 10px;
@@ -39,5 +39,9 @@
     }
     &:hover {
         transform: scale(1.05);
+    }
+    @media screen and (min-width: 1600px) {
+        width: 220px;
+        height: 430px;
     }
 }

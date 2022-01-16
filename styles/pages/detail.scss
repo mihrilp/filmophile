@@ -11,9 +11,9 @@
     padding-bottom: 8rem;
     z-index: 1;
     line-height: 2;
-    background: #0a0b10;
+    background-color: #262c40;
     &__bg {
-        @include m.bgImage(0.1);
+        @include m.bgImage(0.08);
     }
     &__poster {
         flex: 1;

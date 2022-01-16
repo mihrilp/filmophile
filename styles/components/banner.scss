@@ -13,9 +13,8 @@
     height: 100vh;
     width: 100%;
     z-index: 1;
-    background-color: #0a0b10;
     &__bg {
-        @include m.bgImage(0.3);
+        @include m.bgImage(0.4);
     }
     &__content {
         @include m.flex(column, space-around, flex-start);
@@ -54,7 +53,7 @@
             &__seeDetailBtn {
                 @extend .btn;
                 color: v.$yellow;
-                border: 1px solid v.$yellow;
+                border: 2px solid v.$yellow;
             }
         }
     }
