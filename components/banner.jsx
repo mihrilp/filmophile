@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { Play } from "../public/assets";
 import {
   fetchUpcomingMovies,
   fetchMovieVideoUrl,
 } from "../services/fetchMovies";
+import Popup from "./popup";
 
 function Slider() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
   const [videoUrl, setVideoUrl] = useState();
+  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -45,7 +46,7 @@ function Slider() {
         <div className="banner__content__btns">
           <a
             className="banner__content__btns__watchTrailerBtn"
-            href={`https://www.youtube.com/watch?v=${videoUrl}`}
+            onClick={() => setTrigger(true)}
           >
             <Play style={{ marginRight: 10 }} />
             Watch Trailer
@@ -55,6 +56,12 @@ function Slider() {
           </Link>
         </div>
       </div>
+      {trigger && (
+        <Popup
+          videoUrl={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}
+          handleClick={() => setTrigger(false)}
+        />
+      )}
     </div>
   );
 }
