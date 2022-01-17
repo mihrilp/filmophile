@@ -62,7 +62,7 @@ function Banner() {
       </div>
       {modalIsOpen && (
         <ModalVideo
-          videoUrl={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}
+          videoUrl={videoUrl}
           handleClick={() => setModalIsOpen(false)}
         />
       )}

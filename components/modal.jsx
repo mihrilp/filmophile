@@ -8,7 +8,7 @@ function ModalVideo({ videoUrl, handleClick }) {
       <Close className="modal__closeBtn" onClick={handleClick} />
       <iframe
         className="modal__iframe"
-        src={videoUrl}
+        src={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}
         width="100%"
         height="100%"
         frameBorder="0"

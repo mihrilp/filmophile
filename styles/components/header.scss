@@ -4,7 +4,7 @@
 .header {
     @include m.flex(row, space-between);
     width: 100%;
-    padding: 2rem v.$padding-x;
+    padding: 1rem v.$padding-x;
     &__nav {
         @include m.flex(row, space-around);
         width: 20%;

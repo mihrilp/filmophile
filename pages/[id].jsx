@@ -5,7 +5,6 @@ import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchUpcomingMovies,
-  fetchMovieVideoUrl,
   fetchMovieDetail,
 } from "../services/fetchMovies";
 
@@ -34,17 +33,10 @@ export async function getStaticProps({ params }) {
 }
 
 function MovieDetail({ movie }) {
-  const [videoUrl, setVideoUrl] = useState();
   const formatDate = useCallback((date) => {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
-
-  useEffect(() => {
-    (async () => {
-      setVideoUrl(await fetchMovieVideoUrl(movie.id));
-    })();
-  }, [movie.id]);
 
   return (
     <div className="movie">

@@ -1,9 +1,14 @@
 import axios from "axios";
 
+const instance = axios.create({
+  baseURL: "https://api.themoviedb.org/3/movie/",
+  timeout: 1000,
+});
+
 export const fetchPopularMovies = async () => {
   try {
-    const { data } = await axios(
-      `${process.env.NEXT_PUBLIC_BASE_URL}popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+    const { data } = await instance.get(
+      `popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results;
   } catch (err) {
@@ -13,8 +18,8 @@ export const fetchPopularMovies = async () => {
 
 export const fetchTopRatedMovies = async () => {
   try {
-    const { data } = await axios(
-      `${process.env.NEXT_PUBLIC_BASE_URL}top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+    const { data } = await instance.get(
+      `top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results;
   } catch (err) {
@@ -24,8 +29,8 @@ export const fetchTopRatedMovies = async () => {
 
 export const fetchUpcomingMovies = async () => {
   try {
-    const { data } = await axios(
-      `${process.env.NEXT_PUBLIC_BASE_URL}upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+    const { data } = await instance.get(
+      `upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results;
   } catch (err) {
@@ -35,8 +40,8 @@ export const fetchUpcomingMovies = async () => {
 
 export const fetchMovieDetail = async (id) => {
   try {
-    const { data } = await axios(
-      `${process.env.NEXT_PUBLIC_BASE_URL}${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    const { data } = await instance.get(
+      `${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
     );
     return data;
   } catch (err) {
@@ -46,8 +51,8 @@ export const fetchMovieDetail = async (id) => {
 
 export const fetchMovieVideoUrl = async (id) => {
   try {
-    const { data } = await axios(
-      `${process.env.NEXT_PUBLIC_BASE_URL}${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    const { data } = await instance.get(
+      `${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
     );
     return data.results[0].key;
   } catch (err) {

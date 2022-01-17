@@ -22,6 +22,7 @@
         height: 90%;
         width: 50%;
         &__title {
+            @include m.lineClamp();
             font-size: 3.5rem;
             margin-bottom: 10px;
         }
@@ -32,15 +33,11 @@
             margin-right: 15px;
         }
         &__overview {
+            @include m.lineClamp();
             line-height: 1.8;
-            text-align: left;
             font-size: v.$large;
             text-align: left;
             font-weight: 600;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
         &__btns {
             @include m.flex(row, center);

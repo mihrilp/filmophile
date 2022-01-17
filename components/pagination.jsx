@@ -3,9 +3,10 @@ import Link from "next/link";
 import Card from "../components/card";
 import { RightArrow, LeftArrow } from "../public/assets";
 
+const ITEMS_PER_PAGE = 10;
+
 function Pagination({ title, data }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 10;
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
