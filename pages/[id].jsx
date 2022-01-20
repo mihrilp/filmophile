@@ -46,8 +46,9 @@ function MovieDetail({ movie }) {
           backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`})`,
         }}
       ></div>
-      <div className="movie__poster">
+      <div className="movie__imgContainer">
         <Image
+          className="movie__imgContainer__poster"
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt="movie image"
           layout="fill"

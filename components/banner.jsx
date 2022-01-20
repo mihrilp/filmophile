@@ -33,7 +33,7 @@ function Banner() {
       <div
         className="banner__bg"
         style={{
-          backgroundImage: `url(${`https://image.tmdb.org/t/p/original${upcomingMovie.backdrop_path}`})`,
+          backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${upcomingMovie.backdrop_path}`})`,
         }}
       ></div>
       <div className="banner__content">

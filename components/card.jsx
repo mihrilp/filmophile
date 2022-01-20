@@ -18,7 +18,7 @@ const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
         layout="responsive"
       />
       <div className="card__title">
-        <p>{name}</p>
+        <p className="card__title__name">{name}</p>
       </div>
       <div className="card__info">
         <p className="card__info__date">{formatDate(date)}</p>

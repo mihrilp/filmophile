@@ -2,14 +2,8 @@
 @use "../variables" as v;
 
 .info {
-    &__logo {
-        @include m.flex(row, flex-start, flex-start);
-        height: 50px;
-        width: 100%;
-        position: relative;
-        margin: 10px 0;
-        img {
-            object-fit: contain;
-        }
+    &__title {
+        font-weight: bold;
+        text-shadow: 1px 1px v.$yellow;
     }
 }

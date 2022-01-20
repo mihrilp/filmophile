@@ -10,10 +10,10 @@
         margin-top: 100px;
     }
     &__data {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 10% 40px;
-        margin-bottom: 9rem;
+        @include m.flex(row, space-between);
+        flex-wrap: wrap;
+        gap: 5rem 0;
+        margin-bottom: 5rem;
     }
     &__btns {
         @include m.flex(row, center);

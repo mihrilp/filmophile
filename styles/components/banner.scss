@@ -51,6 +51,10 @@
                 @extend .btn;
                 color: v.$yellow;
                 border: 2px solid v.$yellow;
+                &:hover {
+                    background-color: v.$yellow;
+                    color: white;
+                }
             }
         }
     }

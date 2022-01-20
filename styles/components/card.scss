@@ -13,7 +13,7 @@
     &__title {
         margin: 13px 0;
         font-weight: bold;
-        p {
+        &__name {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -39,9 +39,5 @@
     }
     &:hover {
         transform: scale(1.05);
-    }
-    @media screen and (min-width: 1600px) {
-        width: 220px;
-        height: 430px;
     }
 }
