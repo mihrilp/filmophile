@@ -22,7 +22,12 @@ export default function Home() {
     <div className="home">
       <Head>
         <title>filmophile</title>
-        <link rel="icon" type="image/x-icon" href="../public/favicon.svg" />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          sizes="32x32"
+          href="/favicon.svg"
+        />
       </Head>
       <main>
         <Banner />

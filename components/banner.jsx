@@ -22,9 +22,10 @@ function Banner() {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      setVideoUrl(await fetchMovieVideoUrl(upcomingMovie.id));
-    })();
+    upcomingMovie.id &&
+      (async () => {
+        setVideoUrl(await fetchMovieVideoUrl(upcomingMovie.id));
+      })();
   }, [upcomingMovie.id]);
 
   return (

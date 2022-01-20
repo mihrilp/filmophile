@@ -11,18 +11,16 @@
     padding-bottom: 8rem;
     z-index: 1;
     line-height: 2;
-    background-color: #262c40;
+    background-color: v.$bg-color;
     &__bg {
         @include m.bgImage(0.08);
     }
     &__poster {
         flex: 1;
-        height: 525px;
-        width: 350px;
         position: relative;
+        aspect-ratio: 0.66;
         img {
             border-radius: 20px;
-            object-fit: fill;
         }
     }
     &__info {

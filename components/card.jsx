@@ -11,7 +11,7 @@ const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
     <a href={href} ref={ref} className="card">
       <Image
         className="card__image"
-        src={`https://image.tmdb.org/t/p/original${imgUrl}`}
+        src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
         alt="movie image"
         width={300}
         height={450}
