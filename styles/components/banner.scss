@@ -1,6 +1,15 @@
 @use "../mixin" as m;
 @use "../variables" as v;
 
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
 .btn {
     padding: 0.8rem;
     font-size: v.$large;
@@ -44,16 +53,29 @@
             &__watchTrailerBtn {
                 @include m.flex(row, center);
                 @extend .btn;
+                $root: &;
                 background-color: v.$yellow;
                 margin-right: 15px;
+                transition: all 0.5s ease-in-out;
+                &__icon {
+                    margin-right: 10px;
+                    #{$root}:hover & {
+                        animation: rotation 2s infinite linear;
+                    }
+                }
+                &:hover {
+                    transform: scale(1.05);
+                }
             }
             &__seeDetailBtn {
                 @extend .btn;
                 color: v.$yellow;
                 border: 2px solid v.$yellow;
+                transition: all 0.5s ease-in-out;
                 &:hover {
                     background-color: v.$yellow;
                     color: white;
+                    transform: scale(1.05);
                 }
             }
         }

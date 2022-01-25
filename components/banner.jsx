@@ -53,7 +53,7 @@ function Banner() {
               setModalIsOpen(true);
             }}
           >
-            <Play style={{ marginRight: 10 }} />
+            <Play className="banner__content__btns__watchTrailerBtn__icon" />
             Watch Trailer
           </a>
           <Link href={`/${upcomingMovie.id}`}>

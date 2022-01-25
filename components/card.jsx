@@ -9,14 +9,14 @@ const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
 
   return (
     <a href={href} ref={ref} className="card">
-      <Image
-        className="card__image"
-        src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
-        alt="movie image"
-        width={300}
-        height={450}
-        layout="responsive"
-      />
+      <div className="card__imgContainer">
+        <Image
+          className="card__imgContainer__image"
+          src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
+          alt="movie image"
+          layout="fill"
+        />
+      </div>
       <div className="card__title">
         <p className="card__title__name">{name}</p>
       </div>
