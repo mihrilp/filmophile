@@ -3,7 +3,10 @@ import { Logo, Facebook, Instagram, Twitter } from "../public/assets";
 function Footer(props) {
   return (
     <div className="footer">
-      <Logo className="footer__logo" />
+      <div className="footer__logo">
+        <Logo />
+      </div>
+
       <div className="footer__quote">
         <q>
           We love films and storytelling as a people. It’s just a human

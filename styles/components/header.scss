@@ -4,10 +4,11 @@
 .header {
     @include m.flex(row, space-between);
     width: 100%;
-    padding: 2rem v.$padding-x 0 v.$padding-x;
+    padding: 2rem v.$padding-x 1rem v.$padding-x;
     &__nav {
         @include m.flex(row, space-around);
         width: 20%;
         font-size: 18px;
+        font-weight: lighter;
     }
 }
