@@ -1,9 +1,8 @@
-@use "../mixin" as m;
 @use "../variables" as v;
 
 .info {
     &__title {
         font-weight: bold;
-        text-shadow: 1px 1px v.$yellow;
+        text-shadow: 1px 1px black;
     }
 }

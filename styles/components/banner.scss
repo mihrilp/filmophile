@@ -23,7 +23,7 @@
     width: 100%;
     z-index: 1;
     &__bg {
-        @include m.bgImage(0.4);
+        @include m.bgImage(0.3);
     }
     &__content {
         @include m.flex(column, space-around, flex-start);
@@ -32,7 +32,7 @@
         width: 50%;
         &__title {
             @include m.lineClamp();
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 10px;
         }
         &__score {

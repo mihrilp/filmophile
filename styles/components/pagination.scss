@@ -4,10 +4,10 @@
 .pagination {
     @include m.flex(column, center, flex-start);
     width: 100%;
+    margin-bottom: 5rem;
     &__title {
         color: v.$yellow;
-        margin-bottom: 40px;
-        margin-top: 100px;
+        margin-bottom: 4rem;
     }
     &__data {
         @include m.flex(row, space-between);

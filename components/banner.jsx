@@ -39,7 +39,7 @@ function Banner() {
       <div className="banner__content">
         <div>
           <p className="banner__content__title">
-            {upcomingMovie.original_title}
+            {upcomingMovie.original_title?.toUpperCase()}
           </p>
           <p className="banner__content__score">
             {upcomingMovie.vote_average?.toFixed(1)}
