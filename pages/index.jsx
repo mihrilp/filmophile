@@ -6,10 +6,14 @@ import {
 } from "../services/fetchMovies";
 import Banner from "../components/banner";
 import Pagination from "../components/pagination";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
+
+  const recentlyViewedMovies = useSelector((state) => state.movies.value);
+  console.log(recentlyViewedMovies);
 
   useEffect(() => {
     (async () => {
@@ -34,6 +38,12 @@ export default function Home() {
         <div className="home__content">
           <Pagination title="Popular Movies" data={popularMovies} />
           <Pagination title="Top Rated Movies" data={topRatedMovies} />
+          {recentlyViewedMovies.length > 0 && (
+            <Pagination
+              title="Recently Viewed Movies"
+              data={recentlyViewedMovies}
+            />
+          )}
         </div>
       </main>
     </div>

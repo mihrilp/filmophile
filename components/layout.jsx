@@ -4,7 +4,7 @@ import Header from "./header";
 import { useSelector } from "react-redux";
 
 function Layout({ children }) {
-  const modalVisibility = useSelector((state) => state.modalVisibility);
+  const modalVisibility = useSelector((state) => state.modal.value);
   return (
     <div className={modalVisibility ? "blur" : " "}>
       <Header />

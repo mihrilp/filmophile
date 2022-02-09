@@ -7,14 +7,17 @@ import {
 } from "../services/fetchMovies";
 import ModalVideo from "./modal";
 import { useSelector, useDispatch } from "react-redux";
-import { setModalVisibility } from "../actions";
+//import { setModalVisibility } from "../actions";
+import { changeModalVisibility } from "../reducers/modalSlice";
 
 function Banner() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
   const [videoUrl, setVideoUrl] = useState();
 
-  const modalVisibility = useSelector((state) => state.modalVisibility);
+  const modalVisibility = useSelector((state) => state.modal.value);
   const dispatch = useDispatch();
+
+  console.log(modalVisibility);
 
   useEffect(() => {
     (async () => {
@@ -52,7 +55,7 @@ function Banner() {
           <a
             className="banner__content__btns__watchTrailerBtn"
             onClick={() => {
-              dispatch(setModalVisibility());
+              dispatch(changeModalVisibility());
             }}
           >
             <Play className="banner__content__btns__watchTrailerBtn__icon" />
@@ -66,7 +69,7 @@ function Banner() {
       {modalVisibility && (
         <ModalVideo
           videoUrl={videoUrl}
-          handleClick={() => dispatch(setModalVisibility())}
+          handleClick={() => dispatch(changeModalVisibility())}
         />
       )}
     </div>

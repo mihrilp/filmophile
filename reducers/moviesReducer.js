@@ -1,7 +1,7 @@
-export default function movieReducer(state = false, action) {
+export default function moviesReducer(state = [], action) {
   switch (action.type) {
-    case "CHANGE_MODAL_VISIBILITY":
-      return !state;
+    case "ADD_RECENTLY_VIEWED_MOVIE":
+      return [...state, action.payload];
     default:
       return state;
   }

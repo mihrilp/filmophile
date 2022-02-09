@@ -4,7 +4,7 @@ import moviesReducer from "./moviesReducer";
 
 const rootReducer = combineReducers({
   modalVisibility: modalReducer,
-  movie: moviesReducer,
+  recentlyViewedMovies: moviesReducer,
 });
 
 export default rootReducer;
