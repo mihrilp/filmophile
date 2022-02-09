@@ -13,7 +13,7 @@
     line-height: 2;
     background-color: v.$bg-color;
     &__bg {
-        @include m.bgImage(0.08);
+        @include m.bgImage(0.2);
     }
     &__imgContainer {
         flex: 1;

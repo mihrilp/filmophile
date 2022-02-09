@@ -11,7 +11,7 @@
 }
 
 .btn {
-    padding: 0.8rem;
+    padding: 0.7rem;
     font-size: v.$large;
     border-radius: 40px;
     cursor: pointer;
@@ -23,13 +23,13 @@
     width: 100%;
     z-index: 1;
     &__bg {
-        @include m.bgImage(0.3);
+        @include m.bgImage(0.5);
     }
     &__content {
         @include m.flex(column, space-around, flex-start);
         padding: 5rem v.$padding-x;
         height: 90%;
-        width: 50%;
+        width: 60%;
         &__title {
             @include m.lineClamp();
             font-size: 4rem;
@@ -46,7 +46,7 @@
             line-height: 1.8;
             font-size: v.$large;
             text-align: left;
-            font-weight: 600;
+            font-weight: lighter;
         }
         &__btns {
             @include m.flex(row, center);

@@ -1,20 +1,18 @@
-import { useState } from "react";
 import "../styles/globals.scss";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import { ModalContext } from "../ModalContext";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import rootReducer from "../reducers";
+import Layout from "../components/layout";
 
 function MyApp({ Component, pageProps }) {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const store = createStore(rootReducer);
   return (
-    <ModalContext.Provider value={{ modalIsOpen, setModalIsOpen }}>
-      <div className={modalIsOpen ? "blur" : " "}>
-        <Header />
+    <Provider store={store}>
+      <Layout>
         <Component {...pageProps} />
-        <Footer />
-      </div>
+      </Layout>
       <div id="modal-root"></div>
-    </ModalContext.Provider>
+    </Provider>
   );
 }
 

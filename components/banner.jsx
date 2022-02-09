@@ -6,18 +6,20 @@ import {
   fetchMovieVideoUrl,
 } from "../services/fetchMovies";
 import ModalVideo from "./modal";
-import { ModalContext } from "../ModalContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setModalVisibility } from "../actions";
 
 function Banner() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
   const [videoUrl, setVideoUrl] = useState();
 
-  const { modalIsOpen, setModalIsOpen } = useContext(ModalContext);
+  const modalVisibility = useSelector((state) => state.modalVisibility);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       const movie = await fetchUpcomingMovies();
-      setUpcomingMovie(movie[Math.floor(Math.random() * movie.length)]);
+      setUpcomingMovie(movie?.[Math.floor(Math.random() * movie.length)]);
     })();
   }, []);
 
@@ -50,7 +52,7 @@ function Banner() {
           <a
             className="banner__content__btns__watchTrailerBtn"
             onClick={() => {
-              setModalIsOpen(true);
+              dispatch(setModalVisibility());
             }}
           >
             <Play className="banner__content__btns__watchTrailerBtn__icon" />
@@ -61,10 +63,10 @@ function Banner() {
           </Link>
         </div>
       </div>
-      {modalIsOpen && (
+      {modalVisibility && (
         <ModalVideo
           videoUrl={videoUrl}
-          handleClick={() => setModalIsOpen(false)}
+          handleClick={() => dispatch(setModalVisibility())}
         />
       )}
     </div>
