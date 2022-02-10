@@ -1,14 +1,14 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 
-const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
+const Card = ({ name, imgUrl, date, score }) => {
   const formatDate = useCallback((date) => {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
 
   return (
-    <a href={href} ref={ref} className="card">
+    <div className="card">
       <div className="card__imgContainer">
         <Image
           className="card__imgContainer__image"
@@ -24,8 +24,8 @@ const Card = React.forwardRef(({ name, imgUrl, date, score, href }, ref) => {
         <p className="card__info__date">{formatDate(date)}</p>
         <p className="card__info__score">{score}</p>
       </div>
-    </a>
+    </div>
   );
-});
+};
 
 export default Card;

@@ -1,4 +1,4 @@
-export const setModalVisibility = () => ({
+export const changeModalVisibility = () => ({
   type: "CHANGE_MODAL_VISIBILITY",
 });
 

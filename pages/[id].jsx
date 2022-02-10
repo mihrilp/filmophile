@@ -9,6 +9,7 @@ import {
 } from "../services/fetchMovies";
 import { useSelector, useDispatch } from "react-redux";
 import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
+//import { addRecentlytViewedMovie } from "../actions";
 
 export async function getStaticPaths() {
   const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
@@ -40,7 +41,9 @@ function MovieDetail({ movie }) {
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
 
-  const recentlyViewedMovies = useSelector((state) => state.movies.value);
+  const recentlyViewedMovies = useSelector(
+    (state) => state.recentlyViewedMovies
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {

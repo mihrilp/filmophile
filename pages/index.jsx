@@ -12,8 +12,9 @@ export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
 
-  const recentlyViewedMovies = useSelector((state) => state.movies.value);
-  console.log(recentlyViewedMovies);
+  const recentlyViewedMovies = useSelector(
+    (state) => state.recentlyViewedMovies
+  );
 
   useEffect(() => {
     (async () => {

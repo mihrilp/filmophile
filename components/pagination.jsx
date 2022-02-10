@@ -24,32 +24,36 @@ function Pagination({ title, data }) {
       <h2 className="pagination__title">{title}</h2>
       <div className="pagination__data">
         {data.slice(indexOfFirstItem, indexOfLastItem).map((movie) => (
-          <Link href={`/${movie.id}`} key={movie.id} passHref>
-            <Card
-              name={movie.original_title}
-              imgUrl={movie.poster_path}
-              date={movie.release_date}
-              score={movie.vote_average.toFixed(1)}
-            />
+          <Link href={`/${movie.id}`} key={movie.id}>
+            <a>
+              <Card
+                name={movie.original_title}
+                imgUrl={movie.poster_path}
+                date={movie.release_date}
+                score={movie.vote_average.toFixed(1)}
+              />
+            </a>
           </Link>
         ))}
       </div>
-      <div className="pagination__btns">
-        <button
-          className="pagination__btns__prevBtn"
-          disabled={indexOfFirstItem == 0}
-          onClick={handlePrevBtn}
-        >
-          <LeftArrow />
-        </button>
-        <button
-          className="pagination__btns__nextBtn"
-          disabled={indexOfLastItem == data.length}
-          onClick={handleNextBtn}
-        >
-          <RightArrow />
-        </button>
-      </div>
+      {data?.length > ITEMS_PER_PAGE && (
+        <div className="pagination__btns">
+          <button
+            className="pagination__btns__prevBtn"
+            disabled={indexOfFirstItem == 0}
+            onClick={handlePrevBtn}
+          >
+            <LeftArrow />
+          </button>
+          <button
+            className="pagination__btns__nextBtn"
+            disabled={indexOfLastItem == data.length}
+            onClick={handleNextBtn}
+          >
+            <RightArrow />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

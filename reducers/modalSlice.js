@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: false };
-
 export const modalSlice = createSlice({
   name: "modal",
-  initialState,
+  initialState: false,
   reducers: {
     changeModalVisibility: (state) => {
-      state.value = !state.value;
+      state = !state;
+      return state;
     },
   },
 });
