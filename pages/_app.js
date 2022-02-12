@@ -1,12 +1,14 @@
 import "../styles/globals.scss";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "../reducers";
-import Layout from "../components/layout";
-import { store } from "../store";
+import {Layout} from "../components";
+//import { store } from "../store";
+import thunk from "redux-thunk";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 function MyApp({ Component, pageProps }) {
-  //const store = createStore(rootReducer);
   return (
     <Provider store={store}>
       <Layout>

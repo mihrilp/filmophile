@@ -1,15 +1,15 @@
 import React, { useCallback, useState, useEffect } from "react";
 import Image from "next/image";
-import Info from "../components/info";
+import { Info } from "../components";
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchUpcomingMovies,
-  fetchMovieDetail,
+  //fetchMovieDetail,
 } from "../services/fetchMovies";
 import { useSelector, useDispatch } from "react-redux";
-import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
-//import { addRecentlytViewedMovie } from "../actions";
+//import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
+import { addRecentlytViewedMovie, fetchMovieDetail } from "../actions";
 
 export async function getStaticPaths() {
   const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
@@ -31,7 +31,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchMovieDetail(params.id);
+  const dispatch = useDispatch();
+  const data = await dispatch(fetchMovieDetail(params.id));
   return { props: { movie: data } };
 }
 
@@ -41,16 +42,12 @@ function MovieDetail({ movie }) {
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
 
-  const recentlyViewedMovies = useSelector(
-    (state) => state.recentlyViewedMovies
-  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(addRecentlytViewedMovie(movie));
   }, [movie, dispatch]);
 
-  console.log(recentlyViewedMovies);
   return (
     <div className="movie">
       <div

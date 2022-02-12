@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import Card from "../components/card";
+import {Card} from "../components";
 import { RightArrow, LeftArrow } from "../public/assets";
 
 const ITEMS_PER_PAGE = 10;
@@ -30,7 +30,7 @@ function Pagination({ title, data }) {
                 name={movie.original_title}
                 imgUrl={movie.poster_path}
                 date={movie.release_date}
-                score={movie.vote_average.toFixed(1)}
+                score={movie.vote_average?.toFixed(1)}
               />
             </a>
           </Link>

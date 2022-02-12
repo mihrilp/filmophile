@@ -1,6 +1,5 @@
 import React from "react";
-import Footer from "./footer";
-import Header from "./header";
+import { Header, Footer } from "../components";
 import { useSelector } from "react-redux";
 
 function Layout({ children }) {

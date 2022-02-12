@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import {
-  fetchPopularMovies,
-  fetchTopRatedMovies,
-} from "../services/fetchMovies";
-import Banner from "../components/banner";
-import Pagination from "../components/pagination";
-import { useSelector } from "react-redux";
+import { Pagination, Banner } from "../components";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "../actions";
+// import {
+//   fetchPopularMovies,
+//   fetchTopRatedMovies,
+// } from "../services/fetchMovies";
 
 export default function Home() {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const dispatch = useDispatch();
+
+  const popularMovies = useSelector((state) => state.movies.popularMovies);
+  const topRatedMovies = useSelector((state) => state.movies.topRatedMovies);
 
   const recentlyViewedMovies = useSelector(
-    (state) => state.recentlyViewedMovies
+    (state) => state.movies.recentlyViewedMovies
   );
 
   useEffect(() => {
-    (async () => {
-      setPopularMovies(await fetchPopularMovies());
-      setTopRatedMovies(await fetchTopRatedMovies());
-    })();
-  }, []);
+    dispatch(fetchMovies("popular"));
+    dispatch(fetchMovies("top_rated"));
+  }, [dispatch]);
 
   return (
     <div className="home">
@@ -39,7 +39,7 @@ export default function Home() {
         <div className="home__content">
           <Pagination title="Popular Movies" data={popularMovies} />
           <Pagination title="Top Rated Movies" data={topRatedMovies} />
-          {recentlyViewedMovies.length > 0 && (
+          {recentlyViewedMovies?.length > 0 && (
             <Pagination
               title="Recently Viewed Movies"
               data={recentlyViewedMovies}

@@ -7,8 +7,8 @@ import {
 } from "../services/fetchMovies";
 import ModalVideo from "./modal";
 import { useSelector, useDispatch } from "react-redux";
-//import { changeModalVisibility } from "../actions";
-import { changeModalVisibility } from "../reducers/modalSlice";
+import { changeModalVisibility } from "../actions";
+//import { changeModalVisibility } from "../reducers/modalSlice";
 
 function Banner() {
   const [upcomingMovie, setUpcomingMovie] = useState({});
