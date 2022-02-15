@@ -2,25 +2,26 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Pagination, Banner } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies } from "../actions";
+//import { fetchMovies } from "../actions";
 // import {
 //   fetchPopularMovies,
 //   fetchTopRatedMovies,
 // } from "../services/fetchMovies";
+import { fetchMovies } from "../reducers/moviesSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   const popularMovies = useSelector((state) => state.movies.popularMovies);
-  const topRatedMovies = useSelector((state) => state.movies.topRatedMovies);
+  const topRatedMovies = useSelector((state) => state.movies.popularMovies);
 
-  const recentlyViewedMovies = useSelector(
-    (state) => state.movies.recentlyViewedMovies
+  const recentlyViewedMovies = useSelector((state) =>
+    state.movies.recentlyViewedMovies.slice(0, 5)
   );
 
   useEffect(() => {
     dispatch(fetchMovies("popular"));
-    dispatch(fetchMovies("top_rated"));
+    // dispatch(fetchMovies("top_rated"));
   }, [dispatch]);
 
   return (
@@ -41,6 +42,7 @@ export default function Home() {
           <Pagination title="Top Rated Movies" data={topRatedMovies} />
           {recentlyViewedMovies?.length > 0 && (
             <Pagination
+              className="home__content__recentlyViewed"
               title="Recently Viewed Movies"
               data={recentlyViewedMovies}
             />

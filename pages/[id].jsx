@@ -5,11 +5,11 @@ import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchUpcomingMovies,
-  //fetchMovieDetail,
+  fetchMovieDetail,
 } from "../services/fetchMovies";
-import { useSelector, useDispatch } from "react-redux";
-//import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
-import { addRecentlytViewedMovie, fetchMovieDetail } from "../actions";
+import { useDispatch } from "react-redux";
+import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
+//import { addRecentlytViewedMovie } from "../actions";
 
 export async function getStaticPaths() {
   const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
@@ -31,8 +31,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const dispatch = useDispatch();
-  const data = await dispatch(fetchMovieDetail(params.id));
+  const data = await fetchMovieDetail(params.id);
   return { props: { movie: data } };
 }
 

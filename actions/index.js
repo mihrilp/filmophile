@@ -35,6 +35,18 @@ export const fetchMovies = (keyword) => {
   }
 }
 
+export const fetchUpcomingMovie = () => {
+  let upComingMovies = []
+  return (dispatch) => {
+    instance.get(`upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`).
+      then(res => {
+        upComingMovies = res.data.results
+        dispatch({ type: "FETCH_UPCOMING_MOVIE", payload: upComingMovies?.[Math.floor(Math.random() * upComingMovies.length)] })
+      })
+      .catch(err => console.log(err));
+  }
+}
+
 export const fetchMovieDetail = (id) => {
   return (dispatch) => {
     instance.get(

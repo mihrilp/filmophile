@@ -5,6 +5,6 @@ import moviesReducer from "./reducers/moviesSlice";
 export const store = configureStore({
   reducer: {
     modalVisibility: modalReducer,
-    recentlyViewedMovies: moviesReducer,
+    movies: moviesReducer,
   },
 });

@@ -1,7 +1,7 @@
 const initialState = {
   popularMovies: [],
   topRatedMovies: [],
-  upcomingMovies: [],
+  upComingMovie: {},
   recentlyViewedMovies: [],
 }
 
@@ -11,8 +11,8 @@ export default function moviesReducer(state = initialState, action) {
       return { ...state, popularMovies: action.payload };
     case "FETCH_TOP_RATED_MOVIES":
       return { ...state, topRatedMovies: action.payload };
-    case "FETCH_UPCOMING_MOVIES":
-      return { ...state, upcomingMovies: action.payload };
+    case "FETCH_UPCOMING_MOVIE":
+      return { ...state, upComingMovie: action.payload };
     case "ADD_RECENTLY_VIEWED_MOVIE":
       return { ...state, recentlyViewedMovies: [...state.recentlyViewedMovies, action.payload] };
     default:
