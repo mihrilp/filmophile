@@ -14,7 +14,7 @@ export default function moviesReducer(state = initialState, action) {
     case "FETCH_UPCOMING_MOVIE":
       return { ...state, upComingMovie: action.payload };
     case "ADD_RECENTLY_VIEWED_MOVIE":
-      return { ...state, recentlyViewedMovies: [...state.recentlyViewedMovies, action.payload] };
+      return { ...state, recentlyViewedMovies: [action.payload, ...state.recentlyViewedMovies] };
     default:
       return state;
   }

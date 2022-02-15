@@ -29,7 +29,7 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {
     addRecentlytViewedMovie: (state, { payload }) => {
-      return { ...state, recentlyViewedMovies: [...state.recentlyViewedMovies, payload] };
+      return { ...state, recentlyViewedMovies: [payload, ...state.recentlyViewedMovies] };
     },
   },
   extraReducers: (builder) => {

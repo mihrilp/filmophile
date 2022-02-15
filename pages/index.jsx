@@ -42,7 +42,7 @@ export default function Home() {
           <Pagination title="Top Rated Movies" data={topRatedMovies} />
           {recentlyViewedMovies?.length > 0 && (
             <Pagination
-              className="home__content__recentlyViewed"
+              recentlyViewed
               title="Recently Viewed Movies"
               data={recentlyViewedMovies}
             />

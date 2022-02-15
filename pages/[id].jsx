@@ -45,7 +45,7 @@ function MovieDetail({ movie }) {
 
   useEffect(() => {
     dispatch(addRecentlytViewedMovie(movie));
-  }, [movie, dispatch]);
+  }, [movie]);
 
   return (
     <div className="movie">

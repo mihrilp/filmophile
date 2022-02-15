@@ -13,6 +13,9 @@
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         grid-gap: 10% 6%;
     }
+    &__recentlyViewed {
+        grid-template-columns: repeat(5, 1fr);
+    }
     &__btns {
         @include m.flex(row, center);
         align-self: center;
