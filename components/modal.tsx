@@ -2,7 +2,12 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { Close } from "../public/assets";
 
-function ModalVideo({ videoUrl, handleClick }) {
+interface ModalProps {
+  videoUrl: string;
+  handleClick: () => void;
+}
+
+function ModalVideo({ videoUrl, handleClick }: ModalProps) {
   return createPortal(
     <div className="modal">
       <Close className="modal__closeBtn" onClick={handleClick} />
@@ -15,7 +20,7 @@ function ModalVideo({ videoUrl, handleClick }) {
         allowFullScreen
       ></iframe>
     </div>,
-    document.getElementById("modal-root")
+    document.getElementById("modal-root") as HTMLElement
   );
 }
 

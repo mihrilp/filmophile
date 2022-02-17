@@ -47,13 +47,5 @@ export const fetchUpcomingMovie = () => {
   }
 }
 
-export const fetchMovieDetail = (id) => {
-  return (dispatch) => {
-    instance.get(
-      `${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-    ).then(res => dispatch({ type: "FETCH_MOVIE_DETAIL", payload: res.data }))
-      .catch(err => console.log(err));
-  }
-}
 
 

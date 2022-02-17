@@ -1,4 +1,4 @@
-function About(props) {
+function About() {
   return (
     <div className="about">
       <h2 className="about__title">About Us</h2>

@@ -7,20 +7,26 @@ import { useDispatch, useSelector } from "react-redux";
 //   fetchPopularMovies,
 //   fetchTopRatedMovies,
 // } from "../services/fetchMovies";
-import { fetchMovies } from "../reducers/moviesSlice";
+import {
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+} from "../reducers/moviesSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
 
+  const loading = useSelector((state) => state.movies.loading);
   const popularMovies = useSelector((state) => state.movies.popularMovies);
-  const topRatedMovies = useSelector((state) => state.movies.popularMovies);
+  const topRatedMovies = useSelector((state) => state.movies.topRatedMovies);
 
   const recentlyViewedMovies = useSelector((state) =>
     state.movies.recentlyViewedMovies.slice(0, 5)
   );
 
   useEffect(() => {
-    dispatch(fetchMovies("popular"));
+    dispatch(fetchPopularMovies());
+    dispatch(fetchTopRatedMovies());
+    //dispatch(fetchMovies("popular"));
     // dispatch(fetchMovies("top_rated"));
   }, [dispatch]);
 
@@ -37,17 +43,19 @@ export default function Home() {
       </Head>
       <main>
         <Banner />
-        <div className="home__content">
-          <Pagination title="Popular Movies" data={popularMovies} />
-          <Pagination title="Top Rated Movies" data={topRatedMovies} />
-          {recentlyViewedMovies?.length > 0 && (
-            <Pagination
-              recentlyViewed
-              title="Recently Viewed Movies"
-              data={recentlyViewedMovies}
-            />
-          )}
-        </div>
+        {!loading && (
+          <div className="home__content">
+            <Pagination title="Popular Movies" data={popularMovies} />
+            <Pagination title="Top Rated Movies" data={topRatedMovies} />
+            {recentlyViewedMovies?.length > 0 && (
+              <Pagination
+                recentlyViewed
+                title="Recently Viewed Movies"
+                data={recentlyViewedMovies}
+              />
+            )}
+          </div>
+        )}
       </main>
     </div>
   );

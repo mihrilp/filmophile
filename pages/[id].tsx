@@ -10,8 +10,15 @@ import {
 import { useDispatch } from "react-redux";
 import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
 //import { addRecentlytViewedMovie } from "../actions";
+import { GetStaticPaths } from "next";
 
-export async function getStaticPaths() {
+type Params = {
+  params: {
+    id: string;
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
     fetchPopularMovies(),
     fetchTopRatedMovies(),
@@ -28,14 +35,30 @@ export async function getStaticPaths() {
     }
   );
   return { paths, fallback: false };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }: Params) => {
   const data = await fetchMovieDetail(params.id);
   return { props: { movie: data } };
+};
+
+interface MovieProps {
+  movie: {
+    backdrop_path: string;
+    original_title: string;
+    overview: string;
+    poster_path: string;
+    release_date: string;
+    vote_average: number;
+    tagline?: string;
+    genres: [];
+    spoken_languages: [];
+    production_countries: [];
+    production_companies: [];
+  };
 }
 
-function MovieDetail({ movie }) {
+function MovieDetail({ movie }: MovieProps) {
   const formatDate = useCallback((date) => {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
@@ -45,7 +68,7 @@ function MovieDetail({ movie }) {
 
   useEffect(() => {
     dispatch(addRecentlytViewedMovie(movie));
-  }, [movie]);
+  }, [movie, dispatch]);
 
   return (
     <div className="movie">

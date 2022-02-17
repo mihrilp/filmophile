@@ -1,6 +1,6 @@
 import { Logo, Facebook, Instagram, Twitter } from "../public/assets";
 
-function Footer(props) {
+function Footer() {
   return (
     <div className="footer">
       <div className="footer__logo">

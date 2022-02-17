@@ -9,10 +9,17 @@ const initialState = {
   recentlyViewedMovies: [],
 }
 
-export const fetchMovies = createAsyncThunk(
-  'movies/fetchMovies',
-  async (keyword) => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${keyword}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`);
+export const fetchPopularMovies = createAsyncThunk(
+  'movies/fetchPopularMovies',
+  async () => {
+    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`);
+    return data.results;
+  })
+
+export const fetchTopRatedMovies = createAsyncThunk(
+  'movies/fetchTopRatedMovies',
+  async () => {
+    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`);
     return data.results;
   })
 
@@ -23,7 +30,6 @@ export const fetchUpcomingMovie = createAsyncThunk(
     return data.results[Math.floor(Math.random() * data.results.length)];
   })
 
-
 export const moviesSlice = createSlice({
   name: "movies",
   initialState,
@@ -33,18 +39,22 @@ export const moviesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchMovies.pending, (state) => {
+    builder.addCase(fetchPopularMovies.pending || fetchTopRatedMovies.pending || fetchUpcomingMovie.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchMovies.fulfilled, (state, action) => {
+    builder.addCase(fetchPopularMovies.fulfilled, (state, action) => {
       state.loading = false;
       state.popularMovies = action.payload;
+    });
+    builder.addCase(fetchTopRatedMovies.fulfilled, (state, action) => {
+      state.loading = false;
+      state.topRatedMovies = action.payload;
     });
     builder.addCase(fetchUpcomingMovie.fulfilled, (state, action) => {
       state.loading = false;
       state.upComingMovie = action.payload;
     });
-    builder.addCase(fetchMovies.rejected, (state) => {
+    builder.addCase(fetchPopularMovies.rejected || fetchTopRatedMovies.rejected || fetchUpcomingMovie.rejected, (state) => {
       state.loading = false;
     });
   }

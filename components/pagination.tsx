@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Card } from "../components";
+import { Card } from ".";
 import { RightArrow, LeftArrow } from "../public/assets";
 
 const ITEMS_PER_PAGE = 10;
 
-function Pagination({ title, data, recentlyViewed }) {
+interface PaginationProps {
+  title: string;
+  data: Array<{
+    id: number;
+    original_title: string;
+    poster_path: string;
+    release_date: string;
+    vote_average: number;
+  }>;
+  recentlyViewed?: boolean;
+}
+
+function Pagination({ title, data, recentlyViewed }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;

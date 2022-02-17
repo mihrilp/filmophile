@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "../public/assets";
 
-function Header(props) {
+function Header() {
   return (
     <div className="header">
       <Link href="/" passHref>

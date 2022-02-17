@@ -1,7 +1,14 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 
-const Card = ({ name, imgUrl, date, score }) => {
+interface CardProps {
+  name: string;
+  imgUrl: string;
+  date: string;
+  score: string;
+}
+
+const Card = ({ name, imgUrl, date, score }: CardProps) => {
   const formatDate = useCallback((date) => {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;

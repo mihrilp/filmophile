@@ -1,8 +1,8 @@
 import React from "react";
-import { Header, Footer } from "../components";
+import { Header, Footer } from ".";
 import { useSelector } from "react-redux";
 
-function Layout({ children }) {
+const Layout: React.FC = ({ children }) => {
   const modalVisibility = useSelector((state) => state.modalVisibility);
   return (
     <div className={modalVisibility ? "blur" : " "}>
@@ -11,6 +11,6 @@ function Layout({ children }) {
       <Footer />
     </div>
   );
-}
+};
 
 export default Layout;
