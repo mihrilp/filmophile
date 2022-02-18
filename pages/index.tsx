@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Pagination, Banner } from "../components";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hooks";
 //import { fetchMovies } from "../actions";
 // import {
 //   fetchPopularMovies,
@@ -13,13 +13,13 @@ import {
 } from "../reducers/moviesSlice";
 
 export default function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const loading = useSelector((state) => state.movies.loading);
-  const popularMovies = useSelector((state) => state.movies.popularMovies);
-  const topRatedMovies = useSelector((state) => state.movies.topRatedMovies);
+  const loading = useAppSelector((state) => state.movies.loading);
+  const popularMovies = useAppSelector((state) => state.movies.popularMovies);
+  const topRatedMovies = useAppSelector((state) => state.movies.topRatedMovies);
 
-  const recentlyViewedMovies = useSelector((state) =>
+  const recentlyViewedMovies = useAppSelector((state) =>
     state.movies.recentlyViewedMovies.slice(0, 5)
   );
 

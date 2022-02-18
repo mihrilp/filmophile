@@ -44,6 +44,7 @@ export const getStaticProps = async ({ params }: Params) => {
 
 interface MovieProps {
   movie: {
+    id: number;
     backdrop_path: string;
     original_title: string;
     overview: string;

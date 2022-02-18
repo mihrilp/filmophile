@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { Close } from "../public/assets";
 
 interface ModalProps {
-  videoUrl: string;
+  videoUrl: string | undefined;
   handleClick: () => void;
 }
 

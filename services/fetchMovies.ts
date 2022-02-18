@@ -38,7 +38,7 @@ export const fetchUpcomingMovies = async () => {
   }
 };
 
-export const fetchMovieDetail = async (id) => {
+export const fetchMovieDetail = async (id: string) => {
   try {
     const { data } = await instance.get(
       `${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
@@ -49,7 +49,7 @@ export const fetchMovieDetail = async (id) => {
   }
 };
 
-export const fetchMovieVideoUrl = async (id) => {
+export const fetchMovieVideoUrl = async (id: string) => {
   try {
     const { data } = await instance.get(
       `${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
