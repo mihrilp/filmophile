@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
+//import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
-//import modalReducer from "./reducers/modalSlice";
-//import moviesReducer from "./reducers/moviesSlice";
+//import modalReducer from "./modalSlice";
+//import moviesReducer from "./moviesSlice";
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 
