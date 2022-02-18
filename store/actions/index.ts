@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
+import { ActionType, MoviesAction } from "../../types";
+
 const instance = axios.create({
   baseURL: "https://api.themoviedb.org/3/movie/",
   timeout: 1000,
@@ -15,19 +17,16 @@ export const addRecentlytViewedMovie = (movie: {}) => ({
 });
 
 export const fetchMovies = (keyword: string) => {
-  let type: string;
+  let type = ActionType.POPULAR;
   switch (keyword) {
     case "popular":
-      type = "FETCH_POPULAR_MOVIES";
+      type = ActionType.POPULAR;
       break;
     case "top_rated":
-      type = "FETCH_TOP_RATED_MOVIES";
-      break;
-    case "upcoming":
-      type = "FETCH_UPCOMING_MOVIES";
+      type = ActionType.TOP_RATED;
       break;
   }
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch<MoviesAction>) => {
     instance
       .get(
         `${keyword}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
@@ -39,7 +38,7 @@ export const fetchMovies = (keyword: string) => {
 
 export const fetchUpcomingMovie = () => {
   let upComingMovies = [];
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch<MoviesAction>) => {
     instance
       .get(
         `upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
@@ -47,7 +46,7 @@ export const fetchUpcomingMovie = () => {
       .then((res) => {
         upComingMovies = res.data.results;
         dispatch({
-          type: "FETCH_UPCOMING_MOVIE",
+          type: ActionType.UPCOMING,
           payload:
             upComingMovies?.[Math.floor(Math.random() * upComingMovies.length)],
         });

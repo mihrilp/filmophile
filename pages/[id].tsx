@@ -8,8 +8,8 @@ import {
   fetchMovieDetail,
 } from "../services/fetchMovies";
 import { useDispatch } from "react-redux";
-import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
-//import { addRecentlytViewedMovie } from "../actions";
+//import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
+import { addRecentlytViewedMovie } from "../store/actions";
 import { GetStaticPaths } from "next";
 
 type Params = {

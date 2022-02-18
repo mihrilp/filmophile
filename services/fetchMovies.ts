@@ -49,7 +49,7 @@ export const fetchMovieDetail = async (id: string) => {
   }
 };
 
-export const fetchMovieVideoUrl = async (id: string) => {
+export const fetchMovieVideoUrl = async (id: number) => {
   try {
     const { data } = await instance.get(
       `${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
