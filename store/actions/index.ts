@@ -1,10 +1,9 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { ActionType, MoviesAction } from "../../types";
+import ActionType from "../../types/actionTypes";
 
 const instance = axios.create({
   baseURL: "https://api.themoviedb.org/3/movie/",
-  timeout: 1000,
 });
 
 export const changeModalVisibility = () => ({

@@ -7,9 +7,10 @@ import {
   fetchUpcomingMovies,
   fetchMovieDetail,
 } from "../services/fetchMovies";
-import { useDispatch } from "react-redux";
-//import { addRecentlytViewedMovie } from "../reducers/moviesSlice";
-import { addRecentlytViewedMovie } from "../store/actions";
+//import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hooks";
+import { addRecentlytViewedMovie } from "../store/moviesSlice";
+//import { addRecentlytViewedMovie } from "../store/actions";
 import { GetStaticPaths } from "next";
 
 type Params = {
@@ -65,7 +66,7 @@ function MovieDetail({ movie }: MovieProps) {
     return `${date[2]}.${date[1]}.${date[0]}`;
   }, []);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(addRecentlytViewedMovie(movie));
@@ -73,12 +74,14 @@ function MovieDetail({ movie }: MovieProps) {
 
   return (
     <div className="movie">
-      <div
-        className="movie__bg"
-        style={{
-          backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`})`,
-        }}
-      ></div>
+      {movie.backdrop_path && (
+        <div
+          className="movie__bg"
+          style={{
+            backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`})`,
+          }}
+        ></div>
+      )}
       <div className="movie__imgContainer">
         <Image
           className="movie__imgContainer__poster"

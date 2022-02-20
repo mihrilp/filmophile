@@ -1,4 +1,4 @@
-import { Movie, MoviesAction, ActionType } from "../../types";
+import ActionType from "../../types/actionTypes";
 interface MoviesState {
   popularMovies: Movie[];
   topRatedMovies: Movie[];

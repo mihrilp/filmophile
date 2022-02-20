@@ -3,13 +3,16 @@
 
 .about {
     @include m.flex(column);
-    text-align: center;
+    height: 100%;
+    padding: 3rem v.$padding-x;
+    font-weight: lighter;
+    line-height: 1.7;
     &__title {
         @include m.title;
-        margin: 2rem;
+        margin: 2rem 0;
     }
     &__text {
         font-size: v.$large;
-        margin: 10px 20px;
+        margin-bottom: 30px;
     }
 }

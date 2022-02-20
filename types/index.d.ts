@@ -1,4 +1,4 @@
-export interface Movie {
+interface Movie {
   id: number;
   original_title: string;
   backdrop_path?: string;
@@ -11,13 +11,6 @@ export interface Movie {
   spoken_languages?: [];
   production_countries?: [];
   production_companies?: [];
-}
-
-export enum ActionType {
-  POPULAR = "FETCH_POPULAR_MOVIES",
-  TOP_RATED = "FETCH_TOP_RATED_MOVIES",
-  UPCOMING = "FETCH_UPCOMING_MOVIE",
-  RECENTLY_VIEWED = "ADD_RECENTLY_VIEWED_MOVIE",
 }
 
 interface PopularAction {
@@ -40,7 +33,7 @@ interface RecentlyViewedAction {
   payload: Movie;
 }
 
-export type MoviesAction =
+type MoviesAction =
   | PopularAction
   | TopRatedAction
   | UpComingAction
