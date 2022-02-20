@@ -4,7 +4,7 @@
 .footer {
     @include m.flex(row, space-between);
     background-color: v.$dark-blue;
-    padding: 5rem v.$padding-x;
+    @include m.paddingX-size(5rem);
     width: 100%;
     font-size: v.$normal;
     &__logo {

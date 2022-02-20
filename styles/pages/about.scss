@@ -4,7 +4,7 @@
 .about {
     @include m.flex(column);
     height: 100%;
-    padding: 3rem v.$padding-x;
+    @include m.paddingX-size(3rem);
     font-weight: lighter;
     line-height: 1.7;
     &__title {

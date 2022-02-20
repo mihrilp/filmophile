@@ -27,7 +27,7 @@
     }
     &__content {
         @include m.flex(column, space-around, flex-start);
-        padding: 5rem v.$padding-x;
+        @include m.paddingX-size(5rem);
         height: 90%;
         width: 60%;
         &__title {

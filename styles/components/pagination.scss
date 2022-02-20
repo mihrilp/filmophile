@@ -9,9 +9,15 @@
         margin-bottom: 4rem;
     }
     &__data {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        grid-gap: 10% 6%;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        // grid-gap: 10% 6%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &__link {
+            flex: 1 1 auto;
+        }
     }
     &__recentlyViewed {
         grid-template-columns: repeat(5, minmax(180px, 1fr));
@@ -19,7 +25,6 @@
     &__btns {
         @include m.flex(row, center);
         align-self: center;
-        margin-top: 9rem;
         button {
             border: none;
             background-color: v.$yellow;

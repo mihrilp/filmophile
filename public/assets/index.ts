@@ -1,19 +1,9 @@
-import Logo from "./logo_dark.svg";
-import Facebook from "./facebook.svg";
-import Instagram from "./instagram.svg";
-import Twitter from "./twitter.svg";
-import Play from "./play.svg";
-import RightArrow from "./right_arrow.svg";
-import LeftArrow from "./left_arrow.svg";
-import Close from "./close.svg";
-
-export {
-  Logo,
-  Facebook,
-  Instagram,
-  Twitter,
-  Play,
-  RightArrow,
-  LeftArrow,
-  Close,
-};
+export { default as Logo } from "./logo-dark.svg";
+export { default as Facebook } from "./facebook.svg";
+export { default as Twitter } from "./twitter.svg";
+export { default as Instagram } from "./instagram.svg";
+export { default as Play } from "./play.svg";
+export { default as RightArrow } from "./right-arrow.svg";
+export { default as LeftArrow } from "./left-arrow.svg";
+export { default as Close } from "./close.svg";
+export { default as Star } from "./star.svg";

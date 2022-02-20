@@ -4,6 +4,6 @@
 .home {
   font-size: v.$normal;
   &__content {
-    padding: 2rem v.$padding-x;
+    @include m.paddingX-size(2rem);
   }
 }

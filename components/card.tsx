@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
+import { Star } from "../public/assets";
 
 interface CardProps {
   name: string;
@@ -18,7 +19,7 @@ const Card = ({ name, imgUrl, date, score }: CardProps) => {
     <div className="card">
       <div className="card__imgContainer">
         <Image
-          className="card__imgContainer__image"
+          className="card__imgContainer__poster"
           src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
           alt="movie image"
           layout="fill"
@@ -28,8 +29,11 @@ const Card = ({ name, imgUrl, date, score }: CardProps) => {
         <p className="card__title__name">{name}</p>
       </div>
       <div className="card__info">
+        <p className="card__info__score">
+          <Star style={{ marginRight: 5 }} />
+          {score}
+        </p>
         <p className="card__info__date">{formatDate(date)}</p>
-        <p className="card__info__score">{score}</p>
       </div>
     </div>
   );

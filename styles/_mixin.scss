@@ -45,3 +45,18 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+@mixin paddingX-size($paddingY) {
+    padding: $paddingY 10rem;
+    @media only screen and (max-width: 992px) {
+        padding: $paddingY 5rem;
+    }
+}
+
+@mixin respondTo($breakpoint) {
+    @if map-has-key(v.$breakpoints, $breakpoint) {
+        @media (max-width: map-get(v.$breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}

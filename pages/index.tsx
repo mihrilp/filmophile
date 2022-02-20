@@ -36,8 +36,6 @@ export default function Home() {
   //   state.movies.recentlyViewedMovies.slice(0, 5)
   // );
 
-  console.log("lşl");
-
   useEffect(() => {
     dispatch(fetchPopularMovies());
     dispatch(fetchTopRatedMovies());

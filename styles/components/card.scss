@@ -5,18 +5,20 @@
     $root: &;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
-    width: 205px;
-    height: 400px;
+    width: 175px;
+    height: 340px;
+    margin-bottom: 5rem;
     &__imgContainer {
         position: relative;
         aspect-ratio: 0.66;
-        &__image {
+        flex: 1;
+        &__poster {
             border-radius: 10px;
         }
     }
     &__title {
-        margin: 13px 0;
         font-weight: bold;
+        margin: 13px 0;
         &__name {
             white-space: nowrap;
             overflow: hidden;
@@ -30,18 +32,23 @@
     &__info {
         @include m.flex(row, flex-start);
         font-size: v.$small;
-        &__date {
-            font-weight: lighter;
+        &__score {
+            @include m.flex(row, space-between);
+            color: v.$yellow;
+            border: 0.5px solid v.$yellow;
+            border-radius: 5px;
+            padding: 2px 7px;
             margin-right: 20px;
         }
-        &__score {
-            color: v.$yellow;
-            border: 1px solid v.$yellow;
-            border-radius: 50%;
-            padding: 6px;
+        &__date {
+            font-weight: lighter;
         }
     }
     &:hover {
         transform: scale(1.05);
+    }
+    @include m.respondTo(xl) {
+        width: 140px;
+        height: 273px;
     }
 }

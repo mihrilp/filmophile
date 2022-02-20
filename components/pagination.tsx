@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Card } from ".";
 import { RightArrow, LeftArrow } from "../public/assets";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 interface PaginationProps {
   title: string;
@@ -41,7 +41,7 @@ function Pagination({ title, data, recentlyViewed }: PaginationProps) {
       >
         {data.slice(indexOfFirstItem, indexOfLastItem).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
-            <a>
+            <a className="pagination__data__link">
               <Card
                 name={movie.original_title}
                 imgUrl={movie.poster_path}

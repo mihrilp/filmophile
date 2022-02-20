@@ -3,11 +3,11 @@
 
 .movie {
     @include m.flex(row, space-between, flex-start);
+    @include m.paddingX-size(6rem);
     font-size: v.$normal;
     position: relative;
     height: 100%;
     width: 100%;
-    padding: 6rem v.$padding-x;
     padding-bottom: 8rem;
     z-index: 1;
     line-height: 2;

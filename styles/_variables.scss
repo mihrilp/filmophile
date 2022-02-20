@@ -11,5 +11,11 @@ $normal: 18px;
 $small: 16px;
 $x-small: 14px;
 
-//spaces
-$padding-x: 10rem;
+//breakpoints
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+);
