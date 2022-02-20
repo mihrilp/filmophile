@@ -72,41 +72,50 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {
     addRecentlytViewedMovie: (state, action: PayloadAction<Movie>) => {
-      return {
-        ...state,
-        recentlyViewedMovies: [action.payload, ...state.recentlyViewedMovies],
-      };
+      return state.recentlyViewedMovies.some(
+        (item) => item.id === action.payload.id
+      )
+        ? state
+        : {
+            ...state,
+            recentlyViewedMovies: [
+              action.payload,
+              ...state.recentlyViewedMovies,
+            ],
+          };
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      fetchPopularMovies.pending ||
-        fetchTopRatedMovies.pending ||
-        fetchUpcomingMovie.pending,
-      (state) => {
-        state.loading = true;
-      }
-    );
+    builder.addCase(fetchPopularMovies.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchPopularMovies.fulfilled, (state, action) => {
       state.loading = false;
       state.popularMovies = action.payload;
+    });
+    builder.addCase(fetchPopularMovies.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(fetchTopRatedMovies.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(fetchTopRatedMovies.fulfilled, (state, action) => {
       state.loading = false;
       state.topRatedMovies = action.payload;
     });
+    builder.addCase(fetchTopRatedMovies.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(fetchUpcomingMovie.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchUpcomingMovie.fulfilled, (state, action) => {
       state.loading = false;
       state.upComingMovie = action.payload;
     });
-    builder.addCase(
-      fetchPopularMovies.rejected ||
-        fetchTopRatedMovies.rejected ||
-        fetchUpcomingMovie.rejected,
-      (state) => {
-        state.loading = false;
-      }
-    );
+    builder.addCase(fetchUpcomingMovie.rejected, (state) => {
+      state.loading = false;
+    });
   },
 });
 
