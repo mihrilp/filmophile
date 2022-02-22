@@ -61,12 +61,15 @@
 }
 
 @mixin font-size($size) {
-    @media (min-width: 576px) {
+    @media (min-width: 0px) {
         font-size: calc($size - 4px);
     }
-    @media (min-width: 768px) {
-        font-size: calc($size - 2px);
+    @media (min-width: 576px) {
+        font-size: calc($size - 3px);
     }
+    // @media (min-width: 768px) {
+    //     font-size: calc($size - 3px);
+    // }
     @media (min-width: 992px) {
         font-size: calc($size);
     }
