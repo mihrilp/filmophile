@@ -3,12 +3,30 @@
 
 .header {
     @include m.flex(row, space-between);
+    @include m.paddingX-size(2rem);
     width: 100%;
-    padding: 2rem 10rem 1rem 10rem;
-    &__nav {
+    &__navbar {
         @include m.flex(row, space-around);
+        @include m.font-size(v.$large);
         width: 20%;
-        font-size: 18px;
         font-weight: lighter;
+        @include m.respond-to(xl) {
+            width: 25%;
+        }
+        @include m.respond-to(sm) {
+            display: none;
+        }
+    }
+    &__active {
+        @include m.respond-to(sm) {
+            @include m.flex(column, space-around);
+        }
+    }
+    &__burgerMenuBtn {
+        display: none;
+        cursor: pointer;
+        @include m.respond-to(sm) {
+            display: block;
+        }
     }
 }

@@ -7,3 +7,4 @@ export { default as RightArrow } from "./right-arrow.svg";
 export { default as LeftArrow } from "./left-arrow.svg";
 export { default as Close } from "./close.svg";
 export { default as Star } from "./star.svg";
+export { default as BurgerMenu } from "./hamburger-menu.svg";

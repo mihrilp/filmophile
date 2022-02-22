@@ -5,32 +5,20 @@
     $root: &;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
-    width: 175px;
-    height: 340px;
+    width: 200px;
+    height: 380px;
     margin-bottom: 5rem;
     &__imgContainer {
+        flex: 1;
         position: relative;
         aspect-ratio: 0.66;
-        flex: 1;
         &__poster {
             border-radius: 10px;
         }
     }
-    &__title {
-        font-weight: bold;
-        margin: 13px 0;
-        &__name {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            #{$root}:hover & {
-                white-space: inherit;
-                overflow: visible;
-            }
-        }
-    }
     &__info {
         @include m.flex(row, flex-start);
+        margin: 25px 0 15px 0;
         font-size: v.$small;
         &__score {
             @include m.flex(row, space-between);
@@ -44,10 +32,22 @@
             font-weight: lighter;
         }
     }
+    &__title {
+        font-weight: bold;
+        &__name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            #{$root}:hover & {
+                white-space: inherit;
+                overflow: visible;
+            }
+        }
+    }
     &:hover {
         transform: scale(1.05);
     }
-    @include m.respondTo(xl) {
+    @include m.respond-to(xl) {
         width: 140px;
         height: 273px;
     }

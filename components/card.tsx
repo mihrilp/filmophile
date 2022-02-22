@@ -25,15 +25,15 @@ const Card = ({ name, imgUrl, date, score }: CardProps) => {
           layout="fill"
         />
       </div>
-      <div className="card__title">
-        <p className="card__title__name">{name}</p>
-      </div>
       <div className="card__info">
         <p className="card__info__score">
           <Star style={{ marginRight: 5 }} />
           {score}
         </p>
         <p className="card__info__date">{formatDate(date)}</p>
+      </div>
+      <div className="card__title">
+        <p className="card__title__name">{name}</p>
       </div>
     </div>
   );

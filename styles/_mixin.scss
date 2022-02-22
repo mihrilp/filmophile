@@ -48,12 +48,30 @@
 
 @mixin paddingX-size($paddingY) {
     padding: $paddingY 10rem;
-    @media only screen and (max-width: 992px) {
+    @media (max-width: 1200px) {
+        padding: $paddingY 7rem;
+    }
+    @media (max-width: 992px) {
         padding: $paddingY 5rem;
+    }
+    @media (max-width: 768px) {
+        padding: $paddingY 3rem;
     }
 }
 
-@mixin respondTo($breakpoint) {
+@mixin font-size($size) {
+    @media (min-width: 576px) {
+        font-size: calc($size - 4px);
+    }
+    @media (min-width: 768px) {
+        font-size: calc($size - 2px);
+    }
+    @media (min-width: 992px) {
+        font-size: calc($size);
+    }
+}
+
+@mixin respond-to($breakpoint) {
     @if map-has-key(v.$breakpoints, $breakpoint) {
         @media (max-width: map-get(v.$breakpoints, $breakpoint)) {
             @content;

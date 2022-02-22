@@ -1,7 +1,14 @@
 import Link from "next/link";
-import { Logo } from "../public/assets";
+import { useState } from "react";
+import { Logo, BurgerMenu } from "../public/assets";
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleHamburgerMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="header">
       <Link href="/" passHref>
@@ -9,7 +16,14 @@ function Header() {
           <Logo />
         </a>
       </Link>
-      <nav className="header__nav">
+      <a className="header__burgerMenuBtn" onClick={toggleHamburgerMenu}>
+        <BurgerMenu />
+      </a>
+      <nav
+        className={`header__navbar ${
+          isOpen ? "header__active" : "header__deactive"
+        }`}
+      >
         <Link href="/">
           <a>Home</a>
         </Link>

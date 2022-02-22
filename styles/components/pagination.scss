@@ -20,7 +20,7 @@
         }
     }
     &__recentlyViewed {
-        grid-template-columns: repeat(5, minmax(180px, 1fr));
+        justify-content: flex-start;
     }
     &__btns {
         @include m.flex(row, center);
