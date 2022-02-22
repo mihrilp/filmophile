@@ -21,6 +21,7 @@
     right: 0;
     opacity: $opacity;
     background-size: cover;
+    background-position: center;
     content: "";
     z-index: -1;
     &::before {
