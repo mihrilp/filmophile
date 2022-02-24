@@ -31,7 +31,7 @@
     &__content {
         @include m.flex(column, space-around, flex-start);
         @include m.paddingX-size(5rem);
-        @include m.respond-to(sm) {
+        @include m.respond-to(md) {
             @include m.flex(column, space-around, center);
             @include m.paddingX-size(1rem);
             text-align: center;
@@ -58,15 +58,19 @@
         }
         &__overview {
             @include m.lineClamp();
+            @include m.respond-to(md) {
+                text-align: center;
+                line-clamp: none;
+            }
             line-height: 1.8;
             font-size: v.$large;
             text-align: left;
-            font-weight: lighter;
         }
         &__btns {
             @include m.flex(row, center);
             &__watchTrailerBtn {
                 @include m.flex(row, center);
+                @include m.font-size(v.$large);
                 @extend .btn;
                 $root: &;
                 background-color: v.$yellow;
@@ -84,6 +88,7 @@
             }
             &__seeDetailBtn {
                 @extend .btn;
+                @include m.font-size(v.$large);
                 color: v.$yellow;
                 border: 2px solid v.$yellow;
                 transition: all 0.5s ease-in-out;

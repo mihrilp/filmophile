@@ -1,6 +1,12 @@
 @use "../variables" as v;
+@use "../mixin" as m;
 
 .info {
+    flex: 1;
+    @include m.respond-to(sm) {
+        margin-top: 30px;
+        flex-basis: 50%;
+    }
     &__title {
         font-weight: bold;
         text-shadow: 1px 1px black;

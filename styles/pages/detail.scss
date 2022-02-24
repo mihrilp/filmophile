@@ -12,6 +12,9 @@
     z-index: 1;
     line-height: 2;
     background-color: v.$bg-color;
+    @include m.respond-to(md) {
+        @include m.flex(column, space-between);
+    }
     &__bg {
         @include m.bgImage(0.2);
     }
@@ -19,6 +22,10 @@
         flex: 1;
         position: relative;
         aspect-ratio: 0.66;
+        @include m.respond-to(md) {
+            width: 50%;
+            margin-bottom: 20px;
+        }
         &__poster {
             border-radius: 20px;
         }
@@ -27,6 +34,11 @@
         @include m.flex(column, center, flex-start);
         flex: 2;
         padding-left: 4rem;
+        @include m.respond-to(md) {
+            padding-left: 0;
+            align-items: center;
+            flex: 1;
+        }
         &__title {
             @include m.flex(row, center);
             @include m.title;
@@ -46,18 +58,22 @@
         }
         &__overview {
             margin-top: 20px;
-            font-weight: bold;
-            text-shadow: 1px 1px black;
-        }
-        &__tagline {
-            color: v.$yellow;
-            margin-top: 1.5rem;
+            @include m.respond-to(md) {
+                text-align: justify;
+            }
+            &__tagline {
+                color: v.$yellow;
+                margin-top: 1.5rem;
+            }
         }
         &__moreInfo {
             @include m.flex(row, space-between, flex-start);
             width: 100%;
             margin-top: 2.5rem;
             font-size: v.$small;
+            @include m.respond-to(sm) {
+                flex-wrap: wrap;
+            }
         }
     }
 }

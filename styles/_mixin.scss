@@ -58,18 +58,21 @@
     @media (max-width: 768px) {
         padding: $paddingY 3rem;
     }
+    @media (max-width: 576px) {
+        padding: $paddingY 1.5rem;
+    }
 }
 
 @mixin font-size($size) {
     @media (min-width: 0px) {
-        font-size: calc($size - 4px);
-    }
-    @media (min-width: 576px) {
         font-size: calc($size - 3px);
     }
-    // @media (min-width: 768px) {
-    //     font-size: calc($size - 3px);
-    // }
+    @media (min-width: 576px) {
+        font-size: calc($size - 2px);
+    }
+    @media (min-width: 768px) {
+        font-size: calc($size - 1px);
+    }
     @media (min-width: 992px) {
         font-size: calc($size);
     }

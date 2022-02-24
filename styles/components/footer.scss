@@ -3,9 +3,9 @@
 
 .footer {
     @include m.flex(row, space-between);
-    background-color: v.$dark-blue;
     @include m.paddingX-size(5rem);
     width: 100%;
+    background-color: v.$dark-blue;
     font-size: v.$normal;
     @include m.respond-to(md) {
         @include m.flex(column, space-between);
@@ -18,7 +18,7 @@
         }
     }
     &__quote {
-        @include m.font-size(v.$large);
+        @include m.font-size(v.$normal);
         flex: 2;
         text-align: center;
         line-height: 1.5;

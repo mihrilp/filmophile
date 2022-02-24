@@ -102,16 +102,16 @@ function MovieDetail({ movie }: MovieProps) {
         </div>
         <div className="movie__info__overview">
           <p>{movie.overview}</p>
+          {movie.tagline && (
+            <div className="movie__info__overview__tagline">
+              <q>{movie.tagline}</q>
+            </div>
+          )}
         </div>
-        {movie.tagline && (
-          <div className="movie__info__tagline">
-            <q>{movie.tagline}</q>
-          </div>
-        )}
         <div className="movie__info__moreInfo">
           <Info title="Genres:" arr={movie.genres} />
-          <Info title="Languages:" arr={movie.spoken_languages} />
           <Info title="Countries:" arr={movie.production_countries} />
+          <Info title="Languages:" arr={movie.spoken_languages} />
           <Info title="Companies:" arr={movie.production_companies} />
         </div>
       </div>
