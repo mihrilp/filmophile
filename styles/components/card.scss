@@ -19,7 +19,7 @@
     &__info {
         @include m.flex(row, flex-start);
         margin: 25px 0 15px 0;
-        font-size: v.$small;
+        @include m.font-size(v.$small);
         &__score {
             @include m.flex(row, space-between);
             color: v.$yellow;
@@ -34,6 +34,7 @@
     }
     &__title {
         font-weight: bold;
+        @include m.font-size(v.$normal);
         &__name {
             white-space: nowrap;
             overflow: hidden;

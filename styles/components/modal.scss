@@ -1,16 +1,17 @@
 @use "../mixin" as m;
 
 .modal {
-    @include m.flex(row, space-between, flex-start);
+    @include m.flex(column, space-between, flex-end);
+    overflow: hidden;
+    aspect-ratio: 1.77;
     position: fixed;
-    width: 1000px;
-    height: 550px;
+    width: 100%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     &__closeBtn {
         cursor: pointer;
-        margin-right: 10px;
+        margin-bottom: 10px;
     }
     &__iframe {
         width: 100%;

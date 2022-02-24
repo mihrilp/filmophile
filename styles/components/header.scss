@@ -5,28 +5,31 @@
     @include m.flex(row, space-between);
     @include m.paddingX-size(2rem);
     width: 100%;
-    &__navbar {
-        @include m.flex(row, space-around);
-        @include m.font-size(v.$large);
+    &__menu {
+        $root: &;
         width: 20%;
-        font-weight: lighter;
         @include m.respond-to(xl) {
             width: 25%;
         }
-        @include m.respond-to(sm) {
+        &__burgerMenuBtn {
             display: none;
+            cursor: pointer;
+            @include m.respond-to(md) {
+                @include m.flex(row, flex-end);
+            }
         }
-    }
-    &__active {
-        @include m.respond-to(sm) {
-            @include m.flex(column, space-around);
+        &__navbar {
+            @include m.flex(row, space-around);
+            @include m.font-size(v.$large);
+            font-weight: lighter;
+            @include m.respond-to(md) {
+                display: none;
+            }
         }
-    }
-    &__burgerMenuBtn {
-        display: none;
-        cursor: pointer;
-        @include m.respond-to(sm) {
-            display: block;
+        &__active {
+            @include m.respond-to(md) {
+                display: block;
+            }
         }
     }
 }

@@ -16,21 +16,26 @@ function Header() {
           <Logo />
         </a>
       </Link>
-      <a className="header__burgerMenuBtn" onClick={toggleHamburgerMenu}>
-        <BurgerMenu />
-      </a>
-      <nav
-        className={`header__navbar ${
-          isOpen ? "header__active" : "header__deactive"
-        }`}
-      >
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <Link href="/about">
-          <a>About Us</a>
-        </Link>
-      </nav>
+      <div className="header__menu">
+        <a
+          className="header__menu__burgerMenuBtn"
+          onClick={toggleHamburgerMenu}
+        >
+          <BurgerMenu />
+        </a>
+        <nav
+          className={`header__menu__navbar ${
+            isOpen ? "header__menu__active" : "header__menu__deactive"
+          }`}
+        >
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+          <Link href="/about">
+            <a>About Us</a>
+          </Link>
+        </nav>
+      </div>
     </div>
   );
 }
