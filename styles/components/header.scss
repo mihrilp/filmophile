@@ -5,31 +5,35 @@
     @include m.flex(row, space-between);
     @include m.paddingX-size(2rem);
     width: 100%;
-    &__menu {
-        $root: &;
-        width: 20%;
+    &__navbar {
+        @include m.flex(row, space-around);
+        @include m.font-size(v.$large);
+        font-weight: lighter;
         @include m.respond-to(xl) {
             width: 25%;
         }
-        &__burgerMenuBtn {
+        @include m.respond-to(md) {
             display: none;
-            cursor: pointer;
-            @include m.respond-to(md) {
-                @include m.flex(row, flex-end);
-            }
         }
-        &__navbar {
-            @include m.flex(row, space-around);
-            @include m.font-size(v.$large);
-            font-weight: lighter;
-            @include m.respond-to(md) {
-                display: none;
-            }
-        }
-        &__active {
-            @include m.respond-to(md) {
-                display: block;
-            }
+    }
+    &__active {
+        @include m.flex(column, space-between);
+        font-weight: normal;
+        position: absolute;
+        margin-top: 5.5rem;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        background-color: rgba(v.$yellow, 0.5);
+        padding: 1rem;
+    }
+    &__burgerMenuBtn {
+        display: none;
+        cursor: pointer;
+        @include m.respond-to(md) {
+            display: block;
+            z-index: 10;
         }
     }
 }
