@@ -15,8 +15,7 @@
         @include m.flex(row, space-between);
         flex-wrap: wrap;
         &__link {
-            flex: 1 1 auto;
-            flex-basis: 20%;
+            flex-basis: 16.66%;
             @include m.respond-to(xl) {
                 flex-basis: 25%;
             }

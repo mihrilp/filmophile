@@ -9,6 +9,7 @@
         @include m.flex(row, space-around);
         @include m.font-size(v.$large);
         font-weight: lighter;
+        width: 20%;
         @include m.respond-to(xl) {
             width: 25%;
         }

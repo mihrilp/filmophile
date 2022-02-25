@@ -21,9 +21,11 @@
     right: 0;
     opacity: $opacity;
     background-size: cover;
-    background-position: center;
     content: "";
     z-index: -1;
+    @media (max-width: 768px) {
+        background-position: center;
+    }
     &::before {
         content: "";
         position: absolute;
