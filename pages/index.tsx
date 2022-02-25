@@ -42,7 +42,6 @@ export default function Home() {
     // dispatch(fetchMovies("popular"));
     // dispatch(fetchMovies("top_rated"));
   }, [dispatch]);
-
   return (
     <div className="home">
       <Head>

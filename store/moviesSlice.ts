@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 interface Movie {
   id: number;
   original_title: string;
@@ -40,10 +40,19 @@ const initialState: MoviesState = {
 export const fetchPopularMovies = createAsyncThunk(
   "movies/fetchPopularMovies",
   async () => {
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
-    );
-    return data.results;
+    let data: Movie[] = [];
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      )
+      .then((res) => {
+        data = res.data.results;
+      })
+      .catch((err) => {
+        console.log(err);
+        () => toast(err);
+      });
+    return data;
   }
 );
 
