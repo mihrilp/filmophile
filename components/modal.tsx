@@ -16,7 +16,7 @@ function ModalVideo({ videoUrl, handleClick }: ModalProps) {
         src={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}
         width="100%"
         height="100%"
-        frameBorder="0"
+        allow="autoplay"
         allowFullScreen
       ></iframe>
     </div>,
