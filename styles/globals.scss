@@ -24,6 +24,12 @@ body {
     Helvetica Neue, sans-serif;
   background-color: v.$bg-color;
   color: v.$text-color;
+  width: 100%;
+  height: 100%;
+  #__next {
+    width: 100%;
+    height: 100%;
+  }
   a {
     color: inherit;
     text-decoration: none;
