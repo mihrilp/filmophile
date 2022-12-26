@@ -3,7 +3,7 @@
 
 .movie {
     @include m.flex(row, space-between, flex-start);
-    @include m.paddingX-size(6rem);
+    @include m.paddingX-size(3rem);
     font-size: v.$normal;
     position: relative;
     height: 100%;
