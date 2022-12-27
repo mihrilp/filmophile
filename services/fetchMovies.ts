@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://api.themoviedb.org/3/movie/",
+  baseURL: "https://api.themoviedb.org/3/",
 });
 
 export const fetchPopularMovies = async () => {
   try {
     const { data } = await instance.get(
-      `popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      `movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results;
   } catch (err) {
@@ -18,7 +18,7 @@ export const fetchPopularMovies = async () => {
 export const fetchTopRatedMovies = async () => {
   try {
     const { data } = await instance.get(
-      `top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      `movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results;
   } catch (err) {
@@ -29,7 +29,7 @@ export const fetchTopRatedMovies = async () => {
 export const fetchUpcomingMovies = async () => {
   try {
     const { data } = await instance.get(
-      `upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      `movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results;
   } catch (err) {
@@ -40,7 +40,7 @@ export const fetchUpcomingMovies = async () => {
 export const fetchMovieDetail = async (id: string) => {
   try {
     const { data } = await instance.get(
-      `${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+      `movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
     );
     return data;
   } catch (err) {
@@ -51,10 +51,22 @@ export const fetchMovieDetail = async (id: string) => {
 export const fetchMovieVideoUrl = async (id: number) => {
   try {
     const { data } = await instance.get(
-      `${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+      `movie/${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
     );
     return data.results[0].key;
   } catch (err) {
     console.log(err);
   }
 };
+
+export const fetchSearchedMovie = async (query: string) => {
+  try {
+    const { data } = await instance.get(
+      `search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}`
+    );
+    return data.results;
+  } catch (err) {
+    console.log(err);
+  }
+};
+

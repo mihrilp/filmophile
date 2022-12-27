@@ -10,6 +10,7 @@ import { useAppSelector, useAppDispatch } from "../hooks";
 // } from "../services/fetchMovies";
 import { fetchPopularMovies, fetchTopRatedMovies } from "../store/moviesSlice";
 //import { RootState } from "../store/reducers";
+import { fetchSearchedMovie } from "../services/fetchMovies";
 
 export default function Home() {
   const dispatch = useAppDispatch();

@@ -1,0 +1,22 @@
+@use "../variables" as v;
+@use "../mixin" as m;
+
+.searchBar{
+    @include m.flex(row, space-between);
+    border:1px solid v.$yellow;
+    padding: 6px 10px;
+    border-radius: 20px;
+    width: 25%;
+    input{
+        width: 100%;
+        height: 100%;
+        margin-left:15px;
+        &::placeholder{
+            color:#afb6cf;
+            font-weight: lighter;
+        }
+        &[type="submit"]{
+            visibility: hidden;
+        }
+    }
+}

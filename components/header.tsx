@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Logo, BurgerMenu, Close } from "../public/assets";
+import SearchBar from "./SearchBar";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,7 @@ function Header() {
           <Logo />
         </a>
       </Link>
+      <SearchBar />
       <nav className={`header__navbar ${isOpen && "header__active"}`}>
         <Link href="/">
           <a>Home</a>

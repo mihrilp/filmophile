@@ -21,6 +21,7 @@ interface MoviesState {
   topRatedMovies: Movie[];
   upComingMovie: Movie;
   recentlyViewedMovies: Movie[];
+  searchResults: Movie[];
 }
 
 const initialState: MoviesState = {
@@ -35,6 +36,7 @@ const initialState: MoviesState = {
     vote_average: 0,
   },
   recentlyViewedMovies: [],
+  searchResults: [],
 };
 
 export const fetchPopularMovies = createAsyncThunk(
@@ -73,6 +75,16 @@ export const fetchUpcomingMovie = createAsyncThunk(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
     );
     return data.results[Math.floor(Math.random() * data.results.length)];
+  }
+);
+
+export const fetchSearchedMovie = createAsyncThunk(
+  "movies/fetchSearchedMovie",
+  async (query: string) => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&language=en-US&page=1`
+    );
+    return data.results;
   }
 );
 
@@ -123,6 +135,16 @@ export const moviesSlice = createSlice({
       state.upComingMovie = action.payload;
     });
     builder.addCase(fetchUpcomingMovie.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(fetchSearchedMovie.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchSearchedMovie.fulfilled, (state, action) => {
+      state.loading = false;
+      state.searchResults = action.payload;
+    });
+    builder.addCase(fetchSearchedMovie.rejected, (state) => {
       state.loading = false;
     });
   },

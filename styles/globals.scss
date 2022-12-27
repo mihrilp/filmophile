@@ -9,6 +9,7 @@
 @import "./components/pagination.scss";
 @import "./components/info.scss";
 @import "./components/modal.scss";
+@import "./components/search-bar.scss";
 
 * {
   box-sizing: border-box;
@@ -38,5 +39,8 @@ body {
     filter: blur(8px);
     pointer-events: none;
     user-select: none;
+  }
+  input{
+    all: unset;
   }
 }
