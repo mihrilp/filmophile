@@ -6,7 +6,7 @@
     border:1px solid v.$yellow;
     padding: 6px 10px;
     border-radius: 20px;
-    width: 25%;
+    width: 30%;
     input{
         width: 100%;
         height: 100%;
@@ -17,6 +17,8 @@
         }
         &[type="submit"]{
             visibility: hidden;
+            width: 1px;
+            height: 1px;
         }
     }
 }

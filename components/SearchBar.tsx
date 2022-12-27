@@ -16,6 +16,7 @@ function SearchBar() {
       e.preventDefault();
       dispatch(fetchSearchedMovie(searchTerm));
       router.push("/search");
+      setSearchTerm("");
     },
     [searchTerm]
   );
@@ -23,7 +24,12 @@ function SearchBar() {
   return (
     <form className="searchBar" onSubmit={handleSubmit}>
       <Search width={25} height={25} />
-      <input type="text" placeholder="Search a movie" onChange={handleChange} />
+      <input
+        type="text"
+        placeholder="Search movies, TV shows, more..."
+        value={searchTerm}
+        onChange={handleChange}
+      />
       <input type="submit" hidden />
     </form>
   );
