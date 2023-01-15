@@ -6,12 +6,14 @@ import {
   fetchTopRatedMovies,
   fetchUpcomingMovies,
   fetchMovieDetail,
+  fetchMovieVideoUrl,
 } from "../services/fetchMovies";
 //import { useDispatch } from "react-redux";
 import { useAppDispatch } from "../hooks";
 import { addRecentlytViewedMovie } from "../store/moviesSlice";
 //import { addRecentlytViewedMovie } from "../store/actions";
 import { GetStaticPaths } from "next";
+import { openModal, setVideoUrl } from "../store/modalSlice";
 
 type Params = {
   params: {
@@ -70,6 +72,10 @@ function MovieDetail({ movie }: MovieProps) {
 
   useEffect(() => {
     dispatch(addRecentlytViewedMovie(movie));
+    (async () => {
+      const videoUrl = await fetchMovieVideoUrl(movie.id);
+      dispatch(setVideoUrl(videoUrl));
+    })();
   }, [movie, dispatch]);
 
   return (
@@ -91,11 +97,21 @@ function MovieDetail({ movie }: MovieProps) {
         />
       </div>
       <div className="movie__info">
-        <div className="movie__info__title">
-          <h3>{movie.original_title}</h3>
-          <p className="movie__info__title__score">
-            {movie.vote_average.toFixed(1)}
-          </p>
+        <div className="movie__info__header">
+          <div className="movie__info__header__title">
+            <h3>{movie.original_title}</h3>
+            <p className="movie__info__header__title__score">
+              {movie.vote_average.toFixed(1)}
+            </p>
+          </div>
+          <a
+            className="movie__info__header__watchTrailerBtn"
+            onClick={() => {
+              dispatch(openModal());
+            }}
+          >
+            Watch Trailer
+          </a>
         </div>
         <div className="movie__info__date">
           {formatDate(movie.release_date)}

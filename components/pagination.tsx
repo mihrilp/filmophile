@@ -63,7 +63,7 @@ function Pagination({ title, data, recentlyViewed }: PaginationProps) {
           </button>
           <button
             className="pagination__btns__nextBtn"
-            disabled={indexOfLastItem == data.length}
+            disabled={indexOfLastItem >= data.length}
             onClick={handleNextBtn}
           >
             <RightArrow />

@@ -9,7 +9,7 @@ import moviesReducer from "./moviesSlice";
 
 export const store = configureStore({
   reducer: {
-    modalVisibility: modalReducer,
+    modal: modalReducer,
     movies: moviesReducer,
   },
 });

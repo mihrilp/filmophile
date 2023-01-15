@@ -10,15 +10,13 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 //   fetchMovies,
 //   fetchUpcomingMovie,
 // } from "../store/actions";
-import { changeModalVisibility } from "../store/modalSlice";
+import { openModal, setVideoUrl } from "../store/modalSlice";
 import { fetchUpcomingMovie } from "../store/moviesSlice";
 //import { RootState } from "../store/reducers";
 
 function Banner() {
-  const [videoUrl, setVideoUrl] = useState();
-
   const upComingMovie = useAppSelector((state) => state.movies.upComingMovie);
-  const modalVisibility = useAppSelector((state) => state.modalVisibility);
+  const modalVisibility = useAppSelector((state) => state.modal.visibility);
   const dispatch = useAppDispatch();
 
   // const upComingMovie = useSelector(
@@ -36,7 +34,8 @@ function Banner() {
   useEffect(() => {
     upComingMovie.id &&
       (async () => {
-        setVideoUrl(await fetchMovieVideoUrl(upComingMovie.id));
+        const videoUrl = await fetchMovieVideoUrl(upComingMovie.id);
+        dispatch(setVideoUrl(videoUrl));
       })();
   }, [upComingMovie.id]);
 
@@ -65,7 +64,7 @@ function Banner() {
             <a
               className="banner__content__btns__watchTrailerBtn"
               onClick={() => {
-                dispatch(changeModalVisibility());
+                dispatch(openModal());
               }}
             >
               <Play className="banner__content__btns__watchTrailerBtn__icon" />
@@ -76,12 +75,6 @@ function Banner() {
             </Link>
           </div>
         </div>
-        {modalVisibility && (
-          <ModalVideo
-            videoUrl={videoUrl}
-            handleClick={() => dispatch(changeModalVisibility())}
-          />
-        )}
       </div>
     )
   );

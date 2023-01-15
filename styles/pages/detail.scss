@@ -39,17 +39,27 @@
             align-items: center;
             flex: 1;
         }
-        &__title {
-            @include m.flex(row, center);
-            @include m.title;
-            line-height: 1.7;
-            &__score {
-                margin-left: 20px;
-                background-color: rgba(v.$yellow, 0.8);
-                color: white;
-                border-radius: 50%;
-                padding: 7px;
-                font-size: v.$normal;
+        &__header {
+            @include m.flex(row, space-between, start);
+            width: 100%;
+            &__title {
+            @include m.flex(row, space-between, start);
+                @include m.title;
+                line-height: 1.7;
+                &__score {
+                    margin-left: 20px;
+                    background-color: rgba(v.$yellow, 0.8);
+                    color: white;
+                    border-radius: 50%;
+                    padding: 7px;
+                    font-size: v.$normal;
+                }
+            }
+            &__watchTrailerBtn{
+                @include m.font-size(v.$large);
+                border-bottom: 2px solid v.$yellow;
+                color: v.$yellow;
+                cursor: pointer;
             }
         }
         &__date {

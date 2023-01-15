@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { createPortal } from "react-dom";
+import { useAppDispatch } from "../hooks";
 import { Close } from "../public/assets";
+import { closeModal } from "../store/modalSlice";
 
 interface ModalProps {
   videoUrl: string | undefined;
-  handleClick: () => void;
 }
 
-function ModalVideo({ videoUrl, handleClick }: ModalProps) {
+function ModalVideo({ videoUrl }: ModalProps) {
+  const dispatch = useAppDispatch();
+  const handleClick = useCallback(() => dispatch(closeModal()), []);
   return createPortal(
     <div className="modal">
       <Close className="modal__closeBtn" onClick={handleClick} />
