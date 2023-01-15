@@ -7,6 +7,7 @@ import { Card } from "../components";
 function Search() {
   const searchResult = useAppSelector((state) => state.movies.searchResults);
   const router = useRouter();
+  console.log(searchResult);
   return (
     <div className="searchResults">
       {searchResult.length > 0 ? (

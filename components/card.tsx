@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Star } from "../public/assets";
 
 function formatDate(date: string) {
-  console.log(date);
   const dateArr: string[] = date.split("-");
   return `${dateArr[2]}.${dateArr[1]}.${dateArr[0]}`;
 }
@@ -14,7 +13,11 @@ const Card = ({ name, imgUrl, date, score }: CardProps) => {
       <div className="card__imgContainer">
         <Image
           className="card__imgContainer__poster"
-          src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
+          src={
+            imgUrl
+              ? `https://image.tmdb.org/t/p/w500/${imgUrl}`
+              : "/no-image-placeholder.png"
+          }
           alt="movie image"
           layout="fill"
         />
