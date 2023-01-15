@@ -38,3 +38,10 @@ type MoviesAction =
   | TopRatedAction
   | UpComingAction
   | RecentlyViewedAction;
+
+  interface CardProps {
+    name: string;
+    imgUrl: string;
+    date: string;
+    score: string;
+  }

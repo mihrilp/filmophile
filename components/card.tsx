@@ -1,20 +1,14 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Image from "next/image";
 import { Star } from "../public/assets";
 
-interface CardProps {
-  name: string;
-  imgUrl: string;
-  date: string;
-  score: string;
+function formatDate(date: string) {
+  console.log(date);
+  const dateArr: string[] = date.split("-");
+  return `${dateArr[2]}.${dateArr[1]}.${dateArr[0]}`;
 }
 
 const Card = ({ name, imgUrl, date, score }: CardProps) => {
-  const formatDate = useCallback((date) => {
-    date = date.split("-");
-    return `${date[2]}.${date[1]}.${date[0]}`;
-  }, []);
-
   return (
     <div className="card">
       <div className="card__imgContainer">
@@ -30,7 +24,9 @@ const Card = ({ name, imgUrl, date, score }: CardProps) => {
           <Star style={{ marginRight: 5 }} />
           {score}
         </p>
-        <p className="card__info__date">{formatDate(date)}</p>
+        <p className="card__info__date">
+          {date ? formatDate(date) : "Unknown"}
+        </p>
       </div>
       <div className="card__title">
         <p className="card__title__name">{name}</p>

@@ -15,7 +15,7 @@ function SearchBar() {
     (e) => {
       e.preventDefault();
       dispatch(fetchSearchedMovie(searchTerm));
-      router.push("/search");
+      router.push({ pathname: "/search", query: { q: searchTerm } });
       setSearchTerm("");
     },
     [searchTerm]

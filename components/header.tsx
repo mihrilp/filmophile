@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Logo, BurgerMenu, Close } from "../public/assets";
-import SearchBar from "./SearchBar";
+import SearchBar from "./searchBar";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
