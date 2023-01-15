@@ -1,0 +1,17 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
+.fourOhFour{
+    @include m.flex(column);
+    @include m.paddingX-size(3rem);
+    flex-grow: 1;
+    &__title {
+        color: v.$yellow;
+        @include m.font-size(v.$xx-large);
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+    &__text {
+        @include m.font-size(v.$x-large);
+    }
+} 

@@ -7,6 +7,7 @@
     width: 100%;
     background-color: v.$dark-blue;
     font-size: v.$normal;
+    flex-shrink: 0;
     @include m.respond-to(md) {
         @include m.flex(column, space-between);
         @include m.paddingX-size(3rem);

@@ -6,7 +6,7 @@ import { useAppSelector } from "../hooks";
 const Layout: React.FC = ({ children }) => {
   const modalVisibility = useAppSelector((state) => state.modalVisibility);
   return (
-    <div className={modalVisibility ? "blur" : " "}>
+    <div className={modalVisibility ? "blur" : "layout"}>
       <Header />
       {children}
       <Footer />
