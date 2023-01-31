@@ -1,6 +1,11 @@
+import Head from "next/head";
+
 function About() {
   return (
     <div className="about">
+      <Head>
+        <title>About</title>
+      </Head>
       <h2 className="about__title">About Us</h2>
       <p className="about__text">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et repellat

@@ -14,6 +14,7 @@ import { addRecentlytViewedMovie } from "../store/moviesSlice";
 //import { addRecentlytViewedMovie } from "../store/actions";
 import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "../store/modalSlice";
+import Head from "next/head";
 
 type Params = {
   params: {
@@ -80,6 +81,9 @@ function MovieDetail({ movie }: MovieProps) {
 
   return (
     <div className="movie">
+      <Head>
+        <title>{movie.original_title}</title>
+      </Head>
       {movie.backdrop_path && (
         <div
           className="movie__bg"

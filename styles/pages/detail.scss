@@ -40,10 +40,10 @@
             flex: 1;
         }
         &__header {
-            @include m.flex(row, space-between, start);
+            @include m.flex(row, space-between, flex-start);
             width: 100%;
             &__title {
-            @include m.flex(row, space-between, start);
+            @include m.flex(row, space-between, flex-start);
                 @include m.title;
                 line-height: 1.7;
                 &__score {
