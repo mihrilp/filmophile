@@ -8,10 +8,7 @@ import {
   fetchMovieDetail,
   fetchMovieVideoUrl,
 } from "../services/fetchMovies";
-//import { useDispatch } from "react-redux";
 import { useAppDispatch } from "../hooks";
-import { addRecentlytViewedMovie } from "../store/moviesSlice";
-//import { addRecentlytViewedMovie } from "../store/actions";
 import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "../store/modalSlice";
 import Head from "next/head";
@@ -46,24 +43,7 @@ export const getStaticProps = async ({ params }: Params) => {
   return { props: { movie: data } };
 };
 
-interface MovieProps {
-  movie: {
-    id: number;
-    backdrop_path: string;
-    original_title: string;
-    overview: string;
-    poster_path: string;
-    release_date: string;
-    vote_average: number;
-    tagline?: string;
-    genres: [];
-    spoken_languages: [];
-    production_countries: [];
-    production_companies: [];
-  };
-}
-
-function MovieDetail({ movie }: MovieProps) {
+function MovieDetail({ movie }: { movie: Movie }) {
   const formatDate = useCallback((date) => {
     date = date.split("-");
     return `${date[2]}.${date[1]}.${date[0]}`;
@@ -72,12 +52,24 @@ function MovieDetail({ movie }: MovieProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(addRecentlytViewedMovie(movie));
+    let recentlyViewedMovies =
+      JSON.parse(localStorage.getItem("recentlyViewedMovies")!) || [];
+    if (recentlyViewedMovies.length === 0) {
+      recentlyViewedMovies.push(movie);
+    } else {
+      recentlyViewedMovies.every((item: Movie) => {
+        return item.id !== movie.id;
+      }) && recentlyViewedMovies.push(movie);
+    }
+    localStorage.setItem(
+      "recentlyViewedMovies",
+      JSON.stringify(recentlyViewedMovies)
+    );
     (async () => {
       const videoUrl = await fetchMovieVideoUrl(movie.id);
       dispatch(setVideoUrl(videoUrl));
     })();
-  }, [movie, dispatch]);
+  }, [movie]);
 
   return (
     <div className="movie">
@@ -103,10 +95,12 @@ function MovieDetail({ movie }: MovieProps) {
       <div className="movie__info">
         <div className="movie__info__header">
           <div className="movie__info__header__title">
-            <h3>{movie.original_title}</h3>
-            <p className="movie__info__header__title__score">
-              {movie.vote_average.toFixed(1)}
-            </p>
+            <h3>
+              {movie.original_title}
+              <span className="movie__info__header__title__score">
+                {movie.vote_average.toFixed(1)}
+              </span>
+            </h3>
           </div>
           <a
             className="movie__info__header__watchTrailerBtn"

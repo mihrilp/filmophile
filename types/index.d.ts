@@ -1,5 +1,5 @@
 interface Movie {
-  id: number;
+  id: number ;
   original_title: string;
   backdrop_path?: string;
   poster_path: string;
@@ -7,14 +7,21 @@ interface Movie {
   vote_average: number;
   overview?: string;
   tagline?: string | undefined;
-  genres?: [];
-  spoken_languages?: [];
-  production_countries?: [];
-  production_companies?: [];
+  genres: [];
+  spoken_languages: [];
+  production_countries: [];
+  production_companies: [];
 }
 interface CardProps {
   name: string;
   imgUrl: string;
   date: string;
   score: string;
+}
+interface MoviesState {
+  loading: boolean;
+  popularMovies: Movie[];
+  topRatedMovies: Movie[];
+  upComingMovie: Movie;
+  searchResults: Movie[];
 }

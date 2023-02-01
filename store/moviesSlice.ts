@@ -1,28 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-interface Movie {
-  id: number;
-  original_title: string;
-  backdrop_path?: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  overview?: string;
-  tagline?: string | undefined;
-  genres?: [];
-  spoken_languages?: [];
-  production_countries?: [];
-  production_companies?: [];
-}
-interface MoviesState {
-  loading: boolean;
-  popularMovies: Movie[];
-  topRatedMovies: Movie[];
-  upComingMovie: Movie;
-  recentlyViewedMovies: Movie[];
-  searchResults: Movie[];
-}
 
 const initialState: MoviesState = {
   loading: false,
@@ -34,8 +12,11 @@ const initialState: MoviesState = {
     poster_path: "",
     release_date: "",
     vote_average: 0,
+    genres: [],
+    spoken_languages: [],
+    production_countries: [],
+    production_companies: [],
   },
-  recentlyViewedMovies: [],
   searchResults: [],
 };
 
@@ -92,19 +73,6 @@ export const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    addRecentlytViewedMovie: (state, action: PayloadAction<Movie>) => {
-      return state.recentlyViewedMovies.some(
-        (item) => item.id === action.payload.id
-      )
-        ? state
-        : {
-            ...state,
-            recentlyViewedMovies: [
-              action.payload,
-              ...state.recentlyViewedMovies,
-            ],
-          };
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPopularMovies.pending, (state) => {
@@ -150,5 +118,4 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { addRecentlytViewedMovie } = moviesSlice.actions;
 export default moviesSlice.reducer;
