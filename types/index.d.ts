@@ -12,36 +12,9 @@ interface Movie {
   production_countries?: [];
   production_companies?: [];
 }
-
-interface PopularAction {
-  type: ActionType.POPULAR;
-  payload: Movie[];
+interface CardProps {
+  name: string;
+  imgUrl: string;
+  date: string;
+  score: string;
 }
-
-interface TopRatedAction {
-  type: ActionType.TOP_RATED;
-  payload: Movie[];
-}
-
-interface UpComingAction {
-  type: ActionType.UPCOMING;
-  payload: Movie;
-}
-
-interface RecentlyViewedAction {
-  type: ActionType.RECENTLY_VIEWED;
-  payload: Movie;
-}
-
-type MoviesAction =
-  | PopularAction
-  | TopRatedAction
-  | UpComingAction
-  | RecentlyViewedAction;
-
-  interface CardProps {
-    name: string;
-    imgUrl: string;
-    date: string;
-    score: string;
-  }
