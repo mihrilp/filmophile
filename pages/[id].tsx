@@ -59,8 +59,9 @@ function MovieDetail({ movie }: { movie: Movie }) {
     } else {
       recentlyViewedMovies.every((item: Movie) => {
         return item.id !== movie.id;
-      }) && recentlyViewedMovies.push(movie);
+      }) && recentlyViewedMovies.unshift(movie);
     }
+    if (recentlyViewedMovies.length > 6) recentlyViewedMovies.pop();
     localStorage.setItem(
       "recentlyViewedMovies",
       JSON.stringify(recentlyViewedMovies)

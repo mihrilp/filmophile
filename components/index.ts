@@ -1,8 +1,8 @@
-export { default as Layout } from "./layout";
-export { default as Footer } from "./footer";
-export { default as Header } from "./header";
-export { default as Banner } from "./banner";
-export { default as Pagination } from "./pagination";
-export { default as Card } from "./card";
-export { default as Info } from "./info";
-export { default as ModalVideo } from "./modal";
+export { default as Layout } from "./Layout";
+export { default as Footer } from "./Footer";
+export { default as Header } from "./Header";
+export { default as Banner } from "./Banner";
+export { default as Pagination } from "./Pagination";
+export { default as Card } from "./Card";
+export { default as Info } from "./Info";
+export { default as ModalVideo } from "./Modal";
