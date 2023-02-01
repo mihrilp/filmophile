@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch } from "../hooks";
 import { Search } from "../public/assets";
 import { fetchSearchedMovie } from "../store/moviesSlice";
 import { useRouter } from "next/router";
