@@ -6,3 +6,4 @@ export { default as Pagination } from "./Pagination";
 export { default as Card } from "./Card";
 export { default as Info } from "./Info";
 export { default as ModalVideo } from "./Modal";
+export { default as LoadingSpinner } from "./LoadingSpinner";
