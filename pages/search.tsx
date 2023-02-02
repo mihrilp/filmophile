@@ -7,7 +7,7 @@ import { Card, LoadingSpinner } from "../components";
 function Search() {
   const { loading, data } = useAppSelector((state) => state.searchResults);
   const router = useRouter();
-  console.log(data);
+
   return (
     <div className="searchResults">
       {loading ? (
@@ -33,7 +33,12 @@ function Search() {
           </div>
         </>
       ) : (
-        <div>No results found</div>
+        <div className="searchResults__noResults">
+          <p className="searchResults__noResults__title">No results</p>
+          <p className="searchResults__noResults__text">
+            Nothing found about &quot;{router.query.q}&quot;
+          </p>
+        </div>
       )}
     </div>
   );

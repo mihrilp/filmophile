@@ -1,11 +1,14 @@
 @use "../mixin" as m;
 @use "../variables" as v;
 
-.searchResults{
+.searchResults {
     @include m.paddingX-size(3rem);
+    @include m.flex(column, center, center);
+    flex:1;
     &__title {
-        @include m.title;
-        margin-bottom: 30px;
+        font-size: v.$large;
+        color: v.$yellow;
+        margin-bottom: 50px;
         text-transform: capitalize;
     }
     &__data {
@@ -16,6 +19,20 @@
             @include m.respond-to(xl) {
                 flex-basis: 25%;
             }
+        }
+    }
+    &__noResults {
+        @include m.flex(column, center, center);
+        &__title {
+            font-size: v.$x-large;
+            color: v.$yellow;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+        }
+        &__text {
+            font-size: v.$large;
+            color: v.$text-color;
+            text-transform: capitalize;
         }
     }
 }
