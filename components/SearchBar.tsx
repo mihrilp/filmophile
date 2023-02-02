@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useAppDispatch } from "../hooks";
 import { Search } from "../public/assets";
-// import { fetchSearchedMovie } from "../store/moviesSlice";
 import { useRouter } from "next/router";
 import { fetchSearchResults } from "../store/searchResults.slice";
 

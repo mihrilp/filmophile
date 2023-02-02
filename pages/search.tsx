@@ -2,16 +2,20 @@ import React from "react";
 import { useAppSelector } from "../hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Card, LoadingSpinner } from "../components";
+import { Card, ErrorBoundary, LoadingSpinner } from "../components";
 
 function Search() {
-  const { loading, data } = useAppSelector((state) => state.searchResults);
+  const { loading, data, error } = useAppSelector(
+    (state) => state.searchResults
+  );
   const router = useRouter();
 
   return (
     <div className="searchResults">
       {loading ? (
         <LoadingSpinner />
+      ) : error ? (
+        <ErrorBoundary {...error} />
       ) : data.length > 0 ? (
         <>
           <p className="searchResults__title">

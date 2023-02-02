@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 const initialState: MoviesState = {
   loading: false,
   data: [],
-  error: null
+  error: undefined,
 };
 
 export const fetchPopularMovies = createAsyncThunk<Movie[], void, { rejectValue: KnownError }>(
@@ -17,7 +17,10 @@ export const fetchPopularMovies = createAsyncThunk<Movie[], void, { rejectValue:
       );
       return data.results;
     } catch (err: AxiosError<KnownError> | any) {
-      return rejectWithValue(err.response?.data);
+      return rejectWithValue({
+        code: err.response?.status,
+        message: err.response?.data.status_message,
+      });
     }
   }
 );

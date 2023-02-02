@@ -127,7 +127,10 @@ function MovieDetail({ movie }: { movie: Movie }) {
           <Info title="Genres:" arr={movie.genres} />
           <Info title="Countries:" arr={movie.production_countries} />
           <Info title="Languages:" arr={movie.spoken_languages} />
-          <Info title="Companies:" arr={movie.production_companies} />
+          <Info
+            title="Companies:"
+            arr={movie.production_companies.slice(0, 10)}
+          />
         </div>
       </div>
     </div>

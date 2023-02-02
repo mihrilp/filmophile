@@ -23,6 +23,7 @@
     background-size: cover;
     content: "";
     z-index: -1;
+    background-repeat: no-repeat;
     @media (max-width: 768px) {
         background-position: center;
     }
@@ -36,7 +37,9 @@
         background: linear-gradient(
             to bottom,
             rgba(v.$bg-color, 1) 0%,
+            rgba(v.$bg-color, 0) 20%,
             rgba(v.$bg-color, 0) 50%,
+            rgba(v.$bg-color, 0) 70%,
             rgba(v.$bg-color, 1) 100%
         );
     }

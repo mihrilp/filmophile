@@ -22,9 +22,9 @@ interface CardProps {
 interface KnownError{
   code: number;
   message: string;
-}
+} 
 interface MoviesState {
   loading: boolean;
   data: Movie[];
-  error: KnownError | null | unknown;
+  error: KnownError | undefined;
 }

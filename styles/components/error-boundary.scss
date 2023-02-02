@@ -1,0 +1,16 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
+.errContainer{
+    @include m.flex(column, center, center);
+    gap:20px;
+    &__code{
+        @include m.font-size(v.$xx-large);
+        font-weight: bold;
+        color: v.$yellow
+    }
+    &__title{
+        @include m.font-size(v.$large);
+        font-weight: bold;
+    }
+}
