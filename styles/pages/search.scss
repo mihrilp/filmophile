@@ -3,7 +3,7 @@
 
 .searchResults {
     @include m.paddingX-size(3rem);
-    @include m.flex(column, center, center);
+    @include m.flex(column, center, flex-start);
     flex:1;
     &__title {
         font-size: v.$large;

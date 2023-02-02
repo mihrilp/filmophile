@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { useAppDispatch } from "../hooks";
 import { Search } from "../public/assets";
 import { useRouter } from "next/router";
-import { fetchSearchResults } from "../store/searchResults.slice";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -10,11 +8,9 @@ function SearchBar() {
 
   const router = useRouter();
 
-  const dispatch = useAppDispatch();
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(fetchSearchResults(searchTerm));
       router.push({ pathname: "/search", query: { q: searchTerm } });
       setSearchTerm("");
     },

@@ -1,14 +1,20 @@
-import React from "react";
-import { useAppSelector } from "../hooks";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Card, ErrorBoundary, LoadingSpinner } from "../components";
+import { fetchSearchResults } from "../store/searchResults.slice";
 
 function Search() {
   const { loading, data, error } = useAppSelector(
     (state) => state.searchResults
   );
-  const router = useRouter();
+  const { query } = useRouter();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSearchResults(query.q as string));
+  }, [query.q]);
 
   return (
     <div className="searchResults">
@@ -19,7 +25,7 @@ function Search() {
       ) : data.length > 0 ? (
         <>
           <p className="searchResults__title">
-            Search Results for &quot;{router.query.q}&quot;
+            Search Results for &quot;{query.q}&quot;
           </p>
           <div className="searchResults__data">
             {data.map((movie) => (
@@ -40,7 +46,7 @@ function Search() {
         <div className="searchResults__noResults">
           <p className="searchResults__noResults__title">No results</p>
           <p className="searchResults__noResults__text">
-            Nothing found about &quot;{router.query.q}&quot;
+            Nothing found about &quot;{query.q}&quot;
           </p>
         </div>
       )}
