@@ -18,10 +18,13 @@ interface CardProps {
   date: string;
   score: string;
 }
+
+interface KnownError{
+  code: number;
+  message: string;
+}
 interface MoviesState {
   loading: boolean;
-  popularMovies: Movie[];
-  topRatedMovies: Movie[];
-  upComingMovie: Movie;
-  searchResults: Movie[];
+  data: Movie[];
+  error: KnownError | null | unknown;
 }

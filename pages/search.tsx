@@ -2,21 +2,23 @@ import React from "react";
 import { useAppSelector } from "../hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Card } from "../components";
+import { Card, LoadingSpinner } from "../components";
 
 function Search() {
-  const searchResult = useAppSelector((state) => state.movies.searchResults);
+  const { loading, data } = useAppSelector((state) => state.searchResults);
   const router = useRouter();
-  console.log(searchResult);
+  console.log(data);
   return (
     <div className="searchResults">
-      {searchResult.length > 0 ? (
+      {loading ? (
+        <LoadingSpinner />
+      ) : data.length > 0 ? (
         <>
           <p className="searchResults__title">
             Search Results for &quot;{router.query.q}&quot;
           </p>
           <div className="searchResults__data">
-            {searchResult.map((movie) => (
+            {data.map((movie) => (
               <Link href={`/${movie.id}`} key={movie.id}>
                 <a className="pagination__data__link">
                   <Card

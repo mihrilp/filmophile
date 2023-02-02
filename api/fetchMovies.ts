@@ -1,19 +1,16 @@
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: "https://api.themoviedb.org/3/",
-});
+import { POPULAR_MOVIES_ENDPOINT, instance } from ".";
 
 export const fetchPopularMovies = async () => {
   try {
     const { data } = await instance.get(
-      `movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      POPULAR_MOVIES_ENDPOINT
     );
     return data.results;
   } catch (err) {
     console.log(err);
   }
 };
+
 
 export const fetchTopRatedMovies = async () => {
   try {
