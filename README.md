@@ -1,5 +1,5 @@
 ## Filmophile
-This is a [Next.js](https://nextjs.org/) project about movies, Tv Shows etc. with using [TMDB API](https://developers.themoviedb.org/3).
+Filmophile is a web application where you can get information about movies series and actors. Builded with Nextjs and Typescript and used [TMDB API](https://developers.themoviedb.org/3).
 <br>
 <br>
 
