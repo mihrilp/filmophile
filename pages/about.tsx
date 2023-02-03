@@ -6,22 +6,15 @@ function About() {
       <Head>
         <title>About</title>
       </Head>
-      <h2 className="about__title">About Us</h2>
-      <p className="about__text">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et repellat
-        molestiae illo. Dignissimos, ut! Non cumque cupiditate amet libero
-        explicabo vero facere saepe atque sapiente. Iusto perspiciatis porro
-        beatae sapiente, fugiat vel dolor architecto velit quo aspernatur
-        pariatur, nesciunt optio temporibus facere. Iure soluta molestiae
-        molestias, laudantium ab voluptatibus quod.
+      <p className="about__title">
+        A unique place for TV series and movie lovers <br /> (AKA Filmophiles)
       </p>
       <p className="about__text">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et repellat
-        molestiae illo. Dignissimos, ut! Non cumque cupiditate amet libero
-        explicabo vero facere saepe atque sapiente. Iusto perspiciatis porro
-        beatae sapiente, fugiat vel dolor architecto velit quo aspernatur
-        pariatur, nesciunt optio temporibus facere. Iure soluta molestiae
-        molestias, laudantium ab voluptatibus quod.
+        You can see popular and top rated movies. You can find all details about
+        movies and Tv series like IMDB rates, date, subject etc. Also you can
+        watch trailer. You can search your favorite movie, TV series and actors.
+        At the bottom of the page you can see the movies and TV series that you
+        have visited before.
       </p>
     </div>
   );

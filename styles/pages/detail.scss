@@ -16,7 +16,7 @@
         @include m.flex(column, space-between);
     }
     &__bg {
-        @include m.bgImage(0.2);
+        @include m.bgImage(0.1);
     }
     &__imgContainer {
         flex: 1;

@@ -78,7 +78,7 @@ export default function Home() {
               {recentlyViewedMovies?.length > 0 && (
                 <Pagination
                   recentlyViewed
-                  title="Recently Viewed Movies"
+                  title="Recently Viewed"
                   data={recentlyViewedMovies}
                 />
               )}
