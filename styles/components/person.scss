@@ -1,0 +1,46 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
+.person {
+    $root: &;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    width: 145px;
+    height: 282px;
+    @include m.respond-to(xl) {
+        width: 170px;
+        height: 331px;
+    }
+    @include m.respond-to(sm) {
+        width: 150px;
+        height: 292px;
+    }
+    &__imgContainer {
+        flex: 1;
+        position: relative;
+        aspect-ratio: 0.66;
+        &__poster {
+            border-radius: 10px;
+        }
+    }
+    &__info {
+        margin-top: 10px;
+        text-align: center;
+        &__name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            #{$root}:hover & {
+                white-space: inherit;
+                overflow: visible;
+            }
+        }
+        &__department {
+            font-weight: lighter;
+            margin-top: 5px;
+        }
+    }
+    &:hover {
+        transform: scale(1.05);
+    }
+}

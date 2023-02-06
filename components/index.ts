@@ -8,3 +8,4 @@ export { default as Info } from "./Info";
 export { default as ModalVideo } from "./Modal";
 export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as ErrorBoundary } from "./ErrorBoundary";
+export { default as Person } from "./Person";

@@ -1,4 +1,4 @@
-import { POPULAR_MOVIES_ENDPOINT, instance } from ".";
+import { instance,POPULAR_MOVIES_ENDPOINT } from ".";
 
 export const fetchPopularMovies = async () => {
   try {

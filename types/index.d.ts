@@ -28,3 +28,9 @@ interface MoviesState {
   data: Movie[];
   error: KnownError | undefined;
 }
+
+interface PersonProps {
+  name: string;
+  imgUrl: string;
+  department: string;
+}
