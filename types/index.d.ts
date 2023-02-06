@@ -1,5 +1,5 @@
 interface Movie {
-  id: number ;
+  id: number;
   original_title: string;
   backdrop_path?: string;
   poster_path: string;
@@ -19,18 +19,19 @@ interface CardProps {
   score: string;
 }
 
-interface KnownError{
+interface KnownError {
   code: number;
   message: string;
-} 
+}
+
+interface Person {
+  name: string;
+  imgUrl: string;
+  department: string;
+}
 interface MoviesState {
   loading: boolean;
   data: Movie[];
   error: KnownError | undefined;
 }
 
-interface PersonProps {
-  name: string;
-  imgUrl: string;
-  department: string;
-}

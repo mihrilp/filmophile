@@ -2,13 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, SEARCH_ENDPOINT } from "../api";
 import { AxiosError } from "axios";
 
-const initialState: MoviesState = {
+type SearchState = {
+  loading: boolean;
+  data: Movie[] | Person[];
+  error: KnownError | undefined;
+}
+
+type SearchType = Movie[] | Person[];
+
+const initialState: SearchState = {
   loading: false,
   data: [],
   error: undefined
 };
 
-export const fetchSearchResults = createAsyncThunk<Movie[], string, { rejectValue: KnownError }>(
+export const fetchSearchResults = createAsyncThunk<SearchType, string, { rejectValue: KnownError }>(
   "movies/fetchSearchResults",
   async (query, { rejectWithValue }) => {
     try {

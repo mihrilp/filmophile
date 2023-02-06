@@ -58,40 +58,44 @@ function Search() {
             )}
             {data.filter((item) => item.media_type === "movie").length > 0 && (
               <>
-                <p className="searchResults__content__data__title">Movies</p>
-                {data
-                  .filter((item) => item.media_type === "movie")
-                  .map((movie) => (
-                    <Link href={`/${movie.id}`} key={movie.id}>
-                      <a className="pagination__data__link">
-                        <Card
-                          name={movie.original_title}
-                          imgUrl={movie.poster_path}
-                          date={movie.release_date}
-                          score={movie.vote_average?.toFixed(1)}
-                        />
-                      </a>
-                    </Link>
-                  ))}
+                <p className="searchResults__content__title">Movies</p>
+                <div className="searchResults__content__data">
+                  {data
+                    .filter((item) => item.media_type === "movie")
+                    .map((movie) => (
+                      <Link href={`/${movie.id}`} key={movie.id}>
+                        <a className="pagination__data__link">
+                          <Card
+                            name={movie.original_title}
+                            imgUrl={movie.poster_path}
+                            date={movie.release_date}
+                            score={movie.vote_average?.toFixed(1)}
+                          />
+                        </a>
+                      </Link>
+                    ))}
+                </div>
               </>
             )}
             {data.filter((item) => item.media_type === "tv").length > 0 && (
               <>
-                <p className="searchResults__content__data__title">TV Shows</p>
-                {data
-                  .filter((item) => item.media_type === "tv")
-                  .map((movie) => (
-                    <Link href={`/${movie.id}`} key={movie.id}>
-                      <a className="pagination__data__link">
-                        <Card
-                          name={movie.original_title}
-                          imgUrl={movie.poster_path}
-                          date={movie.release_date}
-                          score={movie.vote_average?.toFixed(1)}
-                        />
-                      </a>
-                    </Link>
-                  ))}
+                <p className="searchResults__content__title">TV Shows</p>
+                <div className="searchResults__content__data">
+                  {data
+                    .filter((item) => item.media_type === "tv")
+                    .map((movie) => (
+                      <Link href={`/${movie.id}`} key={movie.id}>
+                        <a className="pagination__data__link">
+                          <Card
+                            name={movie.original_name}
+                            imgUrl={movie.poster_path}
+                            date={movie.first_air_date}
+                            score={movie.vote_average?.toFixed(1)}
+                          />
+                        </a>
+                      </Link>
+                    ))}
+                </div>
               </>
             )}
           </div>

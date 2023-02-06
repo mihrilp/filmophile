@@ -13,7 +13,6 @@ import { fetchUpcomingMovies } from "../store/upcomingMovies.slice";
 
 export default function Home() {
   const [recentlyViewedMovies, setRecentlyViewedMovies] = useState([]);
-
   const dispatch = useAppDispatch();
 
   const {

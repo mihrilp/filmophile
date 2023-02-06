@@ -23,7 +23,6 @@
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 2rem;
-
             &__link {
                 flex-basis: 16.66%;
                 @include m.respond-to(xl) {
