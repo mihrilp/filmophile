@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, SEARCH_ENDPOINT } from "../api";
 import { AxiosError } from "axios";
 
+type SearchType = Movie[] & Person[] & TvShow[];
+
 type SearchState = {
   loading: boolean;
-  data: Movie[] | Person[];
+  data: SearchType;
   error: KnownError | undefined;
 }
-
-type SearchType = Movie[] | Person[];
 
 const initialState: SearchState = {
   loading: false,

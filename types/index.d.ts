@@ -11,12 +11,33 @@ interface Movie {
   spoken_languages: [];
   production_countries: [];
   production_companies: [];
+  media_type: string;
 }
+
+interface Person {
+  id: number;
+  name: string;
+  imgUrl: string;
+  media_type: string;
+  profile_path: string;
+  known_for_department: string;
+}
+
+interface TvShow {
+  id: number;
+  original_name: string;
+  poster_path: string;
+  first_air_date: string;
+  vote_average: number;
+  media_type: string;
+}
+
 interface CardProps {
   name: string;
   imgUrl: string;
-  date: string;
-  score: string;
+  date?: string;
+  score?: string;
+  department?: string;
 }
 
 interface KnownError {
@@ -24,11 +45,6 @@ interface KnownError {
   message: string;
 }
 
-interface Person {
-  name: string;
-  imgUrl: string;
-  department: string;
-}
 interface MoviesState {
   loading: boolean;
   data: Movie[];

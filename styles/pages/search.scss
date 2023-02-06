@@ -6,7 +6,7 @@
     @include m.flex(column, start, flex-start);
     flex:1;
     &__title {
-        font-size: v.$x-large;
+        font-size: v.$large;
         margin-bottom: 50px;
         text-transform: capitalize;
     }

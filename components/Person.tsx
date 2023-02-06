@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-function Person({ name, imgUrl, department }: PersonProps) {
+function Person({ name, imgUrl, department }: CardProps) {
   return (
     <div className="person">
       <div className="person__imgContainer">
