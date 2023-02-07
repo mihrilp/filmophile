@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -7,15 +7,21 @@ import { fetchSearchResults } from "../store/searchResults.slice";
 import { filterSearchResults } from "../utils";
 
 function Search() {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [tvShows, setTvShows] = useState<TvShow[]>([]);
+  const [people, setPeople] = useState<Person[]>([]);
+
   const { loading, data, error } = useAppSelector(
     (state) => state.searchResults
   );
   const { query } = useRouter();
   const dispatch = useAppDispatch();
 
-  const people = useMemo(() => filterSearchResults(data, "person"), [data]);
-  const movies = useMemo(() => filterSearchResults(data, "movie"), [data]);
-  const tvShows = useMemo(() => filterSearchResults(data, "tv"), [data]);
+  useEffect(() => {
+    setMovies(() => filterSearchResults(data, "movie") as Movie[]);
+    setTvShows(() => filterSearchResults(data, "tv") as TvShow[]);
+    setPeople(() => filterSearchResults(data, "person") as Person[]);
+  }, [data]);
 
   useEffect(() => {
     dispatch(fetchSearchResults(query.q as string));

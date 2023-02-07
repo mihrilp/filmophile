@@ -11,9 +11,9 @@ function isTvShow(result: Movie | Person | TvShow): result is TvShow {
 }
 
 export function filterSearchResults(
-    results: Movie[] & Person[] & TvShow[],
+    results: (Movie | Person | TvShow)[],
     mediaType: string
-){
+): (Movie | Person | TvShow)[]{
     switch (mediaType) {
         case "movie":
             return results.filter(isMovie);
@@ -22,6 +22,6 @@ export function filterSearchResults(
         case "tv":
             return results.filter(isTvShow);
         default:
-            return results;
+            return results ;
     }
 }
