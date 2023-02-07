@@ -1,18 +1,24 @@
-import { Logo, Facebook, Instagram, Twitter } from "../public/assets";
+import { useEffect, useState } from "react";
+import { fetchMovieDetail } from "../api/fetchMovies";
+import { Facebook, Instagram, Twitter } from "../public/assets";
 
-function Footer() {
+function Footer({ movieId }: { movieId: string }) {
+  const [quote, setQuote] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const movie = await fetchMovieDetail(movieId);
+      setQuote(movie?.tagline);
+      setName(movie?.title);
+    })();
+  }, [movieId]);
+
   return (
     <div className="footer">
-      <div className="footer__logo">
-        <Logo />
-      </div>
-
       <div className="footer__quote">
-        <q>
-          We love films and storytelling as a people. It’s just a human
-          compulsion to listen to and tell stories
-        </q>
-        <p>Mychael Danna</p>
+        <q>{quote}</q>
+        <p>-{name}</p>
       </div>
       <div className="footer__social">
         <a className="footer__social__icon" href="#">

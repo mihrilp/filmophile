@@ -2,10 +2,12 @@
 @use "../variables" as v;
 
 .home {
-  @include m.flex(column, center, center);
+  @include m.flex(column, space-between, center);
   font-size: v.$normal;
   flex:1;
   &__content {
+    width: 100%;
+    height: 100%;
     &__movies{
       @include m.paddingX-size(2rem);
     }

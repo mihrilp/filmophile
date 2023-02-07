@@ -5,11 +5,13 @@ import {
   Banner,
   LoadingSpinner,
   ErrorBoundary,
+  Footer,
 } from "../components";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { fetchPopularMovies } from "../store/popularMovies.slice";
 import { fetchTopRatedMovies } from "../store/topRatedMovies.slice";
 import { fetchUpcomingMovies } from "../store/upcomingMovies.slice";
+import { fetchMovieDetail } from "../api/fetchMovies";
 
 export default function Home() {
   const [recentlyViewedMovies, setRecentlyViewedMovies] = useState([]);
@@ -85,6 +87,9 @@ export default function Home() {
           </>
         )}
       </main>
+      {randomUpcomingMovie && (
+        <Footer movieId={randomUpcomingMovie?.id.toString()} />
+      )}
     </div>
   );
 }

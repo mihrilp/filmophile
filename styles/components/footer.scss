@@ -2,34 +2,25 @@
 @use "../variables" as v;
 
 .footer {
-    @include m.flex(row, space-between);
-    @include m.paddingX-size(5rem);
+    @include m.flex(row, space-around, center);
+    @include m.paddingX-size(3rem);
     width: 100%;
     background-color: v.$dark-blue;
     font-size: v.$normal;
-    flex-shrink: 0;
     @include m.respond-to(md) {
         @include m.flex(column, space-between);
         @include m.paddingX-size(3rem);
     }
-    &__logo {
-        flex: 1;
-        @include m.respond-to(md) {
-            margin-bottom: 25px;
-        }
-    }
     &__quote {
         @include m.font-size(v.$normal);
-        flex: 2;
         text-align: center;
         line-height: 1.5;
     }
     &__social {
-        @include m.flex(row, flex-end);
+        @include m.flex(row, center);
         @include m.respond-to(md) {
             margin-top: 25px;
         }
-        flex: 1;
         &__icon {
             $root: &;
             cursor: pointer;

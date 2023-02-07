@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer } from ".";
+import { Header } from ".";
 import { useAppSelector } from "../hooks";
 import ModalVideo from "./Modal";
 
@@ -11,7 +11,6 @@ const Layout: React.FC = ({ children }) => {
     <div className={modalVisibility ? "blur" : "layout"}>
       <Header />
       {children}
-      <Footer />
       {modalVisibility && <ModalVideo videoUrl={videoUrl} />}
     </div>
   );
