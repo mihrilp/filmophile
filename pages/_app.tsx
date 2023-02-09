@@ -1,7 +1,7 @@
 import "../styles/globals.scss";
 import { Provider } from "react-redux";
-import { Layout } from "../components";
-import { store } from "../store";
+import { Layout } from "@/components";
+import { store } from "@/store";
 import type { AppProps } from "next/app";
 import { ToastContainer } from "react-toastify";
 

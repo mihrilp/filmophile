@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { Logo, BurgerMenu, Close } from "../public/assets";
+import { Logo, BurgerMenu, Close } from "@/public/assets";
 import SearchBar from "./SearchBar";
 
 function Header() {
@@ -19,7 +19,7 @@ function Header() {
       </Link>
       <SearchBar />
       <nav className={`header__navbar ${isOpen && "header__active"}`}>
-        <Link href="/">
+        <Link href="/movies">
           <a>Movies</a>
         </Link>
         <Link href="/tv-shows">

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance, SEARCH_ENDPOINT } from "../api";
+import { instance, SEARCH_ENDPOINT } from "@/api";
 import { AxiosError } from "axios";
 
 type SearchType = Movie[] & Person[] & TvShow[];

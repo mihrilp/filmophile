@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Search } from "../public/assets";
+import { Search } from "@/public/assets";
 import { useRouter } from "next/router";
 
 function SearchBar() {

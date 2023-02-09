@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from ".";
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "@/hooks";
 import ModalVideo from "./Modal";
 
 const Layout: React.FC = ({ children }) => {

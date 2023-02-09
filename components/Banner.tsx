@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { Play } from "../public/assets";
-import { fetchMovieVideoUrl } from "../api/fetchMovies";
-import { useAppDispatch } from "../hooks";
-import { openModal, setVideoUrl } from "../store/modalSlice";
+import { Play } from "@/public/assets";
+import { fetchMovieVideoUrl } from "@/api/fetchMovies";
+import { useAppDispatch } from "@/hooks";
+import { openModal, setVideoUrl } from "@/store/modalSlice";
 
 function Banner({ movie }: { movie: Movie }) {
   const dispatch = useAppDispatch();

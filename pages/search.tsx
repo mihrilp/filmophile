@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Card, ErrorBoundary, LoadingSpinner, Person } from "../components";
-import { fetchSearchResults } from "../store/searchResults.slice";
-import { filterSearchResults } from "../utils";
+import { Card, ErrorBoundary, LoadingSpinner, Person } from "@/components";
+import { fetchSearchResults } from "@/store/searchResults.slice";
+import { filterSearchResults } from "@/utils";
 
 function Search() {
   const [movies, setMovies] = useState<Movie[]>([]);

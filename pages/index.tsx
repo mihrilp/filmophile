@@ -6,12 +6,11 @@ import {
   LoadingSpinner,
   ErrorBoundary,
   Footer,
-} from "../components";
-import { useAppSelector, useAppDispatch } from "../hooks";
-import { fetchTrendingMovies } from "../store/movies/trendingMovies.slice";
-import { fetchTrendingTvShows } from "../store/tvShows/trendingTvShows.slice";
-import { fetchUpcomingMovies } from "../store/movies/upcomingMovies.slice";
-import { fetchMovieDetail } from "../api/fetchMovies";
+} from "@/components";
+import { useAppSelector, useAppDispatch } from "@/hooks";
+import { fetchTrendingMovies } from "@/store/movies/trendingMovies.slice";
+import { fetchTrendingTvShows } from "@/store/tvShows/trendingTvShows.slice";
+import { fetchUpcomingMovies } from "@/store/movies/upcomingMovies.slice";
 
 export default function Home() {
   const [recentlyViewedMovies, setRecentlyViewedMovies] = useState([]);

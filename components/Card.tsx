@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Star } from "../public/assets";
+import { Star } from "@/public/assets";
 
 function formatDate(date: string) {
   const dateArr: string[] = date.split("-");

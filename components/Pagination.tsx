@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Card } from ".";
-import { RightArrow, LeftArrow } from "../public/assets";
+import { RightArrow, LeftArrow } from "@/public/assets";
 
 const ITEMS_PER_PAGE = 12;
 

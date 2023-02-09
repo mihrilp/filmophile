@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance, POPULAR_MOVIES_ENDPOINT } from "../../api";
+import { instance, POPULAR_MOVIES_ENDPOINT } from "@/api";
 import { AxiosError } from "axios";
 
 const initialState: MoviesState = {

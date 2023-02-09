@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import Image from "next/image";
-import { Info } from "../components";
+import { Info } from "@/components";
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -8,9 +8,9 @@ import {
   fetchMovieDetail,
   fetchMovieVideoUrl,
 } from "../api/fetchMovies";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
-import { openModal, setVideoUrl } from "../store/modalSlice";
+import { openModal, setVideoUrl } from "@/store/modalSlice";
 import Head from "next/head";
 
 type Params = {

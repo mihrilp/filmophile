@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchMovieDetail } from "../api/fetchMovies";
-import { Facebook, Instagram, Twitter } from "../public/assets";
+import { fetchMovieDetail } from "@/api/fetchMovies";
+import { Facebook, Instagram, Twitter } from "@/public/assets";
 
 function Footer({ movieId }: { movieId: string }) {
   const [quote, setQuote] = useState("");
