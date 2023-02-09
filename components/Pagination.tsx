@@ -9,9 +9,11 @@ interface PaginationProps {
   title: string;
   data: Array<{
     id: number;
-    original_title: string;
+    original_title?: string;
+    original_name?: string;
     poster_path: string;
-    release_date: string;
+    release_date?: string;
+    first_air_date?: string;
     vote_average: number;
   }>;
   recentlyViewed?: boolean;
@@ -39,14 +41,14 @@ function Pagination({ title, data, recentlyViewed }: PaginationProps) {
           recentlyViewed && "pagination__recentlyViewed"
         }`}
       >
-        {data?.slice(indexOfFirstItem, indexOfLastItem).map((movie) => (
-          <Link href={`/${movie.id}`} key={movie.id}>
+        {data?.slice(indexOfFirstItem, indexOfLastItem).map((item) => (
+          <Link href={`/${item.id}`} key={item.id}>
             <a className="pagination__data__link">
               <Card
-                name={movie.original_title}
-                imgUrl={movie.poster_path}
-                date={movie.release_date}
-                score={movie.vote_average?.toFixed(1)}
+                name={item.original_title || item.original_name}
+                imgUrl={item.poster_path}
+                date={item.release_date || item.first_air_date}
+                score={item.vote_average?.toFixed(1)}
               />
             </a>
           </Link>

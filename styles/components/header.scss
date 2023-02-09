@@ -5,10 +5,14 @@
     @include m.flex(row, space-between);
     @include m.paddingX-size(2rem);
     width: 100%;
+    z-index: 2;
     &__navbar {
+    @include m.flex(row, space-between);
+
         @include m.font-size(v.$large);
         font-weight: lighter;
         word-spacing: 3px;
+        gap:25px;
     }
     &__active {
         @include m.flex(column, space-between);

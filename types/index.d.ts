@@ -33,7 +33,7 @@ interface TvShow {
 }
 
 interface CardProps {
-  name: string;
+  name: string | undefined;
   imgUrl: string;
   date?: string;
   score?: string;

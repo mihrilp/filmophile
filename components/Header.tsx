@@ -19,8 +19,14 @@ function Header() {
       </Link>
       <SearchBar />
       <nav className={`header__navbar ${isOpen && "header__active"}`}>
+        <Link href="/">
+          <a>Movies</a>
+        </Link>
+        <Link href="/tv-shows">
+          <a>TV Shows</a>
+        </Link>
         <Link href="/about">
-          <a>What is Filmophile?</a>
+          <a>About</a>
         </Link>
       </nav>
       <div className="header__burgerMenuBtn" onClick={toggleHamburgerMenu}>

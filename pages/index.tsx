@@ -8,9 +8,9 @@ import {
   Footer,
 } from "../components";
 import { useAppSelector, useAppDispatch } from "../hooks";
-import { fetchPopularMovies } from "../store/popularMovies.slice";
-import { fetchTopRatedMovies } from "../store/topRatedMovies.slice";
-import { fetchUpcomingMovies } from "../store/upcomingMovies.slice";
+import { fetchTrendingMovies } from "../store/movies/trendingMovies.slice";
+import { fetchTrendingTvShows } from "../store/tvShows/trendingTvShows.slice";
+import { fetchUpcomingMovies } from "../store/movies/upcomingMovies.slice";
 import { fetchMovieDetail } from "../api/fetchMovies";
 
 export default function Home() {
@@ -18,16 +18,16 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   const {
-    data: popularMovies,
-    loading: popularMoviesLoading,
-    error: popularMoviesError,
-  } = useAppSelector((state) => state.popularMovies);
+    data: trendingMovies,
+    loading: trendingMoviesLoading,
+    error: trendingMoviesError,
+  } = useAppSelector((state) => state.trendingMovies);
 
   const {
-    data: topRatedMovies,
-    loading: topRatedMoviesLoading,
-    error: topRatedMoviesError,
-  } = useAppSelector((state) => state.topRatedMovies);
+    data: trendingTvShows,
+    loading: trendingTvShowsLoading,
+    error: trendingTvShowsError,
+  } = useAppSelector((state) => state.trendingTvShows);
 
   const {
     data: upcomingMovies,
@@ -42,18 +42,18 @@ export default function Home() {
 
   const loading = useMemo(
     () =>
-      popularMoviesLoading || topRatedMoviesLoading || upcomingMoviesLoading,
-    [popularMoviesLoading, topRatedMoviesLoading, upcomingMoviesLoading]
+      trendingMoviesLoading || trendingTvShowsLoading || upcomingMoviesLoading,
+    [trendingMoviesLoading, trendingTvShowsLoading, upcomingMoviesLoading]
   );
 
   const error = useMemo(
-    () => popularMoviesError || topRatedMoviesError || upcomingMoviesError,
-    [popularMoviesError, topRatedMoviesError, upcomingMoviesError]
+    () => trendingMoviesError || trendingTvShowsError || upcomingMoviesError,
+    [trendingMoviesError, trendingTvShowsError, upcomingMoviesError]
   );
 
   useEffect(() => {
-    dispatch(fetchPopularMovies());
-    dispatch(fetchTopRatedMovies());
+    dispatch(fetchTrendingMovies());
+    dispatch(fetchTrendingTvShows());
     dispatch(fetchUpcomingMovies());
     setRecentlyViewedMovies(
       JSON.parse(localStorage.getItem("recentlyViewedMovies")!)
@@ -73,9 +73,12 @@ export default function Home() {
         ) : (
           <>
             {randomUpcomingMovie && <Banner movie={randomUpcomingMovie} />}
-            <div className="home__content__movies">
-              <Pagination title="Popular Movies" data={popularMovies} />
-              <Pagination title="Top Rated Movies" data={topRatedMovies} />
+            <div className="home__content__lists">
+              <h2 className="home__content__lists__title">
+                What&apos;s Trending This Week
+              </h2>
+              <Pagination title="Trending Movies" data={trendingMovies} />
+              <Pagination title="Trending TV Shows" data={trendingTvShows} />
               {recentlyViewedMovies?.length > 0 && (
                 <Pagination
                   recentlyViewed

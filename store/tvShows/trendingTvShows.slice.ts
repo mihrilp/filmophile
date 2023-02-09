@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance, UPCOMING_MOVIES_ENDPOINT } from "../api";
+import { instance, TRENDING_TV_SHOWS_ENDPOINT } from "../../api";
 import { AxiosError } from "axios";
 
 const initialState: MoviesState = {
   loading: false,
   data: [],
-  error: undefined
+  error: undefined,
 };
 
-export const fetchUpcomingMovies = createAsyncThunk<Movie[], void, { rejectValue: KnownError }>(
-  "movies/fetchUpcomingMovies",
+export const fetchTrendingTvShows= createAsyncThunk<Movie[], void, { rejectValue: KnownError }>(
+  "trending/fetchTrendingTvShows",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.get(
-        UPCOMING_MOVIES_ENDPOINT
+        TRENDING_TV_SHOWS_ENDPOINT
       );
       return data.results;
     } catch (err: AxiosError<KnownError> | any) {
@@ -25,24 +25,24 @@ export const fetchUpcomingMovies = createAsyncThunk<Movie[], void, { rejectValue
   }
 );
 
-export const upcomingMoviesSlice = createSlice({
-  name: "upcomingMovies",
+export const trendingTvShowsSlice = createSlice({
+  name: "trendingTvShows",
   initialState,
   reducers: {
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUpcomingMovies.pending, (state) => {
+    builder.addCase(fetchTrendingTvShows.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
+    builder.addCase(fetchTrendingTvShows.fulfilled, (state, action) => {
       state.loading = false;
       state.data = action.payload;
     });
-    builder.addCase(fetchUpcomingMovies.rejected, (state, action) => {
+    builder.addCase(fetchTrendingTvShows.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
   },
 });
 
-export default upcomingMoviesSlice.reducer;
+export default trendingTvShowsSlice.reducer;

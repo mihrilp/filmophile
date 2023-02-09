@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance, POPULAR_MOVIES_ENDPOINT } from "../api";
+import { instance, UPCOMING_MOVIES_ENDPOINT } from "../../api";
 import { AxiosError } from "axios";
 
 const initialState: MoviesState = {
   loading: false,
   data: [],
-  error: undefined,
+  error: undefined
 };
 
-export const fetchPopularMovies = createAsyncThunk<Movie[], void, { rejectValue: KnownError }>(
-  "movies/fetchPopularMovies",
+export const fetchUpcomingMovies = createAsyncThunk<Movie[], void, { rejectValue: KnownError }>(
+  "movies/fetchUpcomingMovies",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.get(
-        POPULAR_MOVIES_ENDPOINT
+        UPCOMING_MOVIES_ENDPOINT
       );
       return data.results;
     } catch (err: AxiosError<KnownError> | any) {
@@ -25,24 +25,24 @@ export const fetchPopularMovies = createAsyncThunk<Movie[], void, { rejectValue:
   }
 );
 
-export const popularMoviesSlice = createSlice({
-  name: "popularMovies",
+export const upcomingMoviesSlice = createSlice({
+  name: "upcomingMovies",
   initialState,
   reducers: {
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPopularMovies.pending, (state) => {
+    builder.addCase(fetchUpcomingMovies.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchPopularMovies.fulfilled, (state, action) => {
+    builder.addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
       state.loading = false;
       state.data = action.payload;
     });
-    builder.addCase(fetchPopularMovies.rejected, (state, action) => {
+    builder.addCase(fetchUpcomingMovies.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
   },
 });
 
-export default popularMoviesSlice.reducer;
+export default upcomingMoviesSlice.reducer;

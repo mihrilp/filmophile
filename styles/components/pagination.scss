@@ -6,7 +6,8 @@
     margin-bottom: 5rem;
     &__title {
         color: v.$yellow;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
+        font-size: v.$x-large;
     }
     &__data {
         display: flex;
