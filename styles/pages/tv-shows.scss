@@ -1,6 +1,6 @@
 @use "../mixin" as m;
 
-.movies{
+.tvShows{
     @include m.paddingX-size(3rem);
     width: 100%;
     height: 100%;

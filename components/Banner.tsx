@@ -46,7 +46,7 @@ function Banner({ movie }: { movie: Movie }) {
             <Play className="banner__content__btns__watchTrailerBtn__icon" />
             Watch Trailer
           </a>
-          <Link href={`/${movie.id}`}>
+          <Link href={`/movies/${movie.id}`}>
             <a className="banner__content__btns__seeDetailBtn">See Details</a>
           </Link>
         </div>

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, POPULAR_MOVIES_ENDPOINT } from "@/api";
 import { AxiosError } from "axios";
 
-const initialState: MoviesState = {
+const initialState: ApiState = {
   loading: false,
   data: [],
   error: undefined,

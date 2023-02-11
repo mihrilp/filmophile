@@ -4,7 +4,6 @@ import { Pagination, LoadingSpinner, ErrorBoundary } from "@/components";
 import { useAppSelector, useAppDispatch } from "@/hooks";
 import { fetchPopularMovies } from "@/store/movies/popularMovies.slice";
 import { fetchTopRatedMovies } from "@/store/movies/topRatedMovies.slice";
-// import { fetchMovieDetail } from "../api/fetchMovies";
 
 export default function Movies() {
   const dispatch = useAppDispatch();

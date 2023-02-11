@@ -2,14 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, TRENDING_MOVIES_ENDPOINT } from "@/api";
 import { AxiosError } from "axios";
 
-const initialState: MoviesState = {
+const initialState: ApiState = {
   loading: false,
   data: [],
   error: undefined,
 };
 
 export const fetchTrendingMovies= createAsyncThunk<Movie[], void, { rejectValue: KnownError }>(
-  "trending/fetchTrendingMovies",
+  "movies/fetchTrendingMovies",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.get(

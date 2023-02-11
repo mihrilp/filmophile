@@ -5,7 +5,10 @@ import trendingTvShowsReducer from "./tvShows/trendingTvShows.slice";
 import popularMoviesReducer from "./movies/popularMovies.slice";
 import topRatedMoviesReducer from "./movies/topRatedMovies.slice";
 import upcomingMoviesReducer from "./movies/upcomingMovies.slice";
+import popularTvShowsSlice from "./tvShows/popularTvShows.slice";
+import topRatedTvShowsReducer from "./tvShows/topRatedTvShows.slice";
 import searchResultsReducer from "./searchResults.slice";
+
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +19,8 @@ export const store = configureStore({
     topRatedMovies: topRatedMoviesReducer,
     upcomingMovies: upcomingMoviesReducer,
     searchResults: searchResultsReducer,
+    popularTvShows: popularTvShowsSlice,
+    topRatedTvShows: topRatedTvShowsReducer,
   },
 });
 

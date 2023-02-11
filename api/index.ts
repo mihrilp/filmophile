@@ -14,6 +14,8 @@ export const UPCOMING_MOVIES_ENDPOINT = `movie/upcoming?api_key=${process.env.NE
 
 //tv shows
 export const TRENDING_TV_SHOWS_ENDPOINT = `/trending/tv/day?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+export const POPULAR_TV_SHOWS_ENDPOINT = `tv/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`;
+export const TOP_RATED_TV_SHOWS_ENDPOINT = `tv/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`;
 
 //search
 export const SEARCH_ENDPOINT = `search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1&query=`;

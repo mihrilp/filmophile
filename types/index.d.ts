@@ -45,9 +45,10 @@ interface KnownError {
   message: string;
 }
 
-interface MoviesState {
+interface ApiState {
   loading: boolean;
-  data: Movie[];
+  data: Movie[] | TvShow[];
   error: KnownError | undefined;
 }
+
 
