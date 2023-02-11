@@ -7,7 +7,7 @@ import {
   fetchUpcomingMovies,
   fetchMovieDetail,
   fetchMovieVideoUrl,
-} from "../api/fetchMovies";
+} from "../../api/fetchMovies";
 import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modalSlice";

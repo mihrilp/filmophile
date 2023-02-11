@@ -42,7 +42,7 @@ function Pagination({ title, data, recentlyViewed }: PaginationProps) {
         }`}
       >
         {data?.slice(indexOfFirstItem, indexOfLastItem).map((item) => (
-          <Link href={`/${item.id}`} key={item.id}>
+          <Link href={`/movies/${item.id}`} key={item.id}>
             <a className="pagination__data__link">
               <Card
                 name={item.original_title || item.original_name}
