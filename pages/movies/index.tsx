@@ -48,10 +48,8 @@ export default function Movies() {
           <ErrorBoundary {...error} />
         ) : (
           <>
-            <div className="movies__content__movies">
-              <Pagination title="Popular Movies" data={popularMovies} />
-              <Pagination title="Top Rated Movies" data={topRatedMovies} />
-            </div>
+            <Pagination title="Popular Movies" data={popularMovies} />
+            <Pagination title="Top Rated Movies" data={topRatedMovies} />
           </>
         )}
       </main>

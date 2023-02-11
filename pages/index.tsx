@@ -80,7 +80,6 @@ export default function Home() {
               <Pagination title="Trending TV Shows" data={trendingTvShows} />
               {recentlyViewedMovies?.length > 0 && (
                 <Pagination
-                  recentlyViewed
                   title="Recently Viewed"
                   data={recentlyViewedMovies}
                 />

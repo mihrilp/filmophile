@@ -5,8 +5,8 @@
     $root: &;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
-    width: 145px;
-    height: 282px;
+    width: 155px;
+    height: 302px;
     margin-bottom: 5rem;
     @include m.respond-to(xl) {
         width: 170px;

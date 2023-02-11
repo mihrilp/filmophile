@@ -4,39 +4,37 @@
 .pagination {
     width: 100%;
     margin-bottom: 5rem;
-    &__title {
-        color: v.$yellow;
+    &__header {
+        @include m.flex(row, space-between, center);
         margin-bottom: 3rem;
-        font-size: v.$x-large;
+        &__title {
+            color: v.$yellow;
+            font-size: v.$x-large;
+        }
+        &__btns {
+            @include m.flex(row, center);
+            align-self: center;
+            gap:10px;
+            button {
+                border: none;
+                font-size: v.$small;
+                border-radius: 5px;
+                cursor: pointer;
+                &:disabled {
+                    opacity: 0.7;
+                    cursor: auto;
+                }
+            }
+        }
     }
     &__data {
-        display: flex;
+        @include m.flex(row, space-between, center);
         flex-wrap: wrap;
+        gap:4%;
         &__link {
-            flex-basis: 16.66%;
             @include m.respond-to(xl) {
                 flex-basis: 25%;
             }
-        }
-    }
-    &__btns {
-        @include m.flex(row, center);
-        align-self: center;
-        button {
-            border: none;
-            background-color: v.$yellow;
-            padding: 10px;
-            color: v.$dark-blue;
-            font-size: v.$small;
-            border-radius: 5px;
-            cursor: pointer;
-            &:disabled {
-                opacity: 0.7;
-                cursor: auto;
-            }
-        }
-        &__prevBtn {
-            margin-right: 15px;
         }
     }
 }

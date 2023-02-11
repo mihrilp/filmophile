@@ -1,5 +1,5 @@
 @use "../mixin" as m;
 
 .movies{
-    @include m.paddingX-size(2rem);
+    @include m.paddingX-size(3rem);
 }
