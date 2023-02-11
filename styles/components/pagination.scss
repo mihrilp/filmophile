@@ -28,10 +28,11 @@
         }
     }
     &__data {
-        @include m.flex(row, space-between, center);
+        @include m.flex(row, flex-start, center);
         flex-wrap: wrap;
-        gap:4%;
+        gap:6.25%;
         &__link {
+            flex-basis: 15%;
             @include m.respond-to(xl) {
                 flex-basis: 25%;
             }

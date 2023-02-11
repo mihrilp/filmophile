@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, TOP_RATED_TV_SHOWS_ENDPOINT } from "@/api";
 import { AxiosError } from "axios";
 
-const initialState: ApiState = {
+const initialState: TvShowState = {
     loading: false,
     data: [],
     error: undefined
