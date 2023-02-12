@@ -8,6 +8,7 @@ import Head from "next/head";
 import {
   fetchPopularTvShows,
   fetchTopRatedTvShows,
+  fetchTrendingTvShows,
   fetchTvShowDetail,
   fetchTvShowVideos,
 } from "@/api/fetchTvShows";

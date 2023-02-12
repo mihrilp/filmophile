@@ -4,7 +4,7 @@ import { Info } from "@/components";
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
-  fetchUpcomingMovies,
+  fetchTrendingMovies,
   fetchMovieDetail,
   fetchMovieVideos,
 } from "../../api/fetchMovies";
@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const [popularMovies, topRatedMovies, upComingMovies] = await Promise.all([
     fetchPopularMovies(),
     fetchTopRatedMovies(),
-    fetchUpcomingMovies(),
+    fetchTrendingMovies(),
   ]);
 
   const paths = [...popularMovies, ...topRatedMovies, ...upComingMovies].map(

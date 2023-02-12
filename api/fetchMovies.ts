@@ -1,4 +1,4 @@
-import { instance,POPULAR_MOVIES_ENDPOINT } from ".";
+import { instance,POPULAR_MOVIES_ENDPOINT, TRENDING_MOVIES_ENDPOINT } from ".";
 
 export const fetchPopularMovies = async () => {
   try {
@@ -11,7 +11,6 @@ export const fetchPopularMovies = async () => {
   }
 };
 
-
 export const fetchTopRatedMovies = async () => {
   try {
     const { data } = await instance.get(
@@ -23,10 +22,10 @@ export const fetchTopRatedMovies = async () => {
   }
 };
 
-export const fetchUpcomingMovies = async () => {
+export const fetchTrendingMovies = async () => {
   try {
     const { data } = await instance.get(
-      `movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+      TRENDING_MOVIES_ENDPOINT
     );
     return data.results;
   } catch (err) {
