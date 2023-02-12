@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch } from "@/hooks";
 import { Close } from "@/public/assets";
-import { closeModal } from "@/store/modalSlice";
+import { closeModal } from "@/store/modal.slice";
 
 interface ModalProps {
   videoUrl: string | undefined;

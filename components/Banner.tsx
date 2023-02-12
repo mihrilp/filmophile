@@ -2,44 +2,51 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { Play } from "@/public/assets";
 import { fetchMovieVideos } from "@/api/fetchMovies";
-import { useAppDispatch } from "@/hooks";
-import { openModal, setVideoUrl } from "@/store/modalSlice";
+import { fetchTvShowVideos } from "@/api/fetchTvShows";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { openModal, setVideoUrl } from "@/store/modal.slice";
 
-function Banner({ movie }: { movie: Movie }) {
+function Banner() {
   const dispatch = useAppDispatch();
 
+  const data = useAppSelector((state) => state.banner.data);
+
   useEffect(() => {
-    movie.id &&
+    data.id &&
       (async () => {
-        const videos = await fetchMovieVideos(movie.id);
+        const videos = data.original_name
+          ? await fetchTvShowVideos(data.id)
+          : await fetchMovieVideos(data.id);
         dispatch(
           setVideoUrl(
-            videos.filter((video: any) => video.type === "Trailer")[0].key
+            videos.filter((video: any) => video.type === "Trailer")[0]?.key
           )
         );
       })();
-  }, [movie.id]);
+  }, [data.id]);
 
   return (
     <div className="banner">
-      {movie.backdrop_path && (
+      {data.backdrop_path && (
         <div
           className="banner__bg"
           style={{
-            backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`})`,
+            backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`})`,
           }}
         ></div>
       )}
       <div className="banner__content">
         <div>
           <p className="banner__content__title">
-            {movie.original_title?.toUpperCase()}
+            {data.original_title
+              ? data.original_title?.toUpperCase()
+              : data.original_name?.toUpperCase()}
           </p>
           <p className="banner__content__score">
-            {movie.vote_average?.toFixed(1)}
+            {data.vote_average?.toFixed(1)}
           </p>
         </div>
-        <p className="banner__content__overview">{movie.overview}</p>
+        <p className="banner__content__overview">{data.overview}</p>
         <div className="banner__content__btns">
           <a
             className="banner__content__btns__watchTrailerBtn"
@@ -50,7 +57,7 @@ function Banner({ movie }: { movie: Movie }) {
             <Play className="banner__content__btns__watchTrailerBtn__icon" />
             Watch Trailer
           </a>
-          <Link href={`/movies/${movie.id}`}>
+          <Link href={`/movies/${data.id}`}>
             <a className="banner__content__btns__seeDetailBtn">See Details</a>
           </Link>
         </div>

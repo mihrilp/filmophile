@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Info } from "@/components";
 import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
-import { openModal, setVideoUrl } from "@/store/modalSlice";
+import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
 import {
   fetchPopularTvShows,
@@ -66,7 +66,7 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
       const videos = await fetchTvShowVideos(tvShow.id);
       dispatch(
         setVideoUrl(
-          videos.filter((video: any) => video.type === "Trailer")[0].key
+          videos.filter((video: any) => video.type === "Trailer")[0]?.key
         )
       );
     })();

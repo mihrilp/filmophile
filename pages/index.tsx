@@ -5,12 +5,11 @@ import {
   Banner,
   LoadingSpinner,
   ErrorBoundary,
-  Footer,
 } from "@/components";
 import { useAppSelector, useAppDispatch } from "@/hooks";
 import { fetchTrendingMovies } from "@/store/movies/trendingMovies.slice";
 import { fetchTrendingTvShows } from "@/store/tvShows/trendingTvShows.slice";
-import { fetchUpcomingMovies } from "@/store/movies/upcomingMovies.slice";
+import { setBannerData } from "@/store/banner.slice";
 
 export default function Home() {
   const [recentlyViewedMovies, setRecentlyViewedMovies] = useState([]);
@@ -28,36 +27,37 @@ export default function Home() {
     error: trendingTvShowsError,
   } = useAppSelector((state) => state.trendingTvShows);
 
-  const {
-    data: upcomingMovies,
-    loading: upcomingMoviesLoading,
-    error: upcomingMoviesError,
-  } = useAppSelector((state) => state.upcomingMovies);
-
-  const randomUpcomingMovie = useMemo(
-    () => upcomingMovies[Math.floor(Math.random() * upcomingMovies.length)],
-    [upcomingMovies]
+  const randomMedia = useMemo(
+    () =>
+      [...trendingMovies, ...trendingTvShows][
+        Math.floor(
+          Math.random() * [...trendingMovies, ...trendingTvShows].length
+        )
+      ],
+    [trendingMovies, trendingTvShows]
   );
 
   const loading = useMemo(
-    () =>
-      trendingMoviesLoading || trendingTvShowsLoading || upcomingMoviesLoading,
-    [trendingMoviesLoading, trendingTvShowsLoading, upcomingMoviesLoading]
+    () => trendingMoviesLoading || trendingTvShowsLoading,
+    [trendingMoviesLoading, trendingTvShowsLoading]
   );
 
   const error = useMemo(
-    () => trendingMoviesError || trendingTvShowsError || upcomingMoviesError,
-    [trendingMoviesError, trendingTvShowsError, upcomingMoviesError]
+    () => trendingMoviesError || trendingTvShowsError,
+    [trendingMoviesError, trendingTvShowsError]
   );
 
   useEffect(() => {
     dispatch(fetchTrendingMovies());
     dispatch(fetchTrendingTvShows());
-    dispatch(fetchUpcomingMovies());
     setRecentlyViewedMovies(
       JSON.parse(localStorage.getItem("recentlyViewedMovies")!)
     );
   }, []);
+
+  useEffect(() => {
+    randomMedia && dispatch(setBannerData(randomMedia));
+  }, [randomMedia]);
 
   return (
     <div className="home">
@@ -71,7 +71,7 @@ export default function Home() {
           <ErrorBoundary {...error} />
         ) : (
           <>
-            {randomUpcomingMovie && <Banner movie={randomUpcomingMovie} />}
+            {randomMedia && <Banner />}
             <div className="home__content__lists">
               <h2 className="home__content__lists__title">
                 What&apos;s Trending This Week
@@ -88,9 +88,6 @@ export default function Home() {
           </>
         )}
       </main>
-      {randomUpcomingMovie && (
-        <Footer movieId={randomUpcomingMovie?.id.toString()} />
-      )}
     </div>
   );
 }

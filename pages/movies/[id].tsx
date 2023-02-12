@@ -10,7 +10,7 @@ import {
 } from "../../api/fetchMovies";
 import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
-import { openModal, setVideoUrl } from "@/store/modalSlice";
+import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
 
 type Params = {

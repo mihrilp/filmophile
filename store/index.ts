@@ -1,14 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import modalReducer from "./modalSlice";
+import modalReducer from "./modal.slice";
 import trendingMoviesReducer from "./movies/trendingMovies.slice";
 import trendingTvShowsReducer from "./tvShows/trendingTvShows.slice";
 import popularMoviesReducer from "./movies/popularMovies.slice";
 import topRatedMoviesReducer from "./movies/topRatedMovies.slice";
-import upcomingMoviesReducer from "./movies/upcomingMovies.slice";
 import popularTvShowsSlice from "./tvShows/popularTvShows.slice";
 import topRatedTvShowsReducer from "./tvShows/topRatedTvShows.slice";
 import searchResultsReducer from "./searchResults.slice";
-
+import bannerReducer from "./banner.slice";
 
 export const store = configureStore({
   reducer: {
@@ -17,10 +16,10 @@ export const store = configureStore({
     trendingTvShows: trendingTvShowsReducer,
     popularMovies: popularMoviesReducer,
     topRatedMovies: topRatedMoviesReducer,
-    upcomingMovies: upcomingMoviesReducer,
     searchResults: searchResultsReducer,
     popularTvShows: popularTvShowsSlice,
     topRatedTvShows: topRatedTvShowsReducer,
+    banner: bannerReducer,
   },
 });
 
