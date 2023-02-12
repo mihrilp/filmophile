@@ -55,7 +55,7 @@ function Pagination({ title, data }: PaginationProps) {
         {data?.slice(indexOfFirstItem, indexOfLastItem).map((item) => (
           <Link
             href={
-              item.media_type === "movie"
+              item.original_title
                 ? `/movies/${item.id}`
                 : `/tv-shows/${item.id}`
             }

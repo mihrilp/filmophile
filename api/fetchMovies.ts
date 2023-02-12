@@ -45,21 +45,10 @@ export const fetchMovieDetail = async (id: string) => {
   }
 };
 
-export const fetchMovieVideoUrl = async (id: number) => {
+export const fetchMovieVideos = async (id: number) => {
   try {
     const { data } = await instance.get(
       `movie/${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-    );
-    return data.results[0].key;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const fetchSearchedMovie = async (query: string) => {
-  try {
-    const { data } = await instance.get(
-      `search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}`
     );
     return data.results;
   } catch (err) {

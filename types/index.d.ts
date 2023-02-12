@@ -26,10 +26,18 @@ interface Person {
 interface TvShow {
   id: number;
   original_name: string;
+  backdrop_path?: string;
   poster_path: string;
   first_air_date: string;
   vote_average: number;
   media_type: string;
+  overview?: string;
+  origin_country: string;
+  genres: [];
+  spoken_languages: [];
+  production_countries: [];
+  production_companies: [];
+  tagline?: string | undefined;
 }
 
 interface CardProps {

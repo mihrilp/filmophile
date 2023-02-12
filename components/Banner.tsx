@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { Play } from "@/public/assets";
-import { fetchMovieVideoUrl } from "@/api/fetchMovies";
+import { fetchMovieVideos } from "@/api/fetchMovies";
 import { useAppDispatch } from "@/hooks";
 import { openModal, setVideoUrl } from "@/store/modalSlice";
 
@@ -11,8 +11,12 @@ function Banner({ movie }: { movie: Movie }) {
   useEffect(() => {
     movie.id &&
       (async () => {
-        const videoUrl = await fetchMovieVideoUrl(movie.id);
-        dispatch(setVideoUrl(videoUrl));
+        const videos = await fetchMovieVideos(movie.id);
+        dispatch(
+          setVideoUrl(
+            videos.filter((video: any) => video.type === "Trailer")[0].key
+          )
+        );
       })();
   }, [movie.id]);
 
