@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
-import { fetchMovieDetail } from "@/api/fetchMovies";
 import { Facebook, Instagram, Twitter } from "@/public/assets";
+import Link from "next/link";
 
-function Footer({ movieId }: { movieId: string }) {
-  const [quote, setQuote] = useState("");
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      const movie = await fetchMovieDetail(movieId);
-      setQuote(movie?.tagline);
-      setName(movie?.title);
-    })();
-  }, [movieId]);
-
+function Footer() {
   return (
     <div className="footer">
+      <div className="footer__discover">
+        <h3 className="footer__discover__title">Discover</h3>
+        <Link href="/movies">
+          <a>Movie</a>
+        </Link>
+        <span> / </span>
+        <Link href="/tv-shows">
+          <a>TV Show</a>
+        </Link>
+      </div>
       <div className="footer__quote">
-        <q>{quote}</q>
-        <p>-{name}</p>
+        <q>Welcome to Jurassic Park.</q>
+        <p>-Jurassic Park</p>
       </div>
       <div className="footer__social">
         <a className="footer__social__icon" href="#">

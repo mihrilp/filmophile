@@ -2,7 +2,7 @@
 @use "../variables" as v;
 
 .footer {
-    @include m.flex(row, space-around, center);
+    @include m.flex(row, space-between, center);
     @include m.paddingX-size(3rem);
     width: 100%;
     background-color: v.$dark-blue;
@@ -11,10 +11,22 @@
         @include m.flex(column, space-between);
         @include m.paddingX-size(3rem);
     }
-    &__quote {
+    &__discover {
         @include m.font-size(v.$normal);
         text-align: center;
-        line-height: 1.5;
+        line-height: 1.7;
+        a {
+            color: v.$yellow;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    &__quote {
+        flex: 1 1 auto;
+        @include m.font-size(v.$normal);
+        text-align: center;
+        line-height: 1.7;
     }
     &__social {
         @include m.flex(row, center);

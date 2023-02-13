@@ -7,13 +7,11 @@ const Layout: React.FC = ({ children }) => {
   const modalVisibility = useAppSelector((state) => state.modal.visibility);
   const videoUrl = useAppSelector((state) => state.modal.videoUrl);
 
-  const bannerData = useAppSelector((state) => state.banner.data);
-
   return (
     <div className={modalVisibility ? "blur" : "layout"}>
       <Header />
       {children}
-      <Footer movieId={bannerData?.id.toString()} />
+      <Footer />
       {modalVisibility && <ModalVideo videoUrl={videoUrl} />}
     </div>
   );

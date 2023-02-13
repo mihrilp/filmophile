@@ -1,7 +1,7 @@
 @use "../mixin" as m;
 
 .tvShows{
-    @include m.paddingX-size(3rem);
+    @include m.paddingX-size(2rem);
     flex:1;
     &__content{
         width: 100%;
