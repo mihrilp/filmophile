@@ -10,7 +10,12 @@ function Info({ title, arr }: InfoProps) {
     <div className="info">
       <h3 className="info__title">{title}</h3>
       {arr.map((item, index) => (
-        <p key={index}>{item.name}</p>
+        <>
+          <span> {index ? ", " : ""} &nbsp;</span>
+          <p className="info__item" key={index}>
+            {item.name}
+          </p>
+        </>
       ))}
     </div>
   );

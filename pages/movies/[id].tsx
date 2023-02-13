@@ -12,6 +12,8 @@ import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
+import { Play } from "@/public/assets";
+import { formatDate } from "@/utils";
 
 type Params = {
   params: {
@@ -44,11 +46,6 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 function MovieDetail({ movie }: { movie: Movie }) {
-  const formatDate = useCallback((date) => {
-    date = date.split("-");
-    return `${date[2]}.${date[1]}.${date[0]}`;
-  }, []);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -90,51 +87,52 @@ function MovieDetail({ movie }: { movie: Movie }) {
         ></div>
       )}
       <div className="movie__imgContainer">
-        <Image
-          className="movie__imgContainer__poster"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt="movie image"
-          layout="fill"
-        />
+        <div className="movie__imgContainer__img">
+          <Image
+            className="movie__imgContainer__img__poster"
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt="movie image"
+            layout="fill"
+          />
+        </div>
+        <p className="movie__imgContainer__score">
+          <b> {movie.vote_average.toFixed(1)} </b>/ {movie.vote_count} Ratings
+        </p>
       </div>
       <div className="movie__info">
-        <div className="movie__info__header">
-          <div className="movie__info__header__title">
-            <h3>
-              {movie.original_title}
-              <span className="movie__info__header__title__score">
-                {movie.vote_average.toFixed(1)}
-              </span>
-            </h3>
-          </div>
-          <a
-            className="movie__info__header__watchTrailerBtn"
-            onClick={() => {
-              dispatch(openModal());
-            }}
-          >
-            Watch Trailer
-          </a>
-        </div>
+        <h3 className="movie__info__title">{movie.original_title}</h3>
         <div className="movie__info__date">
           {formatDate(movie.release_date)}
         </div>
         <div className="movie__info__overview">
           <p>{movie.overview}</p>
+        </div>
+        <div className="movie__info__lineAndTrailerBtn">
           {movie.tagline && (
-            <div className="movie__info__overview__tagline">
+            <div className="movie__info__lineAndTrailerBtn__line">
               <q>{movie.tagline}</q>
             </div>
           )}
+          <a
+            className="movie__info__lineAndTrailerBtn__trailerBtn"
+            onClick={() => {
+              dispatch(openModal());
+            }}
+          >
+            <Play className="movie__info__lineAndTrailerBtn__trailerBtn__icon" />
+            Watch Trailer
+          </a>
         </div>
-        <div className="movie__info__moreInfo">
-          <Info title="Genres:" arr={movie.genres} />
-          <Info title="Countries:" arr={movie.production_countries} />
-          <Info title="Languages:" arr={movie.spoken_languages} />
-          <Info
-            title="Companies:"
-            arr={movie.production_companies.slice(0, 10)}
-          />
+        <div className="movie__info__details">
+          <div>
+            <Info title="Genres:" arr={movie.genres} />
+            <Info title="Countries:" arr={movie.production_countries} />
+            <Info title="Languages:" arr={movie.spoken_languages} />
+            <Info
+              title="Companies:"
+              arr={movie.production_companies.slice(0, 10)}
+            />
+          </div>
         </div>
       </div>
     </div>

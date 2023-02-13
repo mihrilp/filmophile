@@ -13,7 +13,7 @@ function isTvShow(result: Movie | Person | TvShow): result is TvShow {
 export function filterSearchResults(
     results: (Movie | Person | TvShow)[],
     mediaType: string
-): (Movie | Person | TvShow)[]{
+): (Movie | Person | TvShow)[] {
     switch (mediaType) {
         case "movie":
             return results.filter(isMovie);
@@ -22,6 +22,11 @@ export function filterSearchResults(
         case "tv":
             return results.filter(isTvShow);
         default:
-            return results ;
+            return results;
     }
+}
+
+export function formatDate(date: string) {
+    let splittedDate: string[] = date.split("-");
+    return `${splittedDate[2]}.${splittedDate[1]}.${splittedDate[0]}`;
 }

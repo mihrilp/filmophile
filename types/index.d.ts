@@ -12,6 +12,7 @@ interface Movie {
   production_countries: [];
   production_companies: [];
   media_type: string;
+  vote_count?: number;
 }
 
 interface Person {

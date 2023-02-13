@@ -20,74 +20,81 @@
     }
     &__imgContainer {
         flex: 1;
-        position: relative;
-        aspect-ratio: 0.66;
+        text-align: center;
         @include m.respond-to(md) {
             width: 50%;
             margin-bottom: 20px;
         }
-        &__poster {
-            border-radius: 20px;
+        &__img {
+            position: relative;
+            aspect-ratio: 0.66;
+            margin-bottom: 25px;
+            &__poster {
+                border-radius: 20px;
+            }
+        }
+        &__score {
+            color: v.$yellow;
+            text-align: center;
+            display: inline-block;
+            @include m.font-size(v.$large);
         }
     }
     &__info {
         @include m.flex(column, center, flex-start);
-        flex: 2;
+        flex: 3;
         padding-left: 4rem;
         @include m.respond-to(md) {
             padding-left: 0;
             align-items: center;
             flex: 1;
         }
-        &__header {
-            @include m.flex(row, space-between, flex-start);
-            width: 100%;
-            gap: 50px;
             &__title {
-                @include m.flex(row, start, center);
-                @include m.title;
-                line-height: 1.7;
-                flex: 4;
-                &__score {
-                    margin-left: 20px;
-                    background-color: rgba(v.$yellow, 0.8);
-                    color: white;
-                    border-radius: 50%;
-                    font-size: v.$normal;
-                    width: 40px;
-                    height: 40px;
-                    text-align: center;
-                    display: inline-block;
-                    vertical-align: middle;
-                    line-height: 40px;
-                }
+                @include m.font-size(v.$x-large);
+                text-shadow: 1px 1px 2px v.$yellow;
             }
-            &__watchTrailerBtn {
-                @include m.font-size(v.$large);
-                flex: 1;
-                border-bottom: 2px solid v.$yellow;
-                color: v.$yellow;
-                cursor: pointer;
-            }
-        }
         &__date {
             color: gray;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
         &__overview {
-            margin-top: 20px;
-            @include m.respond-to(md) {
-                text-align: justify;
+            text-align: justify;
+            margin-bottom: 1rem;
+
+        }
+        &__lineAndTrailerBtn{
+            @include m.flex(row, space-between, center);
+            @include m.font-size(v.$large);
+
+            width: 100%;
+            margin: 1.5rem 0;
+            &__line {
+            color: v.$yellow;
+
             }
-            &__tagline {
-                color: v.$yellow;
-                margin-top: 1.5rem;
+            &__trailerBtn {
+                @include m.flex(row, center);
+                $root: &;
+                background-color: v.$yellow;
+                transition: all 0.5s ease-in-out;
+                padding: 0.2rem;
+                border-radius: 40px;
+                cursor: pointer;
+                width: 25%;
+                &__icon {
+                    margin-right: 10px;
+                    #{$root}:hover & {
+                        animation: rotation 2s infinite linear;
+                    }
+                }
+                &:hover {
+                    transform: scale(1.05);
+                }
             }
         }
-        &__moreInfo {
+        &__details {
             @include m.flex(row, space-between, flex-start);
             width: 100%;
-            margin-top: 2.5rem;
             font-size: v.$small;
             @include m.respond-to(sm) {
                 flex-wrap: wrap;
