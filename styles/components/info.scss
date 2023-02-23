@@ -2,16 +2,14 @@
 @use "../mixin" as m;
 
 .info {
-    @include m.flex(row, flex-start, center);
+    @include m.flex(row, flex-start, flex-start);
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     @include m.respond-to(sm) {
         margin-top: 30px;
         flex-basis: 50%;
     }
     &__title {
-        font-weight: bold;
-        text-shadow: 1px 1px black;
-        margin-right: 1rem;
+        margin-right: 0.5rem;
     }
 }

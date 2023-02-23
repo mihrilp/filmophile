@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { Info } from "@/components";
+import { Info, Person } from "@/components";
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchTrendingMovies,
   fetchMovieDetail,
   fetchMovieVideos,
+  fetchMovieCredits,
 } from "../../api/fetchMovies";
 import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
@@ -47,6 +48,10 @@ export const getStaticProps = async ({ params }: Params) => {
 
 function MovieDetail({ movie }: { movie: Movie }) {
   const dispatch = useAppDispatch();
+  const [credits, setCredits] = useState({
+    cast: [],
+    crew: [],
+  });
 
   useEffect(() => {
     let recentlyViewedMovies =
@@ -70,6 +75,9 @@ function MovieDetail({ movie }: { movie: Movie }) {
           videos.filter((video: any) => video.type === "Trailer")[0].key
         )
       );
+      let data = await fetchMovieCredits(movie.id);
+      console.log(data);
+      setCredits(data);
     })();
   }, [movie]);
 
@@ -104,15 +112,7 @@ function MovieDetail({ movie }: { movie: Movie }) {
         <div className="movie__info__date">
           {formatDate(movie.release_date)}
         </div>
-        <div className="movie__info__overview">
-          <p>{movie.overview}</p>
-        </div>
         <div className="movie__info__lineAndTrailerBtn">
-          {movie.tagline && (
-            <div className="movie__info__lineAndTrailerBtn__line">
-              <q>{movie.tagline}</q>
-            </div>
-          )}
           <a
             className="movie__info__lineAndTrailerBtn__trailerBtn"
             onClick={() => {
@@ -123,16 +123,30 @@ function MovieDetail({ movie }: { movie: Movie }) {
             Watch Trailer
           </a>
         </div>
+        <div className="movie__info__overview">
+          <p>{movie.overview}</p>
+        </div>
+        {movie.tagline && (
+          <div className="movie__info__lineAndTrailerBtn__line">
+            <q>{movie.tagline}</q>
+          </div>
+        )}
+        <h3 className="movie__info__subtitle">Details</h3>
         <div className="movie__info__details">
           <div>
-            <Info title="Genres:" arr={movie.genres} />
-            <Info title="Countries:" arr={movie.production_countries} />
-            <Info title="Languages:" arr={movie.spoken_languages} />
-            <Info
-              title="Companies:"
-              arr={movie.production_companies.slice(0, 10)}
-            />
+            <Info title="Genres:" content={movie.genres} />
+            <Info title="Runtime:" content={movie.runtime} />
           </div>
+          <div>
+            <Info title="Countries:" content={movie.production_countries} />
+            <Info title="Languages:" content={movie.spoken_languages} />
+          </div>
+        </div>
+        <h3 className="movie__info__subtitle">Cast & Crew</h3>
+        <div className="movie__info__cast">
+          {credits.cast.map((person) => (
+            <Person name={person.name} imgUrl={person.profile_path} />
+          ))}
         </div>
       </div>
     </div>

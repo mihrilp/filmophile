@@ -49,10 +49,15 @@
             align-items: center;
             flex: 1;
         }
-            &__title {
-                @include m.font-size(v.$x-large);
-                text-shadow: 1px 1px 2px v.$yellow;
-            }
+        &__title {
+            @include m.font-size(v.$x-large);
+            text-shadow: 1px 1px 2px v.$yellow;
+        }
+        &__subtitle{
+            @include m.font-size(v.$large);
+            font-weight: bold;
+            margin: 25px 0 8px 0;
+        }
         &__date {
             color: gray;
             margin-bottom: 1rem;
@@ -60,17 +65,14 @@
         &__overview {
             text-align: justify;
             margin-bottom: 1rem;
-
         }
-        &__lineAndTrailerBtn{
+        &__lineAndTrailerBtn {
             @include m.flex(row, space-between, center);
             @include m.font-size(v.$large);
-
             width: 100%;
             margin: 1.5rem 0;
             &__line {
-            color: v.$yellow;
-
+                color: v.$yellow;
             }
             &__trailerBtn {
                 @include m.flex(row, center);
@@ -93,12 +95,21 @@
             }
         }
         &__details {
-            @include m.flex(row, space-between, flex-start);
+            @include m.flex(row, space-between, center);
             width: 100%;
             font-size: v.$small;
             @include m.respond-to(sm) {
                 flex-wrap: wrap;
             }
+        }
+        &__cast{
+            width: 500px;
+            height: 100px;
+            white-space: nowrap;
+            position: relative;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
         }
     }
 }
