@@ -2,46 +2,28 @@
 @use "../variables" as v;
 
 .person {
-    $root: &;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-    // width: 145px;
-    // height: 282px;
-    display: inline-block;
-    @include m.respond-to(xl) {
-        width: 170px;
-        height: 331px;
-    }
-    @include m.respond-to(sm) {
-        width: 150px;
-        height: 292px;
-    }
+    @include m.flex(row, flex-start, center);
     &__imgContainer {
-        flex: 1;
+        width: 100px;
+        height: 100px;
         position: relative;
-        aspect-ratio: 0.66;
+        margin-right: 8px;
         &__poster {
-            border-radius: 10px;
+            border-radius: 50%;
         }
     }
     &__info {
-        margin-top: 10px;
-        text-align: center;
+        @include m.flex(column, flex-start, flex-start);
+        width: calc(100% - 100px);
         &__name {
-            white-space: nowrap;
-            overflow: hidden;
+            @include m.font-size(v.$small);
+            width: 100%;
             text-overflow: ellipsis;
-            #{$root}:hover & {
-                white-space: inherit;
-                overflow: visible;
-            }
+            overflow: hidden;
+            white-space: nowrap;
         }
-        &__department {
-            font-weight: lighter;
-            margin-top: 5px;
+        &__character {
+            color: v.$gray;
         }
-    }
-    &:hover {
-        transform: scale(1.05);
     }
 }

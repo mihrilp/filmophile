@@ -54,7 +54,10 @@ function Banner() {
               dispatch(openModal());
             }}
           >
-            <Play className="banner__content__btns__watchTrailerBtn__icon" />
+            <Play
+              className="banner__content__btns__watchTrailerBtn__icon"
+              fill="#fff"
+            />
             Watch Trailer
           </a>
           <Link href={`/movies/${data.id}`}>

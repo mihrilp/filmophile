@@ -66,3 +66,10 @@ interface TvShowState {
   data: TvShow[];
   error: KnownError | undefined;
 }
+
+interface CreditProps {
+  id: number;
+  name: string;
+  profile_path: string;
+  character: string;
+}

@@ -2,16 +2,14 @@ import React from "react";
 
 interface InfoProps {
   title: string;
-  content: Array<{ name: string }> | number;
+  content: Array<{ name: string }> | number | string;
 }
 
 function Info({ title, content }: InfoProps) {
   return (
     <div className="info">
       <h4 className="info__title">{title}</h4>
-      {typeof content === "number" ? (
-        <p className="info__item">{content}</p>
-      ) : (
+      {Array.isArray(content) ? (
         content.map((item, index) => (
           <>
             <span> {index ? ", " : ""} &nbsp;</span>
@@ -20,6 +18,8 @@ function Info({ title, content }: InfoProps) {
             </p>
           </>
         ))
+      ) : (
+        <p className="info__item">{content}</p>
       )}
     </div>
   );

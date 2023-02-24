@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Info, Person } from "@/components";
 import {
@@ -14,7 +14,6 @@ import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
 import { Play } from "@/public/assets";
-import { formatDate } from "@/utils";
 
 type Params = {
   params: {
@@ -48,10 +47,7 @@ export const getStaticProps = async ({ params }: Params) => {
 
 function MovieDetail({ movie }: { movie: Movie }) {
   const dispatch = useAppDispatch();
-  const [credits, setCredits] = useState({
-    cast: [],
-    crew: [],
-  });
+  const [cast, setCast] = useState([]);
 
   useEffect(() => {
     let recentlyViewedMovies =
@@ -76,8 +72,7 @@ function MovieDetail({ movie }: { movie: Movie }) {
         )
       );
       let data = await fetchMovieCredits(movie.id);
-      console.log(data);
-      setCredits(data);
+      setCast(data.cast);
     })();
   }, [movie]);
 
@@ -94,60 +89,59 @@ function MovieDetail({ movie }: { movie: Movie }) {
           }}
         ></div>
       )}
-      <div className="movie__imgContainer">
-        <div className="movie__imgContainer__img">
+      <div className="movie__info">
+        <div className="movie__info__imgContainer">
           <Image
-            className="movie__imgContainer__img__poster"
+            className="movie__info__imgContainer__poster"
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt="movie image"
             layout="fill"
           />
         </div>
-        <p className="movie__imgContainer__score">
-          <b> {movie.vote_average.toFixed(1)} </b>/ {movie.vote_count} Ratings
-        </p>
-      </div>
-      <div className="movie__info">
-        <h3 className="movie__info__title">{movie.original_title}</h3>
-        <div className="movie__info__date">
-          {formatDate(movie.release_date)}
-        </div>
-        <div className="movie__info__lineAndTrailerBtn">
-          <a
-            className="movie__info__lineAndTrailerBtn__trailerBtn"
-            onClick={() => {
-              dispatch(openModal());
-            }}
-          >
-            <Play className="movie__info__lineAndTrailerBtn__trailerBtn__icon" />
-            Watch Trailer
-          </a>
-        </div>
-        <div className="movie__info__overview">
-          <p>{movie.overview}</p>
-        </div>
-        {movie.tagline && (
-          <div className="movie__info__lineAndTrailerBtn__line">
-            <q>{movie.tagline}</q>
+        <div className="movie__info__textContainer">
+          <h3 className="movie__info__textContainer__title">
+            {movie.original_title} ({movie.release_date.split("-")[0]})
+          </h3>
+          <div className="movie__info__textContainer__header">
+            <p className="movie__info__textContainer__header__ratings">
+              {movie.vote_average.toFixed(1)} / 10 &nbsp; &nbsp;
+              {movie.vote_count} Ratings
+            </p>
+            <a
+              className="movie__info__textContainer__header__trailerBtn"
+              onClick={() => {
+                dispatch(openModal());
+              }}
+            >
+              <Play
+                className="movie__info__textContainer__header__trailerBtn__icon"
+                fill="#cb9e0c"
+              />
+              Play Trailer
+            </a>
           </div>
-        )}
-        <h3 className="movie__info__subtitle">Details</h3>
-        <div className="movie__info__details">
-          <div>
+          <div className="movie__info__textContainer__overview">
+            <p>{movie.overview}</p>
+          </div>
+          <div className="movie__info__textContainer__details">
             <Info title="Genres:" content={movie.genres} />
             <Info title="Runtime:" content={movie.runtime} />
-          </div>
-          <div>
+            {movie.tagline && <Info title="Tagline:" content={movie.tagline} />}
             <Info title="Countries:" content={movie.production_countries} />
-            <Info title="Languages:" content={movie.spoken_languages} />
           </div>
         </div>
-        <h3 className="movie__info__subtitle">Cast & Crew</h3>
-        <div className="movie__info__cast">
-          {credits.cast.map((person) => (
-            <Person name={person.name} imgUrl={person.profile_path} />
-          ))}
-        </div>
+      </div>
+      <h3 className="movie__subtitle">Top Cast</h3>
+      <div className="movie__cast">
+        {cast.slice(0, 8).map((person: CreditProps) => (
+          <div className="movie__cast__person" key={person.id}>
+            <Person
+              name={person.name}
+              imgUrl={person.profile_path}
+              character={person.character}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

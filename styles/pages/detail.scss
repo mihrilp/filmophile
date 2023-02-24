@@ -2,12 +2,10 @@
 @use "../variables" as v;
 
 .movie {
-    @include m.flex(row, space-between, flex-start);
+    @include m.flex(column, space-between, flex-start);
     @include m.paddingX-size(2rem);
     font-size: v.$normal;
-    position: relative;
-    height: 100%;
-    width: 100%;
+    flex: 1;
     padding-bottom: 8rem;
     z-index: 1;
     line-height: 2;
@@ -18,98 +16,96 @@
     &__bg {
         @include m.bgImage(0.1);
     }
-    &__imgContainer {
-        flex: 1;
-        text-align: center;
-        @include m.respond-to(md) {
-            width: 50%;
-            margin-bottom: 20px;
-        }
-        &__img {
+    &__info {
+        @include m.flex(row, space-between, flex-start);
+        margin-bottom: 3rem;
+        &__imgContainer {
+            flex: 1.2;
             position: relative;
             aspect-ratio: 0.66;
-            margin-bottom: 25px;
             &__poster {
                 border-radius: 20px;
             }
         }
-        &__score {
-            color: v.$yellow;
-            text-align: center;
-            display: inline-block;
-            @include m.font-size(v.$large);
-        }
-    }
-    &__info {
-        @include m.flex(column, center, flex-start);
-        flex: 3;
-        padding-left: 4rem;
-        @include m.respond-to(md) {
-            padding-left: 0;
-            align-items: center;
-            flex: 1;
-        }
-        &__title {
-            @include m.font-size(v.$x-large);
-            text-shadow: 1px 1px 2px v.$yellow;
-        }
-        &__subtitle{
-            @include m.font-size(v.$large);
-            font-weight: bold;
-            margin: 25px 0 8px 0;
-        }
-        &__date {
-            color: gray;
-            margin-bottom: 1rem;
-        }
-        &__overview {
-            text-align: justify;
-            margin-bottom: 1rem;
-        }
-        &__lineAndTrailerBtn {
-            @include m.flex(row, space-between, center);
-            @include m.font-size(v.$large);
-            width: 100%;
-            margin: 1.5rem 0;
-            &__line {
-                color: v.$yellow;
+        &__textContainer {
+            @include m.flex(column, center, flex-start);
+            flex: 3;
+            padding-left: 4rem;
+            height: 100%;
+            @include m.respond-to(md) {
+                padding-left: 0;
+                align-items: center;
+                flex: 1;
             }
-            &__trailerBtn {
-                @include m.flex(row, center);
-                $root: &;
-                background-color: v.$yellow;
-                transition: all 0.5s ease-in-out;
-                padding: 0.2rem;
-                border-radius: 40px;
-                cursor: pointer;
-                width: 25%;
-                &__icon {
-                    margin-right: 10px;
-                    #{$root}:hover & {
-                        animation: rotation 2s infinite linear;
+            &__title {
+                @include m.font-size(v.$x-large);
+                text-shadow: 1px 1px 2px v.$yellow;
+            }
+            &__header {
+                @include m.flex(row, flex-start, center);
+                width: 100%;
+                margin: 1rem 0;
+                gap: 25px;
+                &__ratings {
+                    text-align: center;
+                    display: inline-block;
+                    @include m.font-size(v.$large);
+                    color: v.$yellow;
+                    &__score {
+                        color: v.$yellow;
                     }
                 }
-                &:hover {
-                    transform: scale(1.05);
+                &__trailerBtn {
+                    @include m.flex(row, center);
+                    $root: &;
+                    color: v.$yellow;
+                    transition: all 0.5s ease-in-out;
+                    cursor: pointer;
+                    @include m.font-size(v.$large);
+
+                    &__icon {
+                        width: 25px;
+                        height: 25px;
+                        margin-right: 5px;
+                        #{$root}:hover & {
+                            animation: rotation 2s infinite linear;
+                        }
+                    }
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+            &__date {
+                color: gray;
+                margin-bottom: 1rem;
+            }
+            &__overview {
+                text-align: justify;
+                margin-bottom: 2.5rem;
+            }
+            &__details {
+                @include m.flex(column, space-between, center);
+                width: 100%;
+                font-size: v.$small;
+                @include m.respond-to(sm) {
+                    flex-wrap: wrap;
                 }
             }
         }
-        &__details {
-            @include m.flex(row, space-between, center);
-            width: 100%;
-            font-size: v.$small;
-            @include m.respond-to(sm) {
-                flex-wrap: wrap;
-            }
-        }
-        &__cast{
-            width: 500px;
-            height: 100px;
-            white-space: nowrap;
-            position: relative;
-            overflow-x: scroll;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
+    }
+    &__subtitle {
+        @include m.font-size(v.$x-large);
+        font-weight: bold;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    &__cast {
+        @include m.flex(row, flex-start, center);
+        flex-wrap: wrap;
+        gap: 20px 4%;
+        &__person {
+            width: 22%;
         }
     }
 }
