@@ -100,20 +100,12 @@
     &__subtitle {
         @include m.font-size(v.$x-large);
         font-weight: bold;
-        width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
-    &__credits {
+    &__cast {
         @include m.flex(row, flex-start, flex-start);
-        gap: 20px 4%;
+        gap: 4%;
         margin-bottom: 3rem;
-        white-space: nowrap;
-        position: relative;
-        overflow-x: auto;
-        overflow-y: hidden;
         width: 100%;
-        // &__person {
-        //     width: 22%;
-        // }
     }
 }

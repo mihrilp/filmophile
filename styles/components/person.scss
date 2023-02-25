@@ -2,7 +2,7 @@
 @use "../variables" as v;
 
 .person {
-    @include m.flex(column, flex-start, center);
+    @include m.flex(column, center, center);
     &__imgContainer {
         width: 120px;
         height: 150px;
@@ -13,13 +13,16 @@
         }
     }
     &__info {
-        @include m.flex(column, flex-start, flex-start);
+        @include m.flex(column, center, center);
+        text-align: center;
+        margin-top: 10px;
         &__name {
             @include m.font-size(v.$small);
             width: 100%;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: pre-wrap;
+            margin-bottom: 5px;
         }
         &__character {
             color: v.$gray;

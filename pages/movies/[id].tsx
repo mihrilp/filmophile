@@ -153,9 +153,9 @@ function MovieDetail({ movie }: { movie: Movie }) {
         </div>
       </div>
       <h3 className="movie__subtitle">Top Cast</h3>
-      <div className="movie__credits">
-        {cast.map((person: CreditProps) => (
-          <div className="movie__credits__person" key={person.id}>
+      <div className="movie__cast">
+        {cast.slice(0, 7).map((person: CreditProps) => (
+          <div className="movie__cast__person" key={person.id}>
             <Person
               name={person.name}
               imgUrl={person.profile_path}
