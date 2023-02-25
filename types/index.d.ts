@@ -23,6 +23,8 @@ interface Person {
   media_type: string;
   profile_path: string;
   known_for_department: string;
+  character?: string;
+  job?: string;
 }
 
 interface TvShow {
@@ -71,13 +73,4 @@ interface TvShowState {
   loading: boolean;
   data: TvShow[];
   error: KnownError | undefined;
-}
-
-interface CreditProps {
-  id: number;
-  name: string;
-  profile_path: string;
-  character?: string;
-  known_for_department: string;
-  job?: string;
 }

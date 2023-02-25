@@ -153,7 +153,7 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
       </div>
       <h3 className="tvShow__subtitle">Cast & Crew</h3>
       <div className="tvShow__cast">
-        {[...cast, ...crew].slice(0, 7).map((person: CreditProps) => (
+        {[...cast, ...crew].slice(0, 7).map((person: Person) => (
           <Person
             key={person.id}
             name={person.name}

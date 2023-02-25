@@ -78,11 +78,11 @@ function MovieDetail({ movie }: { movie: Movie }) {
       let data = await fetchMovieCredits(movie.id);
       setCast(data.cast);
       setDirectors(
-        data.crew.filter((person: CreditProps) => person.job === "Director")
+        data.crew.filter((person: Person) => person.job === "Director")
       );
       setWriters(
         data.crew.filter(
-          (person: CreditProps) =>
+          (person: Person) =>
             person.known_for_department === "Writing" && person.job !== "Writer"
         )
       );
@@ -153,7 +153,7 @@ function MovieDetail({ movie }: { movie: Movie }) {
       </div>
       <h3 className="movie__subtitle">Top Cast</h3>
       <div className="movie__cast">
-        {cast.slice(0, 7).map((person: CreditProps) => (
+        {cast.slice(0, 7).map((person: Person) => (
           <div className="movie__cast__person" key={person.id}>
             <Person
               name={person.name}

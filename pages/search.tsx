@@ -49,7 +49,7 @@ function Search() {
                         <Person
                           imgUrl={person.profile_path}
                           name={person.name}
-                          department={person.known_for_department}
+                          job={person.job}
                         />
                       </a>
                     </Link>
