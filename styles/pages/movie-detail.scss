@@ -39,7 +39,7 @@
             &__title {
                 @include m.font-size(v.$x-large);
                 text-shadow: 1px 1px 2px v.$yellow;
-                margin-bottom: 0.8rem;
+                margin-bottom: 1rem;
             }
             &__header {
                 @include m.flex(row, flex-start, center);

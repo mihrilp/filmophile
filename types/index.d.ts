@@ -40,6 +40,9 @@ interface TvShow {
   production_countries: [];
   production_companies: [];
   tagline?: string | undefined;
+  last_air_date: string;
+  status: string;
+  episode_run_time: number[];
 }
 
 interface CardProps {

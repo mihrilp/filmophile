@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Info, Person } from "@/components";
 import {
@@ -47,10 +47,11 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 function MovieDetail({ movie }: { movie: Movie }) {
-  const dispatch = useAppDispatch();
   const [cast, setCast] = useState([]);
   const [directors, setDirectors] = useState([]);
   const [writers, setWriters] = useState([]);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     let recentlyViewedMovies =

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Info } from "@/components";
 import { useAppDispatch } from "@/hooks";
@@ -12,6 +12,8 @@ import {
   fetchTvShowDetail,
   fetchTvShowVideos,
 } from "@/api/fetchTvShows";
+import { formatRuntime } from "@/utils";
+import { Play } from "@/public/assets";
 
 type Params = {
   params: {
@@ -23,12 +25,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const [popularTvShows, topRatedTvShows] = await Promise.all([
     fetchPopularTvShows(),
     fetchTopRatedTvShows(),
+    fetchTrendingTvShows(),
   ]);
 
-  const paths = [...popularTvShows, ...topRatedTvShows].map((movie) => {
+  const paths = [...popularTvShows, ...topRatedTvShows].map((tvShow) => {
     return {
       params: {
-        id: movie.id.toString(),
+        id: tvShow.id.toString(),
       },
     };
   });
@@ -41,27 +44,22 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
-  const formatDate = useCallback((date) => {
-    date = date.split("-");
-    return `${date[2]}.${date[1]}.${date[0]}`;
-  }, []);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    let recentlyViewedMovies =
-      JSON.parse(localStorage.getItem("recentlyViewedMovies")!) || [];
-    if (recentlyViewedMovies.length === 0) {
-      recentlyViewedMovies.push(tvShow);
+    let recentlyViewedtvShows =
+      JSON.parse(localStorage.getItem("recentlyViewedtvShows")!) || [];
+    if (recentlyViewedtvShows.length === 0) {
+      recentlyViewedtvShows.push(tvShow);
     } else {
-      recentlyViewedMovies.every((item: Movie) => {
+      recentlyViewedtvShows.every((item: TvShow) => {
         return item.id !== tvShow.id;
-      }) && recentlyViewedMovies.unshift(tvShow);
+      }) && recentlyViewedtvShows.unshift(tvShow);
     }
-    if (recentlyViewedMovies.length > 5) recentlyViewedMovies.pop();
+    if (recentlyViewedtvShows.length > 5) recentlyViewedtvShows.pop();
     localStorage.setItem(
-      "recentlyViewedMovies",
-      JSON.stringify(recentlyViewedMovies)
+      "recentlyViewedtvShows",
+      JSON.stringify(recentlyViewedtvShows)
     );
     (async () => {
       const videos = await fetchTvShowVideos(tvShow.id);
@@ -74,64 +72,67 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
   }, [tvShow]);
 
   return (
-    <div className="movie">
+    <div className="tvShow">
       <Head>
         <title>{tvShow.original_name}</title>
       </Head>
       {tvShow.backdrop_path && (
         <div
-          className="movie__bg"
+          className="tvShow__bg"
           style={{
             backgroundImage: `url(${`https://image.tmdb.org/t/p/w1280${tvShow.backdrop_path}`})`,
           }}
         ></div>
       )}
-      <div className="movie__imgContainer">
-        <Image
-          className="movie__imgContainer__poster"
-          src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
-          alt="movie image"
-          layout="fill"
-        />
-      </div>
-      <div className="movie__info">
-        <div className="movie__info__header">
-          <div className="movie__info__header__title">
-            <h3>
-              {tvShow.original_name}
-              <span className="movie__info__header__title__score">
-                {tvShow.vote_average.toFixed(1)}
-              </span>
-            </h3>
+      <div className="tvShow__info">
+        <div className="tvShow__info__imgContainer">
+          <Image
+            className="tvShow__info__imgContainer__poster"
+            src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
+            alt="tvShow image"
+            layout="fill"
+          />
+        </div>
+        <div className="tvShow__info__textContainer">
+          <h3 className="tvShow__info__textContainer__title">
+            {tvShow.original_name} ({tvShow.first_air_date.split("-")[0]} -{" "}
+            {tvShow.status !== "Ended"
+              ? ""
+              : tvShow.last_air_date.split("-")[0]}
+            )
+          </h3>
+          <div className="tvShow__info__textContainer__header">
+            <p className="tvShow__info__textContainer__header__ratings">
+              {tvShow.vote_average.toFixed(1)} / 10
+            </p>
+            <p>{formatRuntime(tvShow.episode_run_time[0])} </p>
+            <a
+              className="tvShow__info__textContainer__header__trailerBtn"
+              onClick={() => {
+                dispatch(openModal());
+              }}
+            >
+              <Play
+                className="tvShow__info__textContainer__header__trailerBtn__icon"
+                fill="#cb9e0c"
+              />
+              Play Trailer
+            </a>
           </div>
-          <a
-            className="movie__info__header__watchTrailerBtn"
-            onClick={() => {
-              dispatch(openModal());
-            }}
-          >
-            Watch Trailer
-          </a>
-        </div>
-        <div className="movie__info__date">
-          {formatDate(tvShow.first_air_date)}
-        </div>
-        <div className="movie__info__overview">
-          <p>{tvShow.overview}</p>
+          <div className="tvShow__info__textContainer__overview">
+            <p>{tvShow.overview}</p>
+          </div>
+
           {tvShow.tagline && (
-            <div className="movie__info__overview__tagline">
-              <q>{tvShow.tagline}</q>
+            <div className="tvShow__info__textContainer__tagline">
+              <q>{tvShow.tagline} </q>
             </div>
           )}
-        </div>
-        <div className="movie__info__moreInfo">
-          <Info title="Genres:" arr={tvShow.genres} />
-          <Info title="Countries:" arr={tvShow.production_countries} />
-          <Info title="Languages:" arr={tvShow.spoken_languages} />
-          <Info
-            title="Companies:"
-            arr={tvShow.production_companies.slice(0, 10)}
-          />
+
+          <div className="tvShow__info__textContainer__details">
+            <Info title="Genres:" content={tvShow.genres} />
+            <Info title="Countries:" content={tvShow.production_countries} />
+          </div>
         </div>
       </div>
     </div>

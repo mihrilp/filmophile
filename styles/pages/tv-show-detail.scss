@@ -1,0 +1,109 @@
+@use "../mixin" as m;
+@use "../variables" as v;
+
+.tvShow {
+    @include m.flex(column, space-between, flex-start);
+    @include m.paddingX-size(2rem);
+    font-size: v.$normal;
+    flex: 1;
+    padding-bottom: 8rem;
+    z-index: 1;
+    background-color: v.$bg-color;
+    @include m.respond-to(md) {
+        @include m.flex(column, space-between);
+    }
+    &__bg {
+        @include m.bgImage(0.1);
+    }
+    &__info {
+        @include m.flex(row, space-between, flex-start);
+        margin-bottom: 3rem;
+        &__imgContainer {
+            flex: 1.2;
+            position: relative;
+            aspect-ratio: 0.66;
+            &__poster {
+                border-radius: 20px;
+            }
+        }
+        &__textContainer {
+            @include m.flex(column, center, flex-start);
+            flex: 3;
+            padding-left: 4rem;
+            height: 100%;
+            @include m.respond-to(md) {
+                padding-left: 0;
+                align-items: center;
+                flex: 1;
+            }
+            &__title {
+                @include m.font-size(v.$x-large);
+                text-shadow: 1px 1px 2px v.$yellow;
+                margin-bottom: 1rem;
+            }
+            &__header {
+                @include m.flex(row, flex-start, center);
+                width: 100%;
+                margin-bottom: 2rem;
+                gap: 25px;
+                color: v.$yellow;
+                &__ratings {
+                    text-align: center;
+                    display: inline-block;
+                    @include m.font-size(v.$large);
+                }
+                &__trailerBtn {
+                    @include m.flex(row, center);
+                    $root: &;
+                    transition: all 0.5s ease-in-out;
+                    cursor: pointer;
+                    @include m.font-size(v.$large);
+                    &__icon {
+                        width: 25px;
+                        height: 25px;
+                        margin-right: 5px;
+                        #{$root}:hover & {
+                            animation: rotation 2s infinite linear;
+                        }
+                    }
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+            &__date {
+                color: gray;
+                margin-bottom: 1rem;
+            }
+            &__overview {
+                text-align: justify;
+                margin-bottom: 0.5rem;
+                line-height: 1.8;
+            }
+            &__tagline {
+                color: v.$yellow;
+            }
+            &__details {
+                @include m.flex(column, space-between, center);
+                width: 100%;
+                font-size: v.$small;
+                line-height: 1.8;
+                margin-top: 2rem;
+                @include m.respond-to(sm) {
+                    flex-wrap: wrap;
+                }
+            }
+        }
+    }
+    &__subtitle {
+        @include m.font-size(v.$x-large);
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+    }
+    &__cast {
+        @include m.flex(row, flex-start, flex-start);
+        gap: 4%;
+        margin-bottom: 3rem;
+        width: 100%;
+    }
+}

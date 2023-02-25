@@ -60,7 +60,13 @@ function Banner() {
             />
             Watch Trailer
           </a>
-          <Link href={`/movies/${data.id}`}>
+          <Link
+            href={
+              data.original_title
+                ? `/movies/${data.id}`
+                : `/tv-shows/${data.id}`
+            }
+          >
             <a className="banner__content__btns__seeDetailBtn">See Details</a>
           </Link>
         </div>

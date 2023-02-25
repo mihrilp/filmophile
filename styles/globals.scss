@@ -1,12 +1,13 @@
 @use "./variables" as v;
 
 @import "./pages/home.scss";
-@import "./pages/detail.scss";
+@import "./pages/movie-detail.scss";
 @import "./pages/about.scss";
 @import "./pages/search.scss";
 @import "./pages/four-oh-four.scss";
 @import "./pages/movies.scss";
 @import "./pages/tv-shows.scss";
+@import "./pages/tv-show-detail.scss";
 
 @import "./components/header.scss";
 @import "./components/footer.scss";
