@@ -54,3 +54,15 @@ export const fetchTvShowVideos = async (id: number) => {
         console.log(err);
     }
 };
+
+
+export const fetchTvShowCredits = async (id: number) => {
+    try {
+      const { data } = await instance.get(
+        `tv/${id}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+      );
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }

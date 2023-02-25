@@ -33,7 +33,7 @@ export function formatDate(date: string) {
 
 export function formatRuntime(runtime: number) {
     if(runtime < 60) {
-        return `${runtime} min`;
+        return `${runtime}m`;
     } else {
         return `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
     }

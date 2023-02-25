@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { Info } from "@/components";
+import { Info, Person } from "@/components";
 import { useAppDispatch } from "@/hooks";
 import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modal.slice";
@@ -9,6 +9,7 @@ import {
   fetchPopularTvShows,
   fetchTopRatedTvShows,
   fetchTrendingTvShows,
+  fetchTvShowCredits,
   fetchTvShowDetail,
   fetchTvShowVideos,
 } from "@/api/fetchTvShows";
@@ -22,19 +23,21 @@ type Params = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const [popularTvShows, topRatedTvShows] = await Promise.all([
+  const [popularTvShows, topRatedTvShows, trendingTvhows] = await Promise.all([
     fetchPopularTvShows(),
     fetchTopRatedTvShows(),
     fetchTrendingTvShows(),
   ]);
 
-  const paths = [...popularTvShows, ...topRatedTvShows].map((tvShow) => {
-    return {
-      params: {
-        id: tvShow.id.toString(),
-      },
-    };
-  });
+  const paths = [...popularTvShows, ...topRatedTvShows, ...trendingTvhows].map(
+    (tvShow) => {
+      return {
+        params: {
+          id: tvShow.id.toString(),
+        },
+      };
+    }
+  );
   return { paths, fallback: false };
 };
 
@@ -44,6 +47,9 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
+  const [cast, setCast] = useState([]);
+  const [crew, setCrew] = useState([]);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -61,6 +67,7 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
       "recentlyViewedtvShows",
       JSON.stringify(recentlyViewedtvShows)
     );
+
     (async () => {
       const videos = await fetchTvShowVideos(tvShow.id);
       dispatch(
@@ -68,6 +75,9 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
           videos.filter((video: any) => video.type === "Trailer")[0]?.key
         )
       );
+      let data = await fetchTvShowCredits(tvShow.id);
+      setCast(data.cast);
+      setCrew(data.crew);
     })();
   }, [tvShow]);
 
@@ -95,7 +105,7 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
         </div>
         <div className="tvShow__info__textContainer">
           <h3 className="tvShow__info__textContainer__title">
-            {tvShow.original_name} ({tvShow.first_air_date.split("-")[0]} -{" "}
+            {tvShow.original_name} ({tvShow.first_air_date.split("-")[0]} -
             {tvShow.status !== "Ended"
               ? ""
               : tvShow.last_air_date.split("-")[0]}
@@ -105,7 +115,11 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
             <p className="tvShow__info__textContainer__header__ratings">
               {tvShow.vote_average.toFixed(1)} / 10
             </p>
-            <p>{formatRuntime(tvShow.episode_run_time[0])} </p>
+            <p>{tvShow.number_of_seasons} seasons</p>
+            <p>{tvShow.number_of_episodes} episodes</p>
+            {tvShow.episode_run_time.length > 0 && (
+              <p>{formatRuntime(tvShow.episode_run_time[0])} </p>
+            )}
             <a
               className="tvShow__info__textContainer__header__trailerBtn"
               onClick={() => {
@@ -128,12 +142,26 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
               <q>{tvShow.tagline} </q>
             </div>
           )}
-
           <div className="tvShow__info__textContainer__details">
             <Info title="Genres:" content={tvShow.genres} />
+            {tvShow.created_by.length > 0 && (
+              <Info title="Creators:" content={tvShow.created_by.slice(0, 4)} />
+            )}
             <Info title="Countries:" content={tvShow.production_countries} />
           </div>
         </div>
+      </div>
+      <h3 className="tvShow__subtitle">Cast & Crew</h3>
+      <div className="tvShow__cast">
+        {[...cast, ...crew].slice(0, 7).map((person: CreditProps) => (
+          <Person
+            key={person.id}
+            name={person.name}
+            imgUrl={person.profile_path}
+            character={person.character}
+            job={person.job}
+          />
+        ))}
       </div>
     </div>
   );

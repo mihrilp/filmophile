@@ -51,7 +51,7 @@ body {
   }
 
   &__blur {
-    filter: blur(8px);
+    backdrop-filter: blur(8px);
     pointer-events: none;
     user-select: none;
   }

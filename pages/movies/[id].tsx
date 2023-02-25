@@ -78,13 +78,12 @@ function MovieDetail({ movie }: { movie: Movie }) {
       let data = await fetchMovieCredits(movie.id);
       setCast(data.cast);
       setDirectors(
-        data.crew.filter(
-          (person: CreditProps) => person.department === "Directing"
-        )
+        data.crew.filter((person: CreditProps) => person.job === "Director")
       );
       setWriters(
         data.crew.filter(
-          (person: CreditProps) => person.department === "Writing"
+          (person: CreditProps) =>
+            person.known_for_department === "Writing" && person.job !== "Writer"
         )
       );
     })();
@@ -118,8 +117,7 @@ function MovieDetail({ movie }: { movie: Movie }) {
           </h3>
           <div className="movie__info__textContainer__header">
             <p className="movie__info__textContainer__header__ratings">
-              {movie.vote_average.toFixed(1)} / 10 &nbsp; &nbsp;
-              {movie.vote_count} Ratings
+              {movie.vote_average.toFixed(1)} / 10
             </p>
             <p>{formatRuntime(movie.runtime)} </p>
             <a

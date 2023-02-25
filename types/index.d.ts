@@ -43,6 +43,9 @@ interface TvShow {
   last_air_date: string;
   status: string;
   episode_run_time: number[];
+  created_by: [];
+  number_of_seasons: number;
+  number_of_episodes: number;
 }
 
 interface CardProps {
@@ -75,5 +78,6 @@ interface CreditProps {
   name: string;
   profile_path: string;
   character?: string;
-  department?: string;  
+  known_for_department: string;
+  job?: string;
 }

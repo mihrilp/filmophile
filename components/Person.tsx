@@ -5,10 +5,10 @@ interface PersonProps {
   name: string;
   imgUrl: string;
   character?: string;
-  department?: string;
+  job?: string;
 }
 
-function Person({ name, imgUrl, department, character }: PersonProps) {
+function Person({ name, imgUrl, job, character }: PersonProps) {
   return (
     <div className="person">
       <div className="person__imgContainer">
@@ -27,7 +27,7 @@ function Person({ name, imgUrl, department, character }: PersonProps) {
       <div className="person__info">
         <p className="person__info__name">{name}</p>
         {character && <p className="person__info__character">{character}</p>}
-        <p className="person__info__department">{department}</p>
+        {job && <p className="person__info__job">{job}</p>}
       </div>
     </div>
   );
