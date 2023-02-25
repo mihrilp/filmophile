@@ -2,25 +2,24 @@
 @use "../variables" as v;
 
 .person {
-    @include m.flex(row, flex-start, center);
+    @include m.flex(column, flex-start, center);
     &__imgContainer {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 150px;
         position: relative;
         margin-right: 8px;
         &__poster {
-            border-radius: 50%;
+            border-radius: 20px;
         }
     }
     &__info {
         @include m.flex(column, flex-start, flex-start);
-        width: calc(100% - 100px);
         &__name {
             @include m.font-size(v.$small);
             width: 100%;
             text-overflow: ellipsis;
             overflow: hidden;
-            white-space: nowrap;
+            white-space: pre-wrap;
         }
         &__character {
             color: v.$gray;

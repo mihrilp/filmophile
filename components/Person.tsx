@@ -4,7 +4,7 @@ import Image from "next/image";
 interface PersonProps {
   name: string;
   imgUrl: string;
-  character: string;
+  character?: string;
   department?: string;
 }
 
@@ -26,7 +26,8 @@ function Person({ name, imgUrl, department, character }: PersonProps) {
       </div>
       <div className="person__info">
         <p className="person__info__name">{name}</p>
-        <p className="person__info__character">{character}</p>
+        {character && <p className="person__info__character">{character}</p>}
+        <p className="person__info__department">{department}</p>
       </div>
     </div>
   );

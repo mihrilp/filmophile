@@ -8,7 +8,6 @@
     flex: 1;
     padding-bottom: 8rem;
     z-index: 1;
-    line-height: 2;
     background-color: v.$bg-color;
     @include m.respond-to(md) {
         @include m.flex(column, space-between);
@@ -40,29 +39,25 @@
             &__title {
                 @include m.font-size(v.$x-large);
                 text-shadow: 1px 1px 2px v.$yellow;
+                margin-bottom: 0.8rem;
             }
             &__header {
                 @include m.flex(row, flex-start, center);
                 width: 100%;
-                margin: 1rem 0;
+                margin-bottom: 2rem;
                 gap: 25px;
+                color: v.$yellow;
                 &__ratings {
                     text-align: center;
                     display: inline-block;
                     @include m.font-size(v.$large);
-                    color: v.$yellow;
-                    &__score {
-                        color: v.$yellow;
-                    }
                 }
                 &__trailerBtn {
                     @include m.flex(row, center);
                     $root: &;
-                    color: v.$yellow;
                     transition: all 0.5s ease-in-out;
                     cursor: pointer;
                     @include m.font-size(v.$large);
-
                     &__icon {
                         width: 25px;
                         height: 25px;
@@ -82,12 +77,20 @@
             }
             &__overview {
                 text-align: justify;
-                margin-bottom: 2.5rem;
+                margin-bottom: 0.5rem;
+    line-height: 1.8;
+
+            }
+            &__tagline{
+                color: v.$yellow;
+                margin-bottom:2rem;
             }
             &__details {
                 @include m.flex(column, space-between, center);
                 width: 100%;
                 font-size: v.$small;
+                line-height: 1.8;
+
                 @include m.respond-to(sm) {
                     flex-wrap: wrap;
                 }
@@ -100,12 +103,17 @@
         width: 100%;
         margin-bottom: 1rem;
     }
-    &__cast {
-        @include m.flex(row, flex-start, center);
-        flex-wrap: wrap;
+    &__credits {
+        @include m.flex(row, flex-start, flex-start);
         gap: 20px 4%;
-        &__person {
-            width: 22%;
-        }
+        margin-bottom: 3rem;
+        white-space: nowrap;
+        position: relative;
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        // &__person {
+        //     width: 22%;
+        // }
     }
 }

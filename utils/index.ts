@@ -30,3 +30,7 @@ export function formatDate(date: string) {
     let splittedDate: string[] = date.split("-");
     return `${splittedDate[2]}.${splittedDate[1]}.${splittedDate[0]}`;
 }
+
+export function formatRuntime(runtime: number) {
+    return `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
+}

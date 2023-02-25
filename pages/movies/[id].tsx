@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Info, Person } from "@/components";
 import {
@@ -14,6 +14,7 @@ import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
 import { Play } from "@/public/assets";
+import { formatRuntime } from "@/utils";
 
 type Params = {
   params: {
@@ -48,6 +49,8 @@ export const getStaticProps = async ({ params }: Params) => {
 function MovieDetail({ movie }: { movie: Movie }) {
   const dispatch = useAppDispatch();
   const [cast, setCast] = useState([]);
+  const [directors, setDirectors] = useState([]);
+  const [writers, setWriters] = useState([]);
 
   useEffect(() => {
     let recentlyViewedMovies =
@@ -73,6 +76,16 @@ function MovieDetail({ movie }: { movie: Movie }) {
       );
       let data = await fetchMovieCredits(movie.id);
       setCast(data.cast);
+      setDirectors(
+        data.crew.filter(
+          (person: CreditProps) => person.department === "Directing"
+        )
+      );
+      setWriters(
+        data.crew.filter(
+          (person: CreditProps) => person.department === "Writing"
+        )
+      );
     })();
   }, [movie]);
 
@@ -107,6 +120,7 @@ function MovieDetail({ movie }: { movie: Movie }) {
               {movie.vote_average.toFixed(1)} / 10 &nbsp; &nbsp;
               {movie.vote_count} Ratings
             </p>
+            <p>{formatRuntime(movie.runtime)} </p>
             <a
               className="movie__info__textContainer__header__trailerBtn"
               onClick={() => {
@@ -123,18 +137,25 @@ function MovieDetail({ movie }: { movie: Movie }) {
           <div className="movie__info__textContainer__overview">
             <p>{movie.overview}</p>
           </div>
+
+          {movie.tagline && (
+            <div className="movie__info__textContainer__tagline">
+              <q>{movie.tagline} </q>
+            </div>
+          )}
+
           <div className="movie__info__textContainer__details">
             <Info title="Genres:" content={movie.genres} />
-            <Info title="Runtime:" content={movie.runtime} />
-            {movie.tagline && <Info title="Tagline:" content={movie.tagline} />}
+            <Info title="Directors:" content={directors.slice(0, 4)} />
+            <Info title="Writers:" content={writers.slice(0, 4)} />
             <Info title="Countries:" content={movie.production_countries} />
           </div>
         </div>
       </div>
       <h3 className="movie__subtitle">Top Cast</h3>
-      <div className="movie__cast">
-        {cast.slice(0, 8).map((person: CreditProps) => (
-          <div className="movie__cast__person" key={person.id}>
+      <div className="movie__credits">
+        {cast.map((person: CreditProps) => (
+          <div className="movie__credits__person" key={person.id}>
             <Person
               name={person.name}
               imgUrl={person.profile_path}
