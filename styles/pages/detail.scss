@@ -78,19 +78,17 @@
             &__overview {
                 text-align: justify;
                 margin-bottom: 0.5rem;
-    line-height: 1.8;
-
+                line-height: 1.8;
             }
-            &__tagline{
+            &__tagline {
                 color: v.$yellow;
-                margin-bottom:2rem;
             }
             &__details {
                 @include m.flex(column, space-between, center);
                 width: 100%;
                 font-size: v.$small;
                 line-height: 1.8;
-
+                margin-top: 2rem;
                 @include m.respond-to(sm) {
                     flex-wrap: wrap;
                 }
