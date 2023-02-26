@@ -1,6 +1,7 @@
 {
   "name": "filmophile",
   "private": true,
+  "description": "A database of information related to movies and television series.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -8,6 +9,7 @@
     "lint": "next lint",
     "svgr": "svgr public/assets -d components/icons"
   },
+  "license" : "MIT",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
     "@types/react-redux": "^7.1.22",
