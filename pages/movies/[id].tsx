@@ -14,7 +14,11 @@ import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
 import { Play } from "@/public/assets";
-import { addRecentlyViewedItem, formatRuntime } from "@/utils";
+import {
+  addRecentlyViewedItem,
+  formatRuntime,
+  removeDuplicatePerson,
+} from "@/utils";
 
 type Params = {
   params: {
@@ -47,9 +51,9 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 function MovieDetail({ movie }: { movie: Movie }) {
-  const [cast, setCast] = useState([]);
-  const [directors, setDirectors] = useState([]);
-  const [writers, setWriters] = useState([]);
+  const [cast, setCast] = useState<Person[]>([]);
+  const [directors, setDirectors] = useState<Person[]>([]);
+  const [writers, setWriters] = useState<Person[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -65,16 +69,23 @@ function MovieDetail({ movie }: { movie: Movie }) {
       let data = await fetchMovieCredits(movie.id);
       setCast(data.cast);
       setDirectors(
-        data.crew.filter((person: Person) => person.job === "Director")
+        removeDuplicatePerson(
+          data.crew.filter((person: Person) => person.job === "Director")
+        )
       );
       setWriters(
-        data.crew.filter(
-          (person: Person) =>
-            person.known_for_department === "Writing" && person.job !== "Writer"
+        removeDuplicatePerson(
+          data.crew.filter(
+            (person: Person) => person.known_for_department === "Writing"
+          )
         )
       );
     })();
   }, [movie]);
+
+  useEffect(() => {
+    console.log(writers);
+  }, [writers]);
 
   return (
     <div className="movie">

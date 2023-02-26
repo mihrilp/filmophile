@@ -55,3 +55,26 @@ export function addRecentlyViewedItem(item: Movie | TvShow) {
       JSON.stringify(recentlyViewed)
     );
 }
+
+export function removeDuplicatePerson(arr: Person[]) {
+      let found = false;
+      for (let i = 0; i < arr.length; i++) {
+        const obj1 = arr[i];
+        for (let j = i + 1; j < arr.length; j++) {
+          const obj2 = arr[j];
+            if (obj1["name"] === obj2["name"]) {
+              found = true;
+              break;
+            }
+          if (found) {
+            break;
+          }
+        }
+        if (found) {
+           //Remove the duplicate element
+          arr.splice(i, 1);
+          break;
+        }
+      }
+    return arr;
+}

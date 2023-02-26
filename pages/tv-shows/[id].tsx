@@ -13,7 +13,11 @@ import {
   fetchTvShowDetail,
   fetchTvShowVideos,
 } from "@/api/fetchTvShows";
-import { addRecentlyViewedItem, formatRuntime } from "@/utils";
+import {
+  addRecentlyViewedItem,
+  formatRuntime,
+  removeDuplicatePerson,
+} from "@/utils";
 import { Play } from "@/public/assets";
 
 type Params = {
@@ -47,8 +51,8 @@ export const getStaticProps = async ({ params }: Params) => {
 };
 
 function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
-  const [cast, setCast] = useState([]);
-  const [crew, setCrew] = useState([]);
+  const [cast, setCast] = useState<Person[]>([]);
+  const [crew, setCrew] = useState<Person[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -63,7 +67,7 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
       );
       let data = await fetchTvShowCredits(tvShow.id);
       setCast(data.cast);
-      setCrew(data.crew);
+      setCrew(removeDuplicatePerson(data.crew));
     })();
   }, [tvShow]);
 
