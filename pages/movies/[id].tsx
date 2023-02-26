@@ -144,10 +144,19 @@ function MovieDetail({ movie }: { movie: Movie }) {
           )}
 
           <div className="movie__info__textContainer__details">
-            <Info title="Genres:" content={movie.genres} />
-            <Info title="Directors:" content={directors.slice(0, 4)} />
-            <Info title="Writers:" content={writers.slice(0, 4)} />
-            <Info title="Countries:" content={movie.production_countries} />
+            {movie.genres.length > 0 && (
+              <Info title="Genres:" content={movie.genres} />
+            )}
+
+            {directors.length > 0 && (
+              <Info title="Directors:" content={directors.slice(0, 4)} />
+            )}
+            {writers.length > 0 && (
+              <Info title="Writers:" content={writers.slice(0, 4)} />
+            )}
+            {movie.production_companies.length > 0 && (
+              <Info title="Countries:" content={movie.production_countries} />
+            )}
           </div>
         </div>
       </div>

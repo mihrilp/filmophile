@@ -18,6 +18,7 @@
     &__info {
         @include m.flex(row, space-between, flex-start);
         margin-bottom: 3rem;
+        width: 100%;
         &__imgContainer {
             flex: 1.2;
             position: relative;
@@ -101,11 +102,11 @@
         margin-bottom: 1.5rem;
     }
     &__cast {
-        @include m.flex(row, flex-start, flex-start);
-        gap: 3%;
+        @include m.flex(row, space-between, flex-start);
         margin-bottom: 3rem;
         width: 100%;
-        overflow: hidden;
-        flex-wrap: wrap;
+        &__person{
+            width: 11%;
+        }
     }
 }

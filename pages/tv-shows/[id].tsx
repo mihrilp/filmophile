@@ -143,24 +143,29 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
             </div>
           )}
           <div className="tvShow__info__textContainer__details">
-            <Info title="Genres:" content={tvShow.genres} />
+            {tvShow.genres.length > 0 && (
+              <Info title="Genres:" content={tvShow.genres} />
+            )}
             {tvShow.created_by.length > 0 && (
               <Info title="Creators:" content={tvShow.created_by.slice(0, 4)} />
             )}
-            <Info title="Countries:" content={tvShow.production_countries} />
+            {tvShow.production_countries.length > 0 && (
+              <Info title="Countries:" content={tvShow.production_countries} />
+            )}
           </div>
         </div>
       </div>
       <h3 className="tvShow__subtitle">Cast & Crew</h3>
       <div className="tvShow__cast">
         {[...cast, ...crew].slice(0, 7).map((person: Person) => (
-          <Person
-            key={person.id}
-            name={person.name}
-            imgUrl={person.profile_path}
-            character={person.character}
-            job={person.job}
-          />
+          <div className="tvShow__cast__person" key={person.id}>
+            <Person
+              name={person.name}
+              imgUrl={person.profile_path}
+              character={person.character}
+              job={person.job}
+            />
+          </div>
         ))}
       </div>
     </div>
