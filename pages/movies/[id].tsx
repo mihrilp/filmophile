@@ -14,7 +14,7 @@ import { GetStaticPaths } from "next";
 import { openModal, setVideoUrl } from "@/store/modal.slice";
 import Head from "next/head";
 import { Play } from "@/public/assets";
-import { formatRuntime } from "@/utils";
+import { addRecentlyViewedItem, formatRuntime } from "@/utils";
 
 type Params = {
   params: {
@@ -54,20 +54,7 @@ function MovieDetail({ movie }: { movie: Movie }) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    let recentlyViewedMovies =
-      JSON.parse(localStorage.getItem("recentlyViewedMovies")!) || [];
-    if (recentlyViewedMovies.length === 0) {
-      recentlyViewedMovies.push(movie);
-    } else {
-      recentlyViewedMovies.every((item: Movie) => {
-        return item.id !== movie.id;
-      }) && recentlyViewedMovies.unshift(movie);
-    }
-    if (recentlyViewedMovies.length > 5) recentlyViewedMovies.pop();
-    localStorage.setItem(
-      "recentlyViewedMovies",
-      JSON.stringify(recentlyViewedMovies)
-    );
+    addRecentlyViewedItem(movie);
     (async () => {
       const videos = await fetchMovieVideos(movie.id);
       dispatch(

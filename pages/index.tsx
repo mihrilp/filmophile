@@ -12,7 +12,7 @@ import { fetchTrendingTvShows } from "@/store/tvShows/trendingTvShows.slice";
 import { setBannerData } from "@/store/banner.slice";
 
 export default function Home() {
-  const [recentlyViewedMovies, setRecentlyViewedMovies] = useState([]);
+  const [recentlyViewed, setRecentlyViewed] = useState([]);
   const dispatch = useAppDispatch();
 
   const {
@@ -50,9 +50,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(fetchTrendingMovies());
     dispatch(fetchTrendingTvShows());
-    setRecentlyViewedMovies(
-      JSON.parse(localStorage.getItem("recentlyViewedMovies")!)
-    );
+    setRecentlyViewed(JSON.parse(localStorage.getItem("recentlyViewed")!));
   }, []);
 
   useEffect(() => {
@@ -78,11 +76,8 @@ export default function Home() {
               </h2>
               <Pagination title="Trending Movies" data={trendingMovies} />
               <Pagination title="Trending TV Shows" data={trendingTvShows} />
-              {recentlyViewedMovies?.length > 0 && (
-                <Pagination
-                  title="Recently Viewed"
-                  data={recentlyViewedMovies}
-                />
+              {recentlyViewed?.length > 0 && (
+                <Pagination title="Recently Viewed" data={recentlyViewed} />
               )}
             </div>
           </>

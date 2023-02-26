@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Info, Person } from "@/components";
 import { useAppDispatch } from "@/hooks";
@@ -13,7 +13,7 @@ import {
   fetchTvShowDetail,
   fetchTvShowVideos,
 } from "@/api/fetchTvShows";
-import { formatRuntime } from "@/utils";
+import { addRecentlyViewedItem, formatRuntime } from "@/utils";
 import { Play } from "@/public/assets";
 
 type Params = {
@@ -53,21 +53,7 @@ function TvShowDetail({ tvShow }: { tvShow: TvShow }) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    let recentlyViewedtvShows =
-      JSON.parse(localStorage.getItem("recentlyViewedtvShows")!) || [];
-    if (recentlyViewedtvShows.length === 0) {
-      recentlyViewedtvShows.push(tvShow);
-    } else {
-      recentlyViewedtvShows.every((item: TvShow) => {
-        return item.id !== tvShow.id;
-      }) && recentlyViewedtvShows.unshift(tvShow);
-    }
-    if (recentlyViewedtvShows.length > 5) recentlyViewedtvShows.pop();
-    localStorage.setItem(
-      "recentlyViewedtvShows",
-      JSON.stringify(recentlyViewedtvShows)
-    );
-
+    addRecentlyViewedItem(tvShow);
     (async () => {
       const videos = await fetchTvShowVideos(tvShow.id);
       dispatch(

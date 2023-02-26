@@ -38,3 +38,20 @@ export function formatRuntime(runtime: number) {
         return `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
     }
 }
+
+export function addRecentlyViewedItem(item: Movie | TvShow) {
+    let recentlyViewed =
+      JSON.parse(localStorage.getItem("recentlyViewed")!) || [];
+    if (recentlyViewed.length === 0) {
+      recentlyViewed.push(item);
+    } else {
+      recentlyViewed.every(( element: Movie | TvShow) => {
+        return element.id !== item.id;
+      }) && recentlyViewed.unshift(item);
+    }
+    if (recentlyViewed.length > 5) recentlyViewed.pop();
+    localStorage.setItem(
+      "recentlyViewed",
+      JSON.stringify(recentlyViewed)
+    );
+}
