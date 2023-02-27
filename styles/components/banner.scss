@@ -15,6 +15,7 @@
     font-size: v.$large;
     border-radius: 40px;
     cursor: pointer;
+    height: 55px;
 }
 
 .banner {
@@ -25,6 +26,7 @@
     margin-bottom: 2rem;
     @include m.respond-to(sm) {
         height: 80vh;
+        margin-bottom: 0;
     }
     &__bg {
         @include m.bgImage(0.3);
@@ -70,7 +72,7 @@
         &__btns {
             @include m.flex(row, center);
             &__watchTrailerBtn {
-                @include m.flex(row, center);
+                @include m.flex(row, center, center);
                 @include m.font-size(v.$large);
                 @extend .btn;
                 $root: &;
@@ -89,6 +91,7 @@
             }
             &__seeDetailBtn {
                 @extend .btn;
+                @include m.flex(column, center, center);
                 @include m.font-size(v.$large);
                 color: v.$yellow;
                 border: 2px solid v.$yellow;

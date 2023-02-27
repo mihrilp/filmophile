@@ -83,10 +83,6 @@ function MovieDetail({ movie }: { movie: Movie }) {
     })();
   }, [movie]);
 
-  useEffect(() => {
-    console.log(writers);
-  }, [writers]);
-
   return (
     <div className="movie">
       <Head>

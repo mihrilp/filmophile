@@ -10,11 +10,14 @@
         &__title {
             color: v.$yellow;
             font-size: v.$x-large;
+            @include m.respond-to(sm) {
+                font-size: 24px;
+            }
         }
         &__btns {
             @include m.flex(row, center);
             align-self: center;
-            gap:10px;
+            gap: 10px;
             button {
                 border: none;
                 font-size: v.$small;
@@ -30,12 +33,27 @@
     &__data {
         @include m.flex(row, flex-start, center);
         flex-wrap: wrap;
-        gap:6.25%;
+        gap: 6.25%;
         &__link {
-            flex-basis: 15%;
+            width: 15%;
             @include m.respond-to(xl) {
-                flex-basis: 25%;
+                width: 18%;
             }
+            @include m.respond-to(md) {
+                width: 25%;
+            }
+            @include m.respond-to(sm) {
+                width: 40%;
+            }
+        }
+        @include m.respond-to(xl) {
+            gap: 9.33%;
+        }
+        @include m.respond-to(md) {
+            gap: 12.5%;
+        }
+        @include m.respond-to(sm) {
+            gap: 20%;
         }
     }
 }

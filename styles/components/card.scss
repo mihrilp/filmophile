@@ -5,17 +5,9 @@
     $root: &;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
-    width: 155px;
-    height: 302px;
-    margin-bottom: 5rem;
-    @include m.respond-to(xl) {
-        width: 170px;
-        height: 331px;
-    }
-    @include m.respond-to(sm) {
-        width: 150px;
-        height: 292px;
-    }
+    width: 100%;
+    height: min-content;
+    margin-bottom: 6rem;
     &__imgContainer {
         flex: 1;
         position: relative;
@@ -38,6 +30,9 @@
         }
         &__date {
             font-weight: lighter;
+            @include m.respond-to(sm) {
+                font-size: 10px;
+            }
         }
     }
     &__title {
@@ -48,12 +43,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
             #{$root}:hover & {
-                white-space: inherit;
+                white-space: pre-line;
                 overflow: visible;
             }
         }
     }
     &:hover {
         transform: scale(1.05);
+    }
+    @include m.respond-to(xl) {
+        margin-bottom: 4rem;
     }
 }
