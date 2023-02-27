@@ -1,14 +1,32 @@
 import Link from "next/link";
-import { useState } from "react";
-import { Logo, BurgerMenu, Close } from "@/public/assets";
+import { useCallback, useEffect, useState } from "react";
+import { Logo, BurgerMenu, Close, Search } from "@/public/assets";
 import SearchBar from "./SearchBar";
+import { useRouter } from "next/router";
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
+  const router = useRouter();
 
-  const toggleHamburgerMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleHamburgerMenu = useCallback(() => {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  }, [isBurgerMenuOpen]);
+
+  const toggleSearchBar = useCallback(() => {
+    setIsSearchBarOpen(!isSearchBarOpen);
+  }, [isSearchBarOpen]);
+
+  const handleRouteChange = useCallback(() => {
+    setIsBurgerMenuOpen(false);
+  }, []);
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <div className="header">
@@ -17,8 +35,15 @@ function Header() {
           <Logo />
         </a>
       </Link>
-      <SearchBar />
-      <nav className={`header__navbar ${isOpen && "header__active"}`}>
+      <SearchBar
+        isSearchBarOpen={isSearchBarOpen}
+        setIsSearchBarOpen={setIsSearchBarOpen}
+      />
+      <nav
+        className={`header__navbar ${
+          isBurgerMenuOpen && "header__activeNavbar"
+        }`}
+      >
         <Link href="/movies">
           <a>Movies</a>
         </Link>
@@ -29,8 +54,13 @@ function Header() {
           <a>About</a>
         </Link>
       </nav>
-      <div className="header__burgerMenuBtn" onClick={toggleHamburgerMenu}>
-        {isOpen ? <Close /> : <BurgerMenu />}
+      <div className="header__mobileMenu">
+        <button onClick={toggleSearchBar}>
+          <Search width={27} height={27} />
+        </button>
+        <div className="header__burgerMenuBtn" onClick={toggleHamburgerMenu}>
+          {isBurgerMenuOpen ? <Close stroke="#cb9e0c" /> : <BurgerMenu />}
+        </div>
       </div>
     </div>
   );

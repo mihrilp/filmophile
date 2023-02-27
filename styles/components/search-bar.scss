@@ -11,6 +11,9 @@
         width: 100%;
         height: 100%;
         margin-left:15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         &::placeholder{
             color:#afb6cf;
             font-weight: lighter;
@@ -21,4 +24,25 @@
             height: 1px;
         }
     }
+    @include m.respond-to(lg) {
+        width: 35%;
+    }
+    @include m.respond-to(md) {
+        display: none;
+     }
+}
+
+.activeSearchBar{
+    @include m.flex(row, space-between, center);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 80%;
+    z-index: 9999;
+    background-color: v.$bg-color;
+    border:none;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(v.$yellow, 0.5);
+    padding: 0 20px;
 }

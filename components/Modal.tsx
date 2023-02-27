@@ -13,7 +13,7 @@ function ModalVideo({ videoUrl }: ModalProps) {
   const handleClick = useCallback(() => dispatch(closeModal()), []);
   return createPortal(
     <div className="modal">
-      <Close className="modal__closeBtn" onClick={handleClick} />
+      <Close className="modal__closeBtn" stroke="#fff" onClick={handleClick} />
       <iframe
         className="modal__iframe"
         src={`https://www.youtube.com/embed/${videoUrl}?autoplay=1`}

@@ -1,8 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { Search } from "@/public/assets";
+import { Close, Search } from "@/public/assets";
 import { useRouter } from "next/router";
 
-function SearchBar() {
+function SearchBar({
+  isSearchBarOpen,
+  setIsSearchBarOpen,
+}: {
+  isSearchBarOpen: boolean;
+  setIsSearchBarOpen: (value: boolean) => void;
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const handleChange = useCallback((e) => setSearchTerm(e.target.value), []);
 
@@ -18,15 +24,26 @@ function SearchBar() {
   );
 
   return (
-    <form className="searchBar" onSubmit={handleSubmit}>
-      <Search width={25} height={25} />
+    <form
+      className={`searchBar ${isSearchBarOpen && "activeSearchBar"}`}
+      onSubmit={handleSubmit}
+    >
+      <Search
+        width={isSearchBarOpen ? 35 : 25}
+        height={isSearchBarOpen ? 35 : 20}
+      />
       <input
         type="text"
-        placeholder="Search movies, TV shows, more..."
+        placeholder="Search Movies, TV shows, more..."
         value={searchTerm}
         onChange={handleChange}
       />
       <input type="submit" hidden />
+      {isSearchBarOpen && (
+        <button onClick={() => setIsSearchBarOpen(false)}>
+          <Close stroke="#cb9e0c" />
+        </button>
+      )}
     </form>
   );
 }
