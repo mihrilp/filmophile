@@ -24,7 +24,7 @@
     width: 100%;
     z-index: 1;
     margin-bottom: 2rem;
-    @include m.respond-to(sm) {
+    @include m.respond-to(lg) {
         height: 80vh;
         margin-bottom: 0;
     }

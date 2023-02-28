@@ -8,8 +8,8 @@
     background-color: v.$dark-blue;
     font-size: v.$normal;
     @include m.respond-to(md) {
-        @include m.flex(column, space-between);
-        @include m.paddingX-size(3rem);
+        @include m.flex(column, space-between, center);
+        gap: 30px;
     }
     &__discover {
         @include m.font-size(v.$normal);
@@ -21,6 +21,9 @@
                 text-decoration: underline;
             }
         }
+        @include m.respond-to(md) {
+            display: none;
+        }
     }
     &__quote {
         flex: 1 1 auto;
@@ -30,13 +33,10 @@
     }
     &__social {
         @include m.flex(row, center);
-        @include m.respond-to(md) {
-            margin-top: 25px;
-        }
+        gap: 25px;
         &__icon {
             $root: &;
             cursor: pointer;
-            margin-left: 25px;
             transition: all 0.15s ease;
             position: relative;
             &__tooltip {

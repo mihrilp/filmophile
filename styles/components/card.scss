@@ -6,7 +6,7 @@
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     width: 100%;
-    height: min-content;
+    height: 336px;
     margin-bottom: 6rem;
     &__imgContainer {
         flex: 1;
@@ -53,5 +53,9 @@
     }
     @include m.respond-to(xl) {
         margin-bottom: 4rem;
+        height: 300px;
+    }
+    @include m.respond-to(md) {
+        height: 300px;
     }
 }

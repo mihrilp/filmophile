@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Card } from ".";
 import { RightArrow, LeftArrow } from "@/public/assets";
