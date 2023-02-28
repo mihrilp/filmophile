@@ -11,13 +11,19 @@
         font-size: v.$x-large;
         font-weight: bold;
         margin-bottom: 2rem;
-        text-transform: capitalize;
-
+        @include m.respond-to(md) {
+            font-size: 24px;
+        }
     }
     &__text {
         font-size: v.$large;
-    text-align: justify;
-    margin-bottom:1rem;
-
+        text-align: justify;
+        margin-bottom: 1rem;
+        @include m.respond-to(md) {
+            font-size: 18px;
+        }
+    }
+    @include m.respond-to(md) {
+        line-height: 1.6;
     }
 }
